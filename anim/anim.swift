@@ -11,6 +11,11 @@ import UIKit
 
 typealias animClosue = ( ()->Void )
 
+
+/*
+easing values are from http://easings.net/
+*/
+
 enum AnimEase {
     case Linear
     case SineOut, SineIn, SineInOut
