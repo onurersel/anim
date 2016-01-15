@@ -9,7 +9,8 @@
 import UIKit
 
 
-typealias animClosue = ( ()->Void )
+typealias animClosure = ( ()->Void )
+typealias compClosure = ( (finished : Bool)->Void )
 
 
 /*
@@ -111,7 +112,16 @@ enum AnimEase {
 
 var passingTimingFunction : CAMediaTimingFunction?
 
-func anim (duration animDuration: NSTimeInterval, easing : AnimEase, animation : animClosue) {
+
+func anim (duration animDuration: NSTimeInterval, easing : AnimEase, animation : animClosure) {
+    anim(duration: animDuration, delay: 0, easing: easing, options: UIViewAnimationOptions.CurveLinear, animation: animation, completion: nil)
+}
+func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : AnimEase, animation : animClosure) {
+    anim(duration: animDuration, delay: delay, easing: easing, options: UIViewAnimationOptions.CurveLinear, animation: animation, completion: nil)
+}
+
+
+func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : AnimEase, options:UIViewAnimationOptions, animation : animClosure, completion : compClosure?) {
     
     
     //swizzle
@@ -131,7 +141,7 @@ func anim (duration animDuration: NSTimeInterval, easing : AnimEase, animation :
     passingTimingFunction = easing.definition()
     
     //animate with block
-    UIView.animateWithDuration(animDuration, animations: animation);
+    UIView.animateWithDuration(animDuration, delay: delay, options: options, animations: animation, completion: completion)
     
 }
 

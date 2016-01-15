@@ -22,18 +22,24 @@ class ViewController: UIViewController {
         v!.frame = CGRect(x: 20, y: 30, width: 50, height: 100)
         
         
-        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "test", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "test", userInfo: nil, repeats: false)
         
         
     }
 
     @objc func test () {
         
-        anim(duration: 0.8, easing: AnimEase.QuintInOut) { () -> Void in
+        
+        anim(duration: 1, delay: 2, easing: AnimEase.BackInOut, options: UIViewAnimationOptions.CurveLinear, animation: {
             
             self.v!.frame = CGRect(x: 200, y: 200, width: 100, height: 50)
             
+        }) { finished in
+            
+            print("finished")
+            
         }
+        
     }
 
 
