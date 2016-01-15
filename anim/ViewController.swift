@@ -34,10 +34,10 @@ class ViewController: UIViewController {
             
             self.v!.frame = CGRect(x: 200, y: 200, width: 100, height: 50)
             
-        }) { finished in
-            
-            print("finished")
-            
+            }) { finished in
+                
+                print("finished")
+                
         }
         
     }
