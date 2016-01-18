@@ -30,9 +30,11 @@ class ViewController: UIViewController {
     @objc func test () {
         
         
-        anim(duration: 1, delay: 2, easing: AnimEase.BackInOut, options: UIViewAnimationOptions.CurveLinear, animation: {
+        anim(duration: 1, delay: 2, easing: AnimEase.ElasticOut, options: UIViewAnimationOptions.CurveLinear, animation: {
             
-            self.v!.frame = CGRect(x: 200, y: 200, width: 100, height: 50)
+            //self.v!.frame = CGRect(x: 200, y: 200, width: 100, height: 50)
+            //self.v!.center = CGPoint(x: 200, y: 250)
+            self.v!.backgroundColor = UIColor.blueColor()
             
             }) { finished in
                 
