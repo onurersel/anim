@@ -12,6 +12,9 @@ class ViewController: UIViewController {
 
     var v : UIView?
     
+    var c1 : NSLayoutConstraint?
+    var c2 : NSLayoutConstraint?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,10 +22,19 @@ class ViewController: UIViewController {
         v = UIView();
         self.view.addSubview(v!)
         v!.backgroundColor = UIColor.redColor()
-        v!.frame = CGRect(x: 20, y: 30, width: 50, height: 100)
+        
+        c1 = NSLayoutConstraint(item: v!, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 100)
+        self.view.addConstraint(c1!)
+        c2 = NSLayoutConstraint(item: v!, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 200)
+        self.view.addConstraint(c2!)
+        
+        var c = NSLayoutConstraint(item: v!, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1, constant: 50)
+        self.view.addConstraint(c)
+        c = NSLayoutConstraint(item: v!, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1, constant: 50)
+        self.view.addConstraint(c)
         
         
-        NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "test", userInfo: nil, repeats: false)
+        //NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "test", userInfo: nil, repeats: false)
         
         
     }
@@ -30,17 +42,17 @@ class ViewController: UIViewController {
     @objc func test () {
         
         
-        anim(duration: 1, delay: 2, easing: AnimEase.ElasticOut, options: UIViewAnimationOptions.CurveLinear, animation: {
-            
-            //self.v!.frame = CGRect(x: 200, y: 200, width: 100, height: 50)
-            //self.v!.center = CGPoint(x: 200, y: 250)
-            self.v!.backgroundColor = UIColor.blueColor()
-            
-            }) { finished in
-                
-                print("finished")
-                
-        }
+        self.view.removeConstraint(c1!)
+        self.view.removeConstraint(c2!)
+        
+        c1 = NSLayoutConstraint(item: v!, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 400)
+        self.view.addConstraint(c1!)
+        c2 = NSLayoutConstraint(item: v!, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 250)
+        self.view.addConstraint(c2!)
+        
+        
+        anim(duration: 1, easing: AnimEase.QuintInOut, animation: self.view.layoutIfNeeded)
+        
         
     }
 
