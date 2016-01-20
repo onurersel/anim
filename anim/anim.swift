@@ -8,16 +8,7 @@
 
 import UIKit
 
-
-typealias animClosure = ( ()->Void )
-typealias compClosure = ( (finished : Bool)->Void )
-typealias easingFunctionClosure = ( (p : Double)->Double )
-
-let keyframeCount : Double = 60.0
-var _passedAnimEase : AnimEase?
-
-
-enum AnimEase {
+enum Ease {
     case Linear
     case SineOut, SineIn, SineInOut
     case QuadOut, QuadIn, QuadInOut
@@ -29,7 +20,7 @@ enum AnimEase {
     case BackOut, BackIn, BackInOut
     
     /*
-    easing values are from http://easings.net/
+    control point values are from http://easings.net/
     */
     func mediaTiming () -> CAMediaTimingFunction? {
         
@@ -108,6 +99,23 @@ enum AnimEase {
 
 
 
+
+/*****************************
+ */
+ //MARK: scope
+ /*
+ *****************************/
+
+class OEAnim {
+    typealias animClosure = ( ()->Void )
+    typealias compClosure = ( (finished : Bool)->Void )
+    typealias easingFunctionClosure = ( (p : Double)->Double )
+    
+    static var passedAnimEase : Ease?
+}
+
+
+
 /*****************************
  */
  //MARK: animation
@@ -115,15 +123,15 @@ enum AnimEase {
  *****************************/
 
 
-func anim (duration animDuration: NSTimeInterval, easing : AnimEase, animation : animClosure) {
+func anim (duration animDuration: NSTimeInterval, easing : Ease, animation : OEAnim.animClosure) {
     anim(duration: animDuration, delay: 0, easing: easing, options: UIViewAnimationOptions.CurveLinear, animation: animation, completion: nil)
 }
-func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : AnimEase, animation : animClosure) {
+func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : Ease, animation : OEAnim.animClosure) {
     anim(duration: animDuration, delay: delay, easing: easing, options: UIViewAnimationOptions.CurveLinear, animation: animation, completion: nil)
 }
 
 
-func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : AnimEase, options:UIViewAnimationOptions, animation : animClosure, completion : compClosure?) {
+func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : Ease, options:UIViewAnimationOptions, animation : OEAnim.animClosure, completion : OEAnim.compClosure?) {
     
     
     //swizzle
@@ -138,7 +146,7 @@ func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing
     }
     
     //store easing
-    _passedAnimEase = easing
+    OEAnim.passedAnimEase = easing
 
     //animate with block
     UIView.animateWithDuration(animDuration, delay: delay, options: options, animations: animation, completion: completion)
@@ -157,7 +165,7 @@ extension CALayer {
     
     func anim_addAnimation ( animation : CAAnimation, forKey: String ) {
         
-        if let pte = _passedAnimEase {
+        if let pte = OEAnim.passedAnimEase {
             animation.timingFunction = pte.mediaTiming()
             self.anim_addAnimation(animation, forKey: forKey)
         }
