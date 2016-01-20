@@ -3,6 +3,14 @@
 
 As you may already familiar with, UIView.animateWithDuration only allows you to use 4 different easing options. *anim* allows you to use 21 more easing variations with almost identical syntax.
 
+## Installation
+
+You can install manually by copying *anim/anim.swift* in your project.
+
+
+Or you can use Cocoapods
+> pod 'anim'
+
 
 ## Usage
 
