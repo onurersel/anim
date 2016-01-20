@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Ease {
+public enum Ease {
     case Linear
     case SineOut, SineIn, SineInOut
     case QuadOut, QuadIn, QuadInOut
@@ -105,13 +105,12 @@ enum Ease {
  //MARK: scope
  /*
  *****************************/
-
-class OEAnim {
-    typealias animClosure = ( ()->Void )
-    typealias compClosure = ( (finished : Bool)->Void )
-    typealias easingFunctionClosure = ( (p : Double)->Double )
+public class OEAnim {
+    public typealias animClosure = ( ()->Void )
+    public typealias compClosure = ( (finished : Bool)->Void )
+    public typealias easingFunctionClosure = ( (p : Double)->Double )
     
-    static var passedAnimEase : Ease?
+    public static var passedAnimEase : Ease?
 }
 
 
@@ -123,15 +122,15 @@ class OEAnim {
  *****************************/
 
 
-func anim (duration animDuration: NSTimeInterval, easing : Ease, animation : OEAnim.animClosure) {
+public func anim (duration animDuration: NSTimeInterval, easing : Ease, animation : OEAnim.animClosure) {
     anim(duration: animDuration, delay: 0, easing: easing, options: UIViewAnimationOptions.CurveLinear, animation: animation, completion: nil)
 }
-func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : Ease, animation : OEAnim.animClosure) {
+public func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : Ease, animation : OEAnim.animClosure) {
     anim(duration: animDuration, delay: delay, easing: easing, options: UIViewAnimationOptions.CurveLinear, animation: animation, completion: nil)
 }
 
 
-func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : Ease, options:UIViewAnimationOptions, animation : OEAnim.animClosure, completion : OEAnim.compClosure?) {
+public func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : Ease, options:UIViewAnimationOptions, animation : OEAnim.animClosure, completion : OEAnim.compClosure?) {
     
     
     //swizzle
