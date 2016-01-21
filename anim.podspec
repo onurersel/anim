@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
                    As you may already familiar with, UIView.animateWithDuration only allows you to use 4 different easing options. *anim* allows you to use 21 more easing variations with almost identical syntax.
                    DESC
 
-  # s.homepage     = "https://github.com/onurersel/anim"
+  s.homepage     = "https://github.com/onurersel/anim"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
