@@ -1,5 +1,5 @@
 # anim
-> Swift animations with easing.
+### Swift animations with more easing options.
 
 As you may already familiar with, UIView.animateWithDuration only allows you to use 4 different easing options. *anim* allows you to use 21 more easing variations with almost identical syntax.
 
@@ -32,7 +32,7 @@ Or you can use Cocoapods
 	anim(duration: 10, easing: Ease.QuartOut, animation: self.view.layoutIfNeeded)
 
 
-## Easing options
+## Easing
 
 - Linear
 - SineOut
