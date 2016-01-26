@@ -125,8 +125,14 @@ public class OEAnim {
 public func anim (duration animDuration: NSTimeInterval, easing : Ease, animation : OEAnim.animClosure) {
     anim(duration: animDuration, delay: 0, easing: easing, options: UIViewAnimationOptions.CurveLinear, animation: animation, completion: nil)
 }
+public func anim (duration animDuration: NSTimeInterval, easing : Ease, animation : OEAnim.animClosure, completion : OEAnim.compClosure?) {
+    anim(duration: animDuration, delay: 0, easing: easing, options: UIViewAnimationOptions.CurveLinear, animation: animation, completion: completion)
+}
 public func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : Ease, animation : OEAnim.animClosure) {
     anim(duration: animDuration, delay: delay, easing: easing, options: UIViewAnimationOptions.CurveLinear, animation: animation, completion: nil)
+}
+public func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : Ease, animation : OEAnim.animClosure, completion : OEAnim.compClosure?) {
+    anim(duration: animDuration, delay: delay, easing: easing, options: UIViewAnimationOptions.CurveLinear, animation: animation, completion: completion)
 }
 
 
