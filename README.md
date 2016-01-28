@@ -1,5 +1,5 @@
 # anim
-### Swift animations with more easing options.
+### Swift animations for iOS and tvOS with more easing options.
 
 As you may already familiar with, UIView.animateWithDuration only allows you to use 4 different easing options. *anim* allows you to use 21 more easing variations with almost identical syntax.
 
