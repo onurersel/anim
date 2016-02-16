@@ -8,7 +8,7 @@ As you may already familiar with, UIView.animateWithDuration only allows you to 
 You can install manually by copying *anim/anim.swift* in your project.
 
 
-Or you can use Cocoapods
+Or you can use CocoaPods
 > pod 'anim'
 
 
