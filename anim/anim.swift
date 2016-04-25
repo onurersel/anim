@@ -145,8 +145,8 @@ public func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval,
     }
     
     dispatch_once(&Static.token) {
-        let methodOriginal = class_getInstanceMethod(CALayer.self, "addAnimation:forKey:")
-        let methodSwizzled = class_getInstanceMethod(CALayer.self, "anim_addAnimation:forKey:")
+        let methodOriginal = class_getInstanceMethod(CALayer.self, #selector(CALayer.addAnimation(_:forKey:)))
+        let methodSwizzled = class_getInstanceMethod(CALayer.self, #selector(CALayer.anim_addAnimation(_:forKey:)))
         method_exchangeImplementations(methodOriginal, methodSwizzled)
     }
     
