@@ -9,15 +9,15 @@
 import UIKit
 
 public enum Ease {
-    case Linear
-    case SineOut, SineIn, SineInOut
-    case QuadOut, QuadIn, QuadInOut
-    case QuintOut, QuintIn, QuintInOut
-    case CubicOut, CubicIn, CubicInOut
-    case QuartOut, QuartIn, QuartInOut
-    case ExpoOut, ExpoIn, ExpoInOut
-    case CircOut, CircIn, CircInOut
-    case BackOut, BackIn, BackInOut
+    case linear
+    case sineOut, sineIn, sineInOut
+    case quadOut, quadIn, quadInOut
+    case quintOut, quintIn, quintInOut
+    case cubicOut, cubicIn, cubicInOut
+    case quartOut, quartIn, quartInOut
+    case expoOut, expoIn, expoInOut
+    case circOut, circIn, circInOut
+    case backOut, backIn, backInOut
     
     /*
     control point values are from http://easings.net/
@@ -26,71 +26,71 @@ public enum Ease {
         
         switch self {
 
-        case .Linear:
+        case .linear:
             return CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
             
 
-        case .SineIn:
+        case .sineIn:
             return CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-        case .SineOut:
+        case .sineOut:
             return CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        case .SineInOut:
+        case .sineInOut:
             return CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
             
             
-        case .QuadIn:
+        case .quadIn:
             return CAMediaTimingFunction(controlPoints: 0.55, 0.085, 0.68, 0.53)
-        case .QuadOut:
+        case .quadOut:
             return CAMediaTimingFunction(controlPoints: 0.25, 0.46, 0.45, 0.94)
-        case .QuadInOut:
+        case .quadInOut:
             return CAMediaTimingFunction(controlPoints: 0.455, 0.03, 0.515, 0.955)
             
             
-        case .CubicIn:
+        case .cubicIn:
             return CAMediaTimingFunction(controlPoints: 0.55, 0.055, 0.675, 0.19)
-        case .CubicOut:
+        case .cubicOut:
             return CAMediaTimingFunction(controlPoints: 0.215, 0.61, 0.355, 1)
-        case .CubicInOut:
+        case .cubicInOut:
             return CAMediaTimingFunction(controlPoints: 0.645, 0.045, 0.355, 1)
             
             
-        case .QuartIn:
+        case .quartIn:
             return CAMediaTimingFunction(controlPoints: 0.895, 0.03, 0.685, 0.22)
-        case .QuartOut:
+        case .quartOut:
             return CAMediaTimingFunction(controlPoints: 0.165, 0.84, 0.44, 1)
-        case .QuartInOut:
+        case .quartInOut:
             return CAMediaTimingFunction(controlPoints: 0.77, 0, 0.175, 1)
             
             
-        case .QuintIn:
+        case .quintIn:
             return CAMediaTimingFunction(controlPoints: 0.755, 0.05, 0.855, 0.06)
-        case .QuintOut:
+        case .quintOut:
             return CAMediaTimingFunction(controlPoints: 0.23, 1, 0.32, 1)
-        case .QuintInOut:
+        case .quintInOut:
             return CAMediaTimingFunction(controlPoints: 0.86, 0, 0.07, 1)
             
             
-        case .ExpoIn:
+        case .expoIn:
             return CAMediaTimingFunction(controlPoints: 0.95, 0.05, 0.795, 0.035)
-        case .ExpoOut:
+        case .expoOut:
             return CAMediaTimingFunction(controlPoints: 0.19, 1, 0.22, 1)
-        case .ExpoInOut:
+        case .expoInOut:
             return CAMediaTimingFunction(controlPoints: 1, 0, 0, 1)
             
             
-        case .CircIn:
+        case .circIn:
             return CAMediaTimingFunction(controlPoints: 0.6, 0.04, 0.98, 0.335)
-        case .CircOut:
+        case .circOut:
             return CAMediaTimingFunction(controlPoints: 0.075, 0.82, 0.165, 1)
-        case .CircInOut:
+        case .circInOut:
             return CAMediaTimingFunction(controlPoints: 0.785, 0.135, 0.15, 0.86)
             
             
-        case .BackIn:
+        case .backIn:
             return CAMediaTimingFunction(controlPoints: 0.6, -0.28, 0.735, 0.045)
-        case .BackOut:
+        case .backOut:
             return CAMediaTimingFunction(controlPoints: 0.175, 0.885, 0.32, 1.275)
-        case .BackInOut:
+        case .backInOut:
             return CAMediaTimingFunction(controlPoints: 0.68, -0.55, 0.265, 1.55)
             
         }
@@ -105,12 +105,12 @@ public enum Ease {
  //MARK: scope
  /*
  *****************************/
-public class OEAnim {
+open class OEAnim {
     public typealias animClosure = ( ()->Void )
-    public typealias compClosure = ( (finished : Bool)->Void )
-    public typealias easingFunctionClosure = ( (p : Double)->Double )
+    public typealias compClosure = ( (_ finished : Bool)->Void )
+    public typealias easingFunctionClosure = ( (_ p : Double)->Double )
     
-    public static var passedAnimEase : Ease?
+    open static var passedAnimEase : Ease?
 }
 
 
@@ -122,39 +122,40 @@ public class OEAnim {
  *****************************/
 
 
-public func anim (duration animDuration: NSTimeInterval, easing : Ease, animation : OEAnim.animClosure) {
-    anim(duration: animDuration, delay: 0, easing: easing, options: UIViewAnimationOptions.CurveLinear, animation: animation, completion: nil)
+public func anim (duration animDuration: TimeInterval, easing : Ease, animation : @escaping OEAnim.animClosure) {
+    anim(duration: animDuration, delay: 0, easing: easing, options: UIViewAnimationOptions.curveLinear, animation: animation, completion: nil)
 }
-public func anim (duration animDuration: NSTimeInterval, easing : Ease, animation : OEAnim.animClosure, completion : OEAnim.compClosure?) {
-    anim(duration: animDuration, delay: 0, easing: easing, options: UIViewAnimationOptions.CurveLinear, animation: animation, completion: completion)
+public func anim (duration animDuration: TimeInterval, easing : Ease, animation : @escaping OEAnim.animClosure, completion : OEAnim.compClosure?) {
+    anim(duration: animDuration, delay: 0, easing: easing, options: UIViewAnimationOptions.curveLinear, animation: animation, completion: completion)
 }
-public func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : Ease, animation : OEAnim.animClosure) {
-    anim(duration: animDuration, delay: delay, easing: easing, options: UIViewAnimationOptions.CurveLinear, animation: animation, completion: nil)
+public func anim (duration animDuration: TimeInterval, delay : TimeInterval, easing : Ease, animation : @escaping OEAnim.animClosure) {
+    anim(duration: animDuration, delay: delay, easing: easing, options: UIViewAnimationOptions.curveLinear, animation: animation, completion: nil)
 }
-public func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : Ease, animation : OEAnim.animClosure, completion : OEAnim.compClosure?) {
-    anim(duration: animDuration, delay: delay, easing: easing, options: UIViewAnimationOptions.CurveLinear, animation: animation, completion: completion)
+public func anim (duration animDuration: TimeInterval, delay : TimeInterval, easing : Ease, animation : @escaping OEAnim.animClosure, completion : OEAnim.compClosure?) {
+    anim(duration: animDuration, delay: delay, easing: easing, options: UIViewAnimationOptions.curveLinear, animation: animation, completion: completion)
 }
 
 
-public func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval, easing : Ease, options:UIViewAnimationOptions, animation : OEAnim.animClosure, completion : OEAnim.compClosure?) {
+public func anim (duration animDuration: TimeInterval, delay : TimeInterval, easing : Ease, options:UIViewAnimationOptions, animation : @escaping OEAnim.animClosure, completion : OEAnim.compClosure?) {
     
     
     //swizzle
     struct Static {
-        static var token : dispatch_once_t = 0
+        static var token : Int = 0
     }
     
-    dispatch_once(&Static.token) {
-        let methodOriginal = class_getInstanceMethod(CALayer.self, #selector(CALayer.addAnimation(_:forKey:)))
+    let globalSwizzle : () = {
+        let methodOriginal = class_getInstanceMethod(CALayer.self, #selector(CALayer.add(_:forKey:)))
         let methodSwizzled = class_getInstanceMethod(CALayer.self, #selector(CALayer.anim_addAnimation(_:forKey:)))
         method_exchangeImplementations(methodOriginal, methodSwizzled)
-    }
+    }()
+    _ = globalSwizzle
     
     //store easing
     OEAnim.passedAnimEase = easing
 
     //animate with block
-    UIView.animateWithDuration(animDuration, delay: delay, options: options, animations: animation, completion: completion)
+    UIView.animate(withDuration: animDuration, delay: delay, options: options, animations: animation, completion: completion)
     
 }
 
@@ -168,7 +169,7 @@ public func anim (duration animDuration: NSTimeInterval, delay : NSTimeInterval,
 
 extension CALayer {
     
-    func anim_addAnimation ( animation : CAAnimation, forKey: String ) {
+    func anim_addAnimation ( _ animation : CAAnimation, forKey: String ) {
         
         if let pte = OEAnim.passedAnimEase {
             animation.timingFunction = pte.mediaTiming()
