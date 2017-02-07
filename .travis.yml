@@ -1,6 +1,6 @@
 language: objective-c
 osx_image: xcode8.2
 script:
-  - ./fastlane.sh
+  - ./fastlane/travis.sh
 after_success:
   - bash <(curl -s https://codecov.io/bash)
