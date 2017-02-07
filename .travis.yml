@@ -1,5 +1,6 @@
-language: objective-c
+language: swift
 osx_image: xcode8.2
-xcode_sdk: iphoneos10.2
-xcode_project: test/anim.xcodeproj
-xcode_scheme: animTests
+script:
+  - xcodebuild -scheme animTests -project test/anim.xcodeproj -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6S,OS=10.2' build test
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
