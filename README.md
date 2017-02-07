@@ -1,63 +1,97 @@
-# anim
-### Swift animations for iOS and tvOS with more easing options.
 
-As you may already familiar with, UIView.animateWithDuration only allows you to use 4 different easing options. *anim* allows you to use 21 more easing variations with almost identical syntax.
+`anim` is an animation library written in Swift with a simple, declarative API in mind.
 
-## Installation
+```swift
+// moves box to 100,100 with default settings
+anim {
+    self.box.frame.origin = CGPoint(x:100, y:100)
+}
+// after that, waits 100 ms
+.wait(100)
+// moves box to 0,0 after waiting
+.then {
+    self.box.frame.origin = CGPoint(x:0, y:0)
+}
+// displays message after all animations are done
+.callback {
+    print("Just finished moving 📦 around.")
+}
+```
 
-You can install manually by copying *anim/anim.swift* in your project.
+It supports a bunch of easing functions and chaining multiple animations. It's a wrapper on Apple's `UIViewPropertyAnimator` on its core.
+
+It only supports iOS 10 at the moment.
+
+# API
+
+Initialize animations with `anim` constructor
+```swift
+// Initialize with default settings
+anim {
+    // animation block
+}
+```
+```swift
+// or initialize with it's own settings
+anim { (settings) -> (anim.Closure) in
+    settings.delay = 1000
+    settings.duration = 700
+    settings.ease = .easeInOutBack
+
+    return {
+        // animation block
+    }
+}
+```
+
+Chain animations with `.then` function
+```swift
+anim {}
+.then{
+    // next animation block
+}
+```
+```swift
+anim {}
+.then { (settings) -> anim.Closure in
+    settings.duration = 1000
+    return {
+        // next animation block
+    }
+}
+```
+
+Wait between animation steps with `.wait` function
+```swift
+anim{}.wait(250).then{} //...
+```
+
+Insert callbacks between animation steps with `.callback` function
+```swift
+anim{}
+.callback {
+    // custom block
+}
+.then{} //...
+```
+
+#### Default settings
+You can change default animation settings through `anim.defaultSettings` property.
+```swift
+anim.defaultSettings.ease = .easeInOutCubic
+```
+
+#### Easing
+`anim.Ease` exposes a bunch of easing options.
 
 
-Or you can use CocoaPods
-> pod 'anim'
+# Roadmap
+- [x] Chaining animations
+- [x] Wait, callback functions
+- [ ] API for animating layout constraints
+- [ ] iOS9 support
+- [ ] tvOS, macOS support
+- [ ] Shape animations
 
-
-## Usage
-
-	anim(duration: 1, easing: Ease.CircInOut) {
-		// animation block...
-	}
-
-	anim(duration: 1, delay: 0.5, easing: Ease.QuintOut) {
-		// animation block...
-	}
-
-	anim(duration: 1, delay: 2, easing: Ease.CubicIn, options: UIViewAnimationOptions.AllowUserInteraction, animation: {
-		// animation block...
-	}) { (finished : Bool)  in
-	    // completion block...
-	}
-
-	// animating constraints
-	anim(duration: 10, easing: Ease.QuartOut, animation: self.view.layoutIfNeeded)
-
-
-## Easing
-
-- Linear
-- SineOut
-- SineIn
-- SineInOut
-- QuadOut
-- QuadIn
-- QuadInOut
-- QuintOut
-- QuintIn
-- QuintInOut
-- CubicOut
-- CubicIn
-- CubicInOut
-- QuartOut
-- QuartIn
-- QuartInOut
-- ExpoOut
-- ExpoIn
-- ExpoInOut
-- CircOut
-- CircIn
-- CircInOut
-- BackOut
-- BackIn
-- BackInOut
-
-
+# Licence
+`anim` is released under the MIT license. See LICENSE for details.
