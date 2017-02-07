@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode8.2
+xcode_sdk: iphoneos10.2
+xcode_project: test/anim.xcodeproj
+xcode_scheme: animTests

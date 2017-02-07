@@ -1,4 +1,3 @@
-
 `anim` is an animation library written in Swift with a simple, declarative API in mind.
 
 ```swift
@@ -21,6 +20,18 @@ anim {
 It supports a bunch of easing functions and chaining multiple animations. It's a wrapper on Apple's `UIViewPropertyAnimator` on its core.
 
 It only supports iOS 10 at the moment.
+
+# Installation
+
+[![CocoaPods](https://img.shields.io/cocoapods/v/anim.svg)](https://cocoapods.org/pods/anim)
+[![CI Status](http://img.shields.io/travis/onurersel@gmail.com/anim.svg?style=flat)](https://travis-ci.org/onurersel@gmail.com/anim)
+
+Using Cocoapods
+```
+pod 'anim'
+```
+
+Or simply drag the file `anim.swift` into your project.
 
 # API
 

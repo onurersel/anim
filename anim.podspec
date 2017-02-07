@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name = 'anim'
   s.version = '1.0.0'
   s.license = { :type => "MIT", :file => "LICENSE" }
-  s.summary = 'Animation library for iOS in Swift'
+  s.summary = 'Swift animation library for iOS'
   s.homepage = 'https://github.com/onurersel/anim'
   s.authors = { 'Onur Ersel' => 'onurersel@gmail.com' }
   s.social_media_url = 'https://twitter.com/ethestel'

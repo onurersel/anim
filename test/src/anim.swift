@@ -23,7 +23,7 @@
  */
 
 
-import UIKit
+import Foundation
 
 final public class anim {
     
@@ -38,9 +38,9 @@ final public class anim {
     public struct Settings {
         
         /// Delay before animation starts.
-        public var delay: TimeInterval = 0
+        public var delay: Int = 0
         /// Duration of animation.
-        public var duration: TimeInterval = 1
+        public var duration: Int = 1000
         /// Easing of animation.
         public var ease: Ease = .easeOutQuint
         /// Completion block which runs after animation.
@@ -186,7 +186,7 @@ final public class anim {
         guard animationSettings.delay > 0 else { return self.run() }
         
         log("started waiting...")
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(Int(animationSettings.delay*1000))) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(animationSettings.delay)) {
             self.log("ended waiting")
             self.run()
         }
@@ -203,7 +203,7 @@ final public class anim {
         }
         
         
-        let anim = UIViewPropertyAnimator(duration: animationSettings.duration, controlPoint1: animationSettings.ease.p1, controlPoint2: animationSettings.ease.p2, animations: animationClosure)
+        let anim = UIViewPropertyAnimator(duration: TimeInterval(animationSettings.duration)/1000, controlPoint1: animationSettings.ease.p1, controlPoint2: animationSettings.ease.p2, animations: animationClosure)
         anim.addCompletion(self.completion)
         anim.isUserInteractionEnabled = animationSettings.isUserInteractionsEnabled
         anim.startAnimation()
@@ -251,9 +251,9 @@ final public class anim {
     /// - Parameter milliseconds: Milliseconds to wait.
     /// - Returns: Newly created promise.
     @discardableResult
-    public func wait(_ seconds: TimeInterval) -> anim {
+    public func wait(_ milliseconds: Int) -> anim {
         var settings = anim.defaultSettings
-        settings.delay = seconds
+        settings.delay = milliseconds
         settings.duration = 0
         let nextAnim = anim(settings: settings, closure: {})
         chain(to: nextAnim)
