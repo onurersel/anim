@@ -1,5 +1,4 @@
 language: swift
-osx_image: xcode8.2
 script:
   - xcodebuild -scheme animTests -project test/anim.xcodeproj -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6S,OS=10.2' build test
 after_success:

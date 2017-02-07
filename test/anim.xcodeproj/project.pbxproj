@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		BA3FC96C1E4A1D530095BE41 /* animTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3FC96B1E4A1D530095BE41 /* animTests.swift */; };
-		BA3FC9781E4A1DEA0095BE41 /* anim.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3FC9771E4A1DEA0095BE41 /* anim.swift */; };
+		BA3FC97B1E4A6D0B0095BE41 /* anim.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3FC97A1E4A6D0B0095BE41 /* anim.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BA3FC9691E4A1D530095BE41 /* animTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = animTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3FC96B1E4A1D530095BE41 /* animTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animTests.swift; sourceTree = "<group>"; };
 		BA3FC96D1E4A1D530095BE41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BA3FC9771E4A1DEA0095BE41 /* anim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = anim.swift; sourceTree = "<group>"; };
+		BA3FC97A1E4A6D0B0095BE41 /* anim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = anim.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,7 +32,7 @@
 		BA3FC9501E4A1D440095BE41 = {
 			isa = PBXGroup;
 			children = (
-				BA3FC9761E4A1DEA0095BE41 /* src */,
+				BA3FC9791E4A6D0B0095BE41 /* src */,
 				BA3FC96A1E4A1D530095BE41 /* animTests */,
 				BA3FC95B1E4A1D440095BE41 /* Products */,
 			);
@@ -55,10 +55,10 @@
 			path = animTests;
 			sourceTree = "<group>";
 		};
-		BA3FC9761E4A1DEA0095BE41 /* src */ = {
+		BA3FC9791E4A6D0B0095BE41 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				BA3FC9771E4A1DEA0095BE41 /* anim.swift */,
+				BA3FC97A1E4A6D0B0095BE41 /* anim.swift */,
 			);
 			name = src;
 			path = ../src;
@@ -133,7 +133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA3FC9781E4A1DEA0095BE41 /* anim.swift in Sources */,
+				BA3FC97B1E4A6D0B0095BE41 /* anim.swift in Sources */,
 				BA3FC96C1E4A1D530095BE41 /* animTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
