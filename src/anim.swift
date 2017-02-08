@@ -55,7 +55,7 @@ final public class anim {
     /// - notBeginned: Animation did not started yet.
     /// - running: Animation is running.
     /// - completed: Animation completed running.
-    private enum State {
+    internal enum State {
         case notBeginned, running, completed
     }
     
@@ -114,11 +114,11 @@ final public class anim {
     /// Stored animation block.
     private let animationClosure: Closure
     /// Animation settings.
-    private var animationSettings: Settings
+    internal var animationSettings: Settings
     /// Reference to next promise chained to this instance.
-    private var next: anim? = nil
+    internal var next: anim? = nil
     /// State of promise.
-    private var state: State = .notBeginned
+    internal var state: State = .notBeginned
     
     
     // MARK: - Initializers
@@ -299,15 +299,25 @@ extension anim: CustomStringConvertible {
 }
 
 // MARK: - Utilities
-fileprivate extension anim {
+internal extension anim {
     
     /// Internal logging function.
     ///
     /// - Parameter message: Message to log.
-    func log(_ message: String) {
-        guard anim.isLogging else { return }
+    /// - Returns: Returns true if successfully logs
+    @discardableResult
+    func log(_ message: String) -> Bool {
+        guard anim.isLogging else {
+            return false
+        }
         
         print("\(description) \(message)")
+        return true
     }
 }
 
+extension anim.Ease: Equatable {
+    public static func ==(lhs: anim.Ease, rhs: anim.Ease) -> Bool {
+        return lhs.p1 == rhs.p1 && lhs.p2 == rhs.p2
+    }
+}

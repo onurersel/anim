@@ -6,8 +6,8 @@ platform :ios do
   desc "Runs all the tests"
   lane :test do
     opts = {
-        :project => 'test/anim.xcodeproj',
-        :scheme => 'animTests',
+        :project => 'anim.xcodeproj',
+        :scheme => 'anim',
     }
     scan(opts)
   end

@@ -9,14 +9,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BA3FC9681E4A1D530095BE41"
-               BuildableName = "animTests.xctest"
-               BlueprintName = "animTests"
+               BlueprintIdentifier = "BA3FCA081E4B262F0095BE41"
+               BuildableName = "anim.framework"
+               BlueprintName = "anim"
                ReferencedContainer = "container:anim.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,7 +33,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BA3FC9681E4A1D530095BE41"
+               BlueprintIdentifier = "BA3FCA111E4B262F0095BE41"
                BuildableName = "animTests.xctest"
                BlueprintName = "animTests"
                ReferencedContainer = "container:anim.xcodeproj">
@@ -43,9 +43,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BA3FC9681E4A1D530095BE41"
-            BuildableName = "animTests.xctest"
-            BlueprintName = "animTests"
+            BlueprintIdentifier = "BA3FCA081E4B262F0095BE41"
+            BuildableName = "anim.framework"
+            BlueprintName = "anim"
             ReferencedContainer = "container:anim.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +65,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BA3FC9681E4A1D530095BE41"
-            BuildableName = "animTests.xctest"
-            BlueprintName = "animTests"
+            BlueprintIdentifier = "BA3FCA081E4B262F0095BE41"
+            BuildableName = "anim.framework"
+            BlueprintName = "anim"
             ReferencedContainer = "container:anim.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,9 +83,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BA3FC9681E4A1D530095BE41"
-            BuildableName = "animTests.xctest"
-            BlueprintName = "animTests"
+            BlueprintIdentifier = "BA3FCA081E4B262F0095BE41"
+            BuildableName = "anim.framework"
+            BlueprintName = "anim"
             ReferencedContainer = "container:anim.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
