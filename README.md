@@ -29,25 +29,34 @@ It only supports iOS 10 at the moment.
 [![Codecov](https://img.shields.io/codecov/c/github/onurersel/anim.svg)]()
 
 #### Cocoapods
+
 ```
 pod 'anim'
 ```
+
 #### Carthage
+
 ```
 github "onurersel/anim"
 ```
+
 #### Manually
+
 Or simply drag the file `anim.swift` into your project.
 
 # API
 
-Initialize animations with `anim` constructor
+For complete documentation, visit [http://onurersel.github.io/anim/](http://onurersel.github.io/anim/).
+
+Initialize animations with `anim` constructor.
+
 ```swift
 // Initialize with default settings
 anim {
     // animation block
 }
 ```
+
 ```swift
 // or initialize with it's own settings
 anim { (settings) -> (anim.Closure) in
@@ -61,13 +70,15 @@ anim { (settings) -> (anim.Closure) in
 }
 ```
 
-Chain animations with `.then` function
+Chain animations with `.then` function.
+
 ```swift
 anim {}
 .then{
     // next animation block
 }
 ```
+
 ```swift
 anim {}
 .then { (settings) -> anim.Closure in
@@ -78,12 +89,14 @@ anim {}
 }
 ```
 
-Wait between animation steps with `.wait` function
+Wait between animation steps with `.wait` function.
+
 ```swift
 anim{}.wait(250).then{} //...
 ```
 
-Insert callbacks between animation steps with `.callback` function
+Insert callbacks between animation steps with `.callback` function.
+
 ```swift
 anim{}
 .callback {
@@ -93,16 +106,20 @@ anim{}
 ```
 
 #### Default settings
+
 You can change default animation settings through `anim.defaultSettings` property.
+
 ```swift
 anim.defaultSettings.ease = .easeInOutCubic
 ```
 
 #### Easing
+
 `anim.Ease` exposes a bunch of easing options.
 
 
 # Roadmap
+
 - [x] Chaining animations
 - [x] Wait, callback functions
 - [ ] API for animating layout constraints
@@ -111,4 +128,5 @@ anim.defaultSettings.ease = .easeInOutCubic
 - [ ] Shape animations
 
 # Licence
+
 `anim` is released under the MIT license. See LICENSE for details.

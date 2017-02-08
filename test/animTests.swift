@@ -13,6 +13,7 @@ class animTests: XCTestCase {
     
     override func setUp() {
         anim.defaultSettings = anim.Settings()
+        anim.defaultSettings.duration = 0
     }
     
     // MARK: - Initializers
@@ -403,7 +404,6 @@ class animTests: XCTestCase {
                 XCTAssertEqual(expectedEvent.key, loggedEvent.key)
                 
                 let expectedDelayDiff: TimeInterval = (i == 0) ? expectedEvent.delay : expectedEvent.delay-events[i-1].delay
-                print(expectedDelayDiff, loggedEvent.delay)
                 XCTAssertEqualWithAccuracy(expectedDelayDiff, loggedEvent.delay, accuracy: 0.1)
             }
             
