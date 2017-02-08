@@ -6,7 +6,7 @@ anim {
     self.box.frame.origin = CGPoint(x:100, y:100)
 }
 // after that, waits 100 ms
-.wait(100)
+.wait(0.1)
 // moves box to 0,0 after waiting
 .then {
     self.box.frame.origin = CGPoint(x:0, y:0)
@@ -61,8 +61,8 @@ anim {
 ```swift
 // or initialize with it's own settings
 anim { (settings) -> (anim.Closure) in
-    settings.delay = 1000
-    settings.duration = 700
+    settings.delay = 1
+    settings.duration = 0.7
     settings.ease = .easeInOutBack
 
     return {
@@ -83,7 +83,7 @@ anim {}
 ```swift
 anim {}
 .then { (settings) -> anim.Closure in
-    settings.duration = 1000
+    settings.duration = 1
     return {
         // next animation block
     }
@@ -93,7 +93,7 @@ anim {}
 Wait between animation steps with `.wait` function.
 
 ```swift
-anim{}.wait(250).then{} //...
+anim{}.wait(0.25).then{} //...
 ```
 
 Insert callbacks between animation steps with `.callback` function.
