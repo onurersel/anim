@@ -55,6 +55,10 @@ class animTests: XCTestCase {
         
     }
     
+    func testCreateCustomEase() {
+        XCTAssertNotNil(anim.Ease.custom(p1: CGPoint(x:0.1, y:0.2), p2: CGPoint(x:0.3, y:0.4)))
+    }
+    
     
     // MARK: - Properties
     
