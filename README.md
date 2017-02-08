@@ -24,7 +24,7 @@ It only supports iOS 10 at the moment.
 # Installation
 
 [![CocoaPods](https://img.shields.io/cocoapods/v/anim.svg)](https://cocoapods.org/pods/anim)
-[![CI Status](http://img.shields.io/travis/onurersel/anim.svg?style=flat)](https://travis-ci.org/onurersel/anim)
+[![CI Status](https://img.shields.io/travis/onurersel/anim.svg)](https://travis-ci.org/onurersel/anim)
 
 Using Cocoapods
 ```
