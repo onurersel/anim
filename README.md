@@ -24,13 +24,18 @@ It only supports iOS 10 at the moment.
 # Installation
 
 [![CocoaPods](https://img.shields.io/cocoapods/v/anim.svg)](https://cocoapods.org/pods/anim)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status](https://travis-ci.org/onurersel/anim.svg?branch=master)](https://travis-ci.org/onurersel/anim)
 
-Using Cocoapods
+#### Cocoapods
 ```
 pod 'anim'
 ```
-
+#### Carthage
+```
+github "onurersel/anim"
+```
+#### Manually
 Or simply drag the file `anim.swift` into your project.
 
 # API

@@ -59,8 +59,8 @@ class animTests: XCTestCase {
     
     func testAnimationSpecificCompletion() {
         let e = [
-            Event("e1", 0.1),
-            Event("e2", 0.4)
+            Event("e1", 0.5),
+            Event("e2", 0.8)
         ]
         
         eventSequence(e) { (log, end) in
@@ -73,7 +73,7 @@ class animTests: XCTestCase {
             }
             
             anim({ (settings) -> (anim.Closure) in
-                settings.delay = 0.1
+                settings.delay = 0.5
                 settings.completion = completion1
                 return {}
             }).then({ (settings) -> anim.Closure in
@@ -86,9 +86,9 @@ class animTests: XCTestCase {
     
     func testDefaultCompletion() {
         let e = [
-            Event("e1", 0.1),
-            Event("e1", 0.2),
-            Event("e1", 0.3)
+            Event("e1", 0.6),
+            Event("e1", 1.2),
+            Event("e1", 1.8)
         ]
         
         eventSequence(e) { (log, end) in
@@ -96,7 +96,7 @@ class animTests: XCTestCase {
                 log("e1")
             }
             
-            anim.defaultSettings.delay = 0.1
+            anim.defaultSettings.delay = 0.6
             anim.defaultSettings.completion = completion
             
             anim{}
@@ -280,14 +280,14 @@ class animTests: XCTestCase {
         anim.defaultSettings.delay = 0
         
         let e = [
-            Event("e1", 0.1),
-            Event("e2", 0.5),
-            Event("e3", 0.7)
+            Event("e1", 0.8),
+            Event("e2", 1.2),
+            Event("e3", 1.7)
         ]
         
         eventSequence(e) { (log, end) in
             anim({ (settings) -> (anim.Closure) in
-                settings.delay = 0.1
+                settings.delay = 0.8
                 return {
                     log("e1")
                 }
@@ -299,7 +299,7 @@ class animTests: XCTestCase {
                 }
             })
             .then({ (settings) -> anim.Closure in
-                settings.delay = 0.2
+                settings.delay = 0.5
                 return {
                     log("e3")
                     end()
@@ -403,6 +403,7 @@ class animTests: XCTestCase {
                 XCTAssertEqual(expectedEvent.key, loggedEvent.key)
                 
                 let expectedDelayDiff: TimeInterval = (i == 0) ? expectedEvent.delay : expectedEvent.delay-events[i-1].delay
+                print(expectedDelayDiff, loggedEvent.delay)
                 XCTAssertEqualWithAccuracy(expectedDelayDiff, loggedEvent.delay, accuracy: 0.1)
             }
             
