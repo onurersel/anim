@@ -1,0 +1,24 @@
+disabled_rules:
+  - type_name
+  - line_length
+  - file_length
+  - type_body_length
+opt_in_rules:
+  - attributes
+  - closure_end_indentation
+  - closure_spacing
+  - conditional_returns_on_newline
+  - empty_count
+  - explicit_init
+  - file_header
+  - first_where
+  - number_separator
+  - object_literal
+  - overridden_super_call
+  - private_outlet
+  - prohibited_super_call
+  - redundant_nil_coalescing
+  - switch_case_on_newline
+
+excluded:
+  - test

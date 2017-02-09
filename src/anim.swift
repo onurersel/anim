@@ -22,10 +22,7 @@
  *  SOFTWARE.
  */
 
-
 import UIKit
-
-
 
 /// `anim` is an animation library written in Swift with a simple,
 /// declarative API in mind.
@@ -50,17 +47,15 @@ import UIKit
 ///
 /// It only supports iOS 10 at the moment.
 final public class anim {
-    
-    
+
     // MARK: - Types
-    
+
     /// Animation block.
-    public typealias Closure = ()->Void
-    
-    
+    public typealias Closure = () -> Void
+
     /// Animation settings.
     public struct Settings {
-        
+
         /// Delay before animation starts.
         public var delay: TimeInterval = 0
         /// Duration of animation.
@@ -72,8 +67,7 @@ final public class anim {
         /// Enables user interactions on views while animating.
         public var isUserInteractionsEnabled: Bool = false
     }
-    
-    
+
     /// Promise state.
     ///
     /// - notBeginned: Animation did not started yet.
@@ -82,94 +76,90 @@ final public class anim {
     internal enum State {
         case notBeginned, running, completed
     }
-    
-    
+
     /// Easing value. Stores two points for cubic easing calculation.
     public struct Ease {
-        
-        fileprivate let p1: CGPoint
-        fileprivate let p2: CGPoint
-        
-        
+
+        fileprivate let point1: CGPoint
+        fileprivate let point2: CGPoint
+
         /// Creates a custom easing value for cubic easing calculation.
         ///
         /// - Parameters:
-        ///   - p1: First handle point.
-        ///   - p2: Second handle point.
+        ///   - point1: First handle point.
+        ///   - point2: Second handle point.
         /// - Returns: Easing value.
-        public static func custom(p1: CGPoint, p2: CGPoint) -> Ease {
-            return Ease(p1: p1, p2: p2)
+        public static func custom(point1: CGPoint, point2: CGPoint) -> Ease {
+            return Ease(point1: point1, point2: point2)
         }
-        
+
         /// http://easings.net/#easeInSine
-        public static let easeInSine           = Ease(p1: CGPoint(x:0.47, y:0), p2: CGPoint(x:0.745, y:0.715))
+        public static let easeInSine           = Ease(point1: CGPoint(x:0.47, y:0), point2: CGPoint(x:0.745, y:0.715))
         /// http://easings.net/#easeOutSine
-        public static let easeOutSine          = Ease(p1: CGPoint(x:0.39, y:0.575), p2: CGPoint(x:0.565, y:1))
+        public static let easeOutSine          = Ease(point1: CGPoint(x:0.39, y:0.575), point2: CGPoint(x:0.565, y:1))
         /// http://easings.net/#easeInOutSine
-        public static let easeInOutSine        = Ease(p1: CGPoint(x:0.445, y:0.05), p2: CGPoint(x:0.55, y:0.95))
-        
+        public static let easeInOutSine        = Ease(point1: CGPoint(x:0.445, y:0.05), point2: CGPoint(x:0.55, y:0.95))
+
         /// http://easings.net/#easeInQuad
-        public static let easeInQuad           = Ease(p1: CGPoint(x:0.55, y:0.085), p2: CGPoint(x:0.68, y:0.53))
+        public static let easeInQuad           = Ease(point1: CGPoint(x:0.55, y:0.085), point2: CGPoint(x:0.68, y:0.53))
         /// http://easings.net/#easeOutQuad
-        public static let easeOutQuad          = Ease(p1: CGPoint(x:0.25, y:0.46), p2: CGPoint(x:0.45, y:0.94))
+        public static let easeOutQuad          = Ease(point1: CGPoint(x:0.25, y:0.46), point2: CGPoint(x:0.45, y:0.94))
         /// http://easings.net/#easeInOutQuad
-        public static let easeInOutQuad        = Ease(p1: CGPoint(x:0.455, y:0.03), p2: CGPoint(x:0.515, y:0.955))
-        
+        public static let easeInOutQuad        = Ease(point1: CGPoint(x:0.455, y:0.03), point2: CGPoint(x:0.515, y:0.955))
+
         /// http://easings.net/#easeInCubic
-        public static let easeInCubic          = Ease(p1: CGPoint(x:0.55, y:0.055), p2: CGPoint(x:0.675, y:0.19))
+        public static let easeInCubic          = Ease(point1: CGPoint(x:0.55, y:0.055), point2: CGPoint(x:0.675, y:0.19))
         /// http://easings.net/#easeOutCubic
-        public static let easeOutCubic         = Ease(p1: CGPoint(x:0.215, y:0.61), p2: CGPoint(x:0.355, y:1))
+        public static let easeOutCubic         = Ease(point1: CGPoint(x:0.215, y:0.61), point2: CGPoint(x:0.355, y:1))
         /// http://easings.net/#easeInOutCubic
-        public static let easeInOutCubic       = Ease(p1: CGPoint(x:0.645, y:0.045), p2: CGPoint(x:0.355, y:1))
-        
+        public static let easeInOutCubic       = Ease(point1: CGPoint(x:0.645, y:0.045), point2: CGPoint(x:0.355, y:1))
+
         /// http://easings.net/#easeInQuart
-        public static let easeInQuart          = Ease(p1: CGPoint(x:0.895, y:0.03), p2: CGPoint(x:0.685, y:0.22))
+        public static let easeInQuart          = Ease(point1: CGPoint(x:0.895, y:0.03), point2: CGPoint(x:0.685, y:0.22))
         /// http://easings.net/#easeOutQuart
-        public static let easeOutQuart         = Ease(p1: CGPoint(x:0.165, y:0.84), p2: CGPoint(x:0.44, y:1))
+        public static let easeOutQuart         = Ease(point1: CGPoint(x:0.165, y:0.84), point2: CGPoint(x:0.44, y:1))
         /// http://easings.net/#easeInOutQuart
-        public static let easeInOutQuart       = Ease(p1: CGPoint(x:0.77, y:0), p2: CGPoint(x:0.175, y:1))
-        
+        public static let easeInOutQuart       = Ease(point1: CGPoint(x:0.77, y:0), point2: CGPoint(x:0.175, y:1))
+
         /// http://easings.net/#easeInQuint
-        public static let easeInQuint          = Ease(p1: CGPoint(x:0.755, y:0.05), p2: CGPoint(x:0.855, y:0.06))
+        public static let easeInQuint          = Ease(point1: CGPoint(x:0.755, y:0.05), point2: CGPoint(x:0.855, y:0.06))
         /// http://easings.net/#easeOutQuint
-        public static let easeOutQuint         = Ease(p1: CGPoint(x:0.23, y:1), p2: CGPoint(x:0.32, y:1))
+        public static let easeOutQuint         = Ease(point1: CGPoint(x:0.23, y:1), point2: CGPoint(x:0.32, y:1))
         /// http://easings.net/#easeInOutQuint
-        public static let easeInOutQuint       = Ease(p1: CGPoint(x:0.86, y:0), p2: CGPoint(x:0.07, y:1))
-        
+        public static let easeInOutQuint       = Ease(point1: CGPoint(x:0.86, y:0), point2: CGPoint(x:0.07, y:1))
+
         /// http://easings.net/#easeInExpo
-        public static let easeInExpo           = Ease(p1: CGPoint(x:0.95, y:0.05), p2: CGPoint(x:0.795, y:0.035))
+        public static let easeInExpo           = Ease(point1: CGPoint(x:0.95, y:0.05), point2: CGPoint(x:0.795, y:0.035))
         /// http://easings.net/#easeOutExpo
-        public static let easeOutExpo          = Ease(p1: CGPoint(x:0.19, y:1), p2: CGPoint(x:0.22, y:1))
+        public static let easeOutExpo          = Ease(point1: CGPoint(x:0.19, y:1), point2: CGPoint(x:0.22, y:1))
         /// http://easings.net/#easeInOutExpo
-        public static let easeInOutExpo        = Ease(p1: CGPoint(x:1, y:0), p2: CGPoint(x:0, y:1))
-        
+        public static let easeInOutExpo        = Ease(point1: CGPoint(x:1, y:0), point2: CGPoint(x:0, y:1))
+
         /// http://easings.net/#easeInCirc
-        public static let easeInCirc           = Ease(p1: CGPoint(x:0.6, y:0.04), p2: CGPoint(x:0.98, y:0.335))
+        public static let easeInCirc           = Ease(point1: CGPoint(x:0.6, y:0.04), point2: CGPoint(x:0.98, y:0.335))
         /// http://easings.net/#easeOutCirc
-        public static let easeOutCirc          = Ease(p1: CGPoint(x:0.075, y:0.82), p2: CGPoint(x:0.165, y:1))
+        public static let easeOutCirc          = Ease(point1: CGPoint(x:0.075, y:0.82), point2: CGPoint(x:0.165, y:1))
         /// http://easings.net/#easeInOutCirc
-        public static let easeInOutCirc        = Ease(p1: CGPoint(x:0.785, y:0.135), p2: CGPoint(x:0.15, y:0.86))
-        
+        public static let easeInOutCirc        = Ease(point1: CGPoint(x:0.785, y:0.135), point2: CGPoint(x:0.15, y:0.86))
+
         /// http://easings.net/#easeInBack
-        public static let easeInBack           = Ease(p1: CGPoint(x:0.6, y:-0.28), p2: CGPoint(x:0.735, y:0.045))
+        public static let easeInBack           = Ease(point1: CGPoint(x:0.6, y:-0.28), point2: CGPoint(x:0.735, y:0.045))
         /// http://easings.net/#easeOutBack
-        public static let easeOutBack          = Ease(p1: CGPoint(x:0.175, y:0.885), p2: CGPoint(x:0.32, y:1.275))
+        public static let easeOutBack          = Ease(point1: CGPoint(x:0.175, y:0.885), point2: CGPoint(x:0.32, y:1.275))
         /// http://easings.net/#easeInOutBack
-        public static let easeInOutBack        = Ease(p1: CGPoint(x:0.68, y:-0.55), p2: CGPoint(x:0.265, y:1.55))
-        
+        public static let easeInOutBack        = Ease(point1: CGPoint(x:0.68, y:-0.55), point2: CGPoint(x:0.265, y:1.55))
+
     }
-    
-    
-    
+
     // MARK: - Properties
-    
+
     /// Default settings for animation. This is being copied to promise for each animation.
     public static var defaultSettings = Settings()
     /// Enables internal logging. This is for debugging.
     internal static var isLogging: Bool = false
-    
+
     /// Unique promise id.
-    fileprivate let id = UInt32(Date().timeIntervalSince1970)^arc4random_uniform(UInt32.max)
+    fileprivate let uid = UInt32(Date().timeIntervalSince1970)^arc4random_uniform(UInt32.max)
     /// Stored animation block.
     private let animationClosure: Closure
     /// Animation settings.
@@ -178,19 +168,18 @@ final public class anim {
     internal var next: anim? = nil
     /// State of promise.
     internal var state: State = .notBeginned
-    
-    
+
     // MARK: - Initializers
-    
+
     /// Creates initial animation promise, with settings.
     ///
     /// - Parameter closure: Exposes settings values to block, and expects returning animation block.
     @discardableResult
-    public convenience init(_ closureWithSettings: @escaping (inout Settings)->(Closure)) {
+    public convenience init(_ closureWithSettings: @escaping (inout Settings) -> (Closure)) {
         self.init(closureWithoutProcess:closureWithSettings)
         process()
     }
-    
+
     /// Creates initial animation promise.
     ///
     /// - Parameter closure: Animation block.
@@ -199,77 +188,75 @@ final public class anim {
         self.init(closureWithoutProcess:closure)
         process()
     }
-    
+
     /// Creates animation promise, with settings. To be used while chaining promises.
     ///
     /// - Parameter closure: Exposes settings values to block, and expects returning animation block.
-    private convenience init(closureWithoutProcess closure: @escaping (inout Settings)->(Closure)) {
+    private convenience init(closureWithoutProcess closure: @escaping (inout Settings) -> (Closure)) {
         var _settings = anim.defaultSettings
         let _closure = closure(&_settings)
         self.init(settings:_settings, closure:_closure)
     }
-    
+
     /// Creates animation promise. To be used while chaining promises.
     ///
     /// - Parameter closure: Animation block.
     private convenience init(closureWithoutProcess closure: @escaping Closure) {
         self.init(settings: anim.defaultSettings, closure:closure)
     }
-    
-    
+
     /// Main initializer.
     ///
     /// - Parameters:
     ///   - settings: Animation settings.
     ///   - closure: Animation closure.
-    private init(settings:Settings, closure:@escaping Closure) {
+    private init(settings: Settings, closure:@escaping Closure) {
         self.animationSettings = settings
         self.animationClosure = closure
-        
+
         log("initted")
     }
-    
-    
+
     // MARK: - Running promises
-    
+
     /// Start processing animation promise.
     private func process() {
         log("process")
         delay()
     }
-    
+
     /// Waits before starting animation block, if delay is setted.
     private func delay() {
-        
+
         log("delay")
-        guard animationSettings.delay > 0 else { return self.run() }
-        
+        guard animationSettings.delay > 0 else {
+            return self.run()
+        }
+
         log("started waiting...")
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(Int(animationSettings.delay*1000))) {
             self.log("ended waiting")
             self.run()
         }
     }
-    
+
     /// Runs animation block.
     private func run() {
         log("run")
         state = .running
-        
+
         guard animationSettings.duration > 0 else {
             animationClosure()
             return completion(pos: .end)
         }
-        
-        
-        let anim = UIViewPropertyAnimator(duration: animationSettings.duration, controlPoint1: animationSettings.ease.p1, controlPoint2: animationSettings.ease.p2, animations: animationClosure)
+
+        let anim = UIViewPropertyAnimator(duration: animationSettings.duration, controlPoint1: animationSettings.ease.point1, controlPoint2: animationSettings.ease.point2, animations: animationClosure)
         anim.addCompletion(self.completion)
         anim.isUserInteractionEnabled = animationSettings.isUserInteractionsEnabled
         anim.startAnimation()
-        
-        
+
     }
-    
+
     /// Animation block completion.
     ///
     /// - Parameter pos: Position of animation. Generated by `UIViewPropertyAnimator`.
@@ -279,21 +266,20 @@ final public class anim {
         state = .completed
         next?.delay()
     }
-    
-    
-    //MARK: - Chaining promises
-    
+
+    // MARK: - Chaining promises
+
     /// Creates a new animation promise with settings, chained to the previous one.
     ///
     /// - Parameter closure: Exposes settings values to block, and expects returning animation block.
     /// - Returns: Newly created promise.
     @discardableResult
-    public func then(_ closureWithSettings: @escaping (inout Settings)->Closure) -> anim {
+    public func then(_ closureWithSettings: @escaping (inout Settings) -> Closure) -> anim {
         let nextAnim = anim(closureWithoutProcess: closureWithSettings)
         chain(to: nextAnim)
         return nextAnim
     }
-    
+
     /// Creates a new animation promise, chained to the previous one.
     ///
     /// - Parameter closure: Animation block.
@@ -304,7 +290,7 @@ final public class anim {
         chain(to: nextAnim)
         return nextAnim
     }
-    
+
     /// Creates a promise only waits before running next promise.
     ///
     /// - Parameter milliseconds: Milliseconds to wait.
@@ -318,7 +304,7 @@ final public class anim {
         chain(to: nextAnim)
         return nextAnim
     }
-    
+
     /// Creates a promise only calls a block before running next promise.
     ///
     /// - Parameter closure: Block to be runned.
@@ -332,34 +318,33 @@ final public class anim {
         chain(to: nextAnim)
         return nextAnim
     }
-    
-    
+
     /// Chains newly created promise to current one.
     ///
     /// - Parameter chainedAnim: Newly created promise.
-    private func chain(to chainedAnim:anim) {
+    private func chain(to chainedAnim: anim) {
         next = chainedAnim
-        
+
         if state == .completed {
             chainedAnim.delay()
         }
     }
-    
+
 }
 
 // MARK: - CustomStringConvertible
 extension anim: CustomStringConvertible {
-    
+
     /// String representation
     public var description: String {
-        return "anim(\(id))"
+        return "anim(\(uid))"
     }
-    
+
 }
 
 // MARK: - Utilities
 internal extension anim {
-    
+
     /// Internal logging function.
     ///
     /// - Parameter message: Message to log.
@@ -369,7 +354,7 @@ internal extension anim {
         guard anim.isLogging else {
             return false
         }
-        
+
         print("\(description) \(message)")
         return true
     }
@@ -382,7 +367,7 @@ extension anim.Ease: Equatable {
     ///   - lhs: First easing value.
     ///   - rhs: Second easing value.
     /// - Returns: Return if two easing values are equal or not.
-    public static func ==(lhs: anim.Ease, rhs: anim.Ease) -> Bool {
-        return lhs.p1 == rhs.p1 && lhs.p2 == rhs.p2
+    public static func == (lhs: anim.Ease, rhs: anim.Ease) -> Bool {
+        return lhs.point1 == rhs.point1 && lhs.point2 == rhs.point2
     }
 }

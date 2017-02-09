@@ -1,3 +1,14 @@
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/ustwo/formvalidator-swift/blob/master/LICENSE.md)
+[![CocoaPods](https://img.shields.io/cocoapods/v/anim.svg)](https://cocoapods.org/pods/anim)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Build Status](https://travis-ci.org/onurersel/anim.svg?branch=master)](https://travis-ci.org/onurersel/anim)
+[![codecov.io](https://codecov.io/github/onurersel/anim/coverage.svg?branch=master)](https://codecov.io/github/onurersel/anim?branch=master)
+[![Platform](https://img.shields.io/cocoapods/p/anim.svg)](http://onurersel.github.io/anim/)
+![Swift](https://img.shields.io/badge/Swift-3.0-orange.svg)
+[![Twitter](https://img.shields.io/badge/twitter-@ethestel-blue.svg?style=flat)](http://twitter.com/ethestel)
+
+# anim
+
 `anim` is an animation library written in Swift with a simple, declarative API in mind.
 
 ```swift
@@ -22,12 +33,6 @@ It supports a bunch of easing functions and chaining multiple animations. It's a
 It only supports iOS 10 at the moment.
 
 # Installation
-
-[![CocoaPods](https://img.shields.io/cocoapods/v/anim.svg)](https://cocoapods.org/pods/anim)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Build Status](https://travis-ci.org/onurersel/anim.svg?branch=master)](https://travis-ci.org/onurersel/anim)
-[![codecov.io](https://codecov.io/github/onurersel/anim/coverage.svg?branch=master)](https://codecov.io/github/onurersel/anim?branch=master)
-
 
 #### Cocoapods
 
