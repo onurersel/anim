@@ -5,11 +5,42 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    opts = {
-        :project => 'anim.xcodeproj',
-        :scheme => 'anim',
-    }
-    scan(opts)
+    swiftlint(
+      mode: :lint,
+      config_file: "./.swiftlint.yml",
+      ignore_exit_status: false
+    )
+    scan(
+      project: 'anim.xcodeproj',
+      scheme: 'anim'
+    )
+  end
+
+  desc "Pushes changes to git repository"
+  lane :pods do
+
+    # Needs to be clean, commited
+    ensure_git_status_clean
+
+    # Test the library
+    test()
+
+    # Increase minor version number
+    version = version_bump_podspec(path: "anim.podspec", bump_type: "patch")
+    increment_version_number(
+      version_number: version
+    )
+
+    # Generate docs
+    jazzy
+
+    # Push to repository
+    updated_files = ["./anim.podspec", "./anim/Info.plist", "./test/Info.plist", "./docs/"]
+    git_add(path: updated_files)
+    git_commit(path: updated_files, message: "Pushing changes to Cocoapods")
+    add_git_tag(tag: version)
+    ensure_git_status_clean
+    push_to_git_remote
   end
 
 end

@@ -76,6 +76,31 @@ anim { (settings) -> (anim.Closure) in
 }
 ```
 
+```swift
+// or initialize layout constraint animations just by passing the parent view
+anim(constraintParent: self.view) {
+    // animation block
+}
+
+anim(constraintParent: self.view) { (settings) -> (anim.Closure) in
+    // settings...
+    return {
+        // animation block
+    }
+}
+
+// you don't need to call layoutIfNeeded() before or inside the
+// animation blocks, it's handled by anim
+//
+// for example to update constant value of a constraint,
+// you can just change it inside the animation block
+let width: NSLayoutConstraint //...
+anim(constraintParent: self.view) {
+    width.constant = 100 // new value
+}
+// that's it!
+```
+
 Chain animations with `.then` function.
 
 ```swift
@@ -91,6 +116,19 @@ anim {}
     settings.duration = 1
     return {
         // next animation block
+    }
+}
+```
+
+```swift
+anim {}
+.then(constraintParent: self.view) {
+    // chaining constraint animations
+}
+.then(constraintParent: self.view) { (settings) -> anim.Closure in
+    settings.duration = 1
+    return {
+        // next animation block for constraints
     }
 }
 ```
@@ -128,7 +166,7 @@ anim.defaultSettings.ease = .easeInOutCubic
 
 - [x] Chaining animations
 - [x] Wait, callback functions
-- [ ] API for animating layout constraints
+- [x] Constraint animations
 - [ ] iOS9 support
 - [ ] tvOS, macOS support
 - [ ] Shape animations

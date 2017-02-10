@@ -46,13 +46,23 @@
         <section>
           <section class="section">
             
-            <p><code>anim</code> is an animation library written in Swift with a simple, declarative API in mind.</p>
+            <p><a href="https://github.com/ustwo/formvalidator-swift/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a>
+<a href="https://cocoapods.org/pods/anim"><img src="https://img.shields.io/cocoapods/v/anim.svg" alt="CocoaPods"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a>
+<a href="https://travis-ci.org/onurersel/anim"><img src="https://travis-ci.org/onurersel/anim.svg?branch=master" alt="Build Status"></a>
+<a href="https://codecov.io/github/onurersel/anim?branch=master"><img src="https://codecov.io/github/onurersel/anim/coverage.svg?branch=master" alt="codecov.io"></a>
+<a href="http://onurersel.github.io/anim/"><img src="https://img.shields.io/cocoapods/p/anim.svg" alt="Platform"></a>
+<img src="https://img.shields.io/badge/Swift-3.0-orange.svg" alt="Swift">
+<a href="http://twitter.com/ethestel"><img src="https://img.shields.io/badge/twitter-@ethestel-blue.svg?style=flat" alt="Twitter"></a></p>
+<a href='#anim' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='anim'>anim</h1>
+
+<p><code>anim</code> is an animation library written in Swift with a simple, declarative API in mind.</p>
 <pre class="highlight swift"><code><span class="c1">// moves box to 100,100 with default settings</span>
 <span class="n">anim</span> <span class="p">{</span>
     <span class="k">self</span><span class="o">.</span><span class="n">box</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span><span class="mi">100</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="c1">// after that, waits 100 ms</span>
-<span class="o">.</span><span class="nf">wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="o">.</span><span class="nf">wait</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="c1">// moves box to 0,0 after waiting</span>
 <span class="o">.</span><span class="n">then</span> <span class="p">{</span>
     <span class="k">self</span><span class="o">.</span><span class="n">box</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span><span class="mi">0</span><span class="p">)</span>
@@ -67,11 +77,6 @@
 
 <p>It only supports iOS 10 at the moment.</p>
 <a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='installation'>Installation</h1>
-
-<p><a href="https://cocoapods.org/pods/anim"><img src="https://img.shields.io/cocoapods/v/anim.svg" alt="CocoaPods"></a>
-<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a>
-<a href="https://travis-ci.org/onurersel/anim"><img src="https://travis-ci.org/onurersel/anim.svg?branch=master" alt="Build Status"></a>
-<a href=""><img src="https://img.shields.io/codecov/c/github/onurersel/anim.svg" alt="Codecov"></a></p>
 <a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='cocoapods'>Cocoapods</h4>
 <pre class="highlight plaintext"><code>pod 'anim'
 </code></pre>
@@ -80,7 +85,7 @@
 </code></pre>
 <a href='#manually' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='manually'>Manually</h4>
 
-<p>Or simply drag the file <code>anim.swift</code> into your project.</p>
+<p>Or simply drag the file <code>src/anim.swift</code> into your project.</p>
 <a href='#api' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='api'>API</h1>
 
 <p>For complete documentation, visit <a href="http://onurersel.github.io/anim/">http://onurersel.github.io/anim/</a>.</p>
@@ -93,14 +98,37 @@
 </code></pre>
 <pre class="highlight swift"><code><span class="c1">// or initialize with it's own settings</span>
 <span class="n">anim</span> <span class="p">{</span> <span class="p">(</span><span class="n">settings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">anim</span><span class="o">.</span><span class="kt">Closure</span><span class="p">)</span> <span class="k">in</span>
-    <span class="n">settings</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="mi">1000</span>
-    <span class="n">settings</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mi">700</span>
+    <span class="n">settings</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">settings</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mf">0.7</span>
     <span class="n">settings</span><span class="o">.</span><span class="n">ease</span> <span class="o">=</span> <span class="o">.</span><span class="n">easeInOutBack</span>
 
     <span class="k">return</span> <span class="p">{</span>
         <span class="c1">// animation block</span>
     <span class="p">}</span>
 <span class="p">}</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="c1">// or initialize layout constraint animations just by passing the parent view</span>
+<span class="nf">anim</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// animation block</span>
+<span class="p">}</span>
+
+<span class="nf">anim</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">settings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">anim</span><span class="o">.</span><span class="kt">Closure</span><span class="p">)</span> <span class="k">in</span>
+    <span class="c1">// settings...</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="c1">// animation block</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// you don't need to call layoutIfNeeded() before or inside the</span>
+<span class="c1">// animation blocks, it's handled by anim</span>
+<span class="c1">//</span>
+<span class="c1">// for example to update constant value of a constraint,</span>
+<span class="c1">// you can just change it inside the animation block</span>
+<span class="k">let</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">NSLayoutConstraint</span> <span class="c1">//...</span>
+<span class="nf">anim</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">width</span><span class="o">.</span><span class="n">constant</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1">// new value</span>
+<span class="p">}</span>
+<span class="c1">// that's it!</span>
 </code></pre>
 
 <p>Chain animations with <code>.then</code> function.</p>
@@ -111,15 +139,26 @@
 </code></pre>
 <pre class="highlight swift"><code><span class="n">anim</span> <span class="p">{}</span>
 <span class="o">.</span><span class="n">then</span> <span class="p">{</span> <span class="p">(</span><span class="n">settings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">anim</span><span class="o">.</span><span class="kt">Closure</span> <span class="k">in</span>
-    <span class="n">settings</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="n">settings</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="c1">// next animation block</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
+<pre class="highlight swift"><code><span class="n">anim</span> <span class="p">{}</span>
+<span class="o">.</span><span class="nf">then</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// chaining constraint animations</span>
+<span class="p">}</span>
+<span class="o">.</span><span class="nf">then</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">settings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">anim</span><span class="o">.</span><span class="kt">Closure</span> <span class="k">in</span>
+    <span class="n">settings</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="c1">// next animation block for constraints</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 
 <p>Wait between animation steps with <code>.wait</code> function.</p>
-<pre class="highlight swift"><code><span class="n">anim</span><span class="p">{}</span><span class="o">.</span><span class="nf">wait</span><span class="p">(</span><span class="mi">250</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">{}</span> <span class="c1">//...</span>
+<pre class="highlight swift"><code><span class="n">anim</span><span class="p">{}</span><span class="o">.</span><span class="nf">wait</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">{}</span> <span class="c1">//...</span>
 </code></pre>
 
 <p>Insert callbacks between animation steps with <code>.callback</code> function.</p>
@@ -142,7 +181,7 @@
 <ul>
 <li>[x] Chaining animations</li>
 <li>[x] Wait, callback functions</li>
-<li>[ ] API for animating layout constraints</li>
+<li>[x] Constraint animations</li>
 <li>[ ] iOS9 support</li>
 <li>[ ] tvOS, macOS support</li>
 <li>[ ] Shape animations</li>
@@ -154,7 +193,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://github.com/onurersel/anim" target="_blank" rel="external">Onur Ersel</a>. All rights reserved. (Last updated: 2017-02-08)</p>
+          <p>&copy; 2017 <a class="link" href="https://github.com/onurersel/anim" target="_blank" rel="external">Onur Ersel</a>. All rights reserved. (Last updated: 2017-02-13)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

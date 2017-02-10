@@ -34,6 +34,11 @@ xcode-select --install
 fastlane ios test
 ```
 Runs all the tests
+### ios pods
+```
+fastlane ios pods
+```
+Pushes changes to git repository
 
 ----
 
