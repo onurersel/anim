@@ -108,7 +108,7 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Closure</span> <span class="o">=</span> <span class="p">()</span><span class="o">-&gt;</span><span class="kt">Void</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Closure</span> <span class="o">=</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
 
                         </div>
                       </div>
@@ -246,7 +246,7 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">closureWithSettings</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="k">inout</span> <span class="kt"><a href="../Classes/anim/Settings.html">Settings</a></span><span class="p">)</span><span class="o">-&gt;</span><span class="p">(</span><span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">))</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">closureWithSettings</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="k">inout</span> <span class="kt"><a href="../Classes/anim/Settings.html">Settings</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">))</span></code></pre>
 
                         </div>
                       </div>
@@ -326,6 +326,144 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4anim4animcFT16constraintParentCSo6UIViewFRVS0_8SettingsFT_T__S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(constraintParent:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4anim4animcFT16constraintParentCSo6UIViewFRVS0_8SettingsFT_T__S0_">init(constraintParent:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates initial animation promise for <code>NSLayoutConstraint</code> animations, with settings.</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>constraintParent: Top parent where constraints reside.</li>
+<li>closureWithSettings: Exposes settings values to block, and expects returning animation block.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="n">_</span> <span class="nv">closureWithSettings</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="k">inout</span> <span class="kt"><a href="../Classes/anim/Settings.html">Settings</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">))</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>constraintParent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Top parent where constraints reside.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>closureWithSettings</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Exposes settings values to block, and expects returning animation block.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4anim4animcFT16constraintParentCSo6UIViewFT_T__S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(constraintParent:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4anim4animcFT16constraintParentCSo6UIViewFT_T__S0_">init(constraintParent:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates initial animation promise for <code>NSLayoutConstraint</code> animations.</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>constraintParent: Top parent where constraints reside.</li>
+<li>closure: Animation block.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="n">_</span> <span class="nv">closure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>constraintParent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Top parent where constraints reside.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>closure</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Animation block.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="task-group">
@@ -369,7 +507,7 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">then</span><span class="p">(</span><span class="n">_</span> <span class="nv">closureWithSettings</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="k">inout</span> <span class="kt"><a href="../Classes/anim/Settings.html">Settings</a></span><span class="p">)</span><span class="o">-&gt;</span><span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">anim</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">then</span><span class="p">(</span><span class="n">_</span> <span class="nv">closureWithSettings</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="k">inout</span> <span class="kt"><a href="../Classes/anim/Settings.html">Settings</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">anim</span></code></pre>
 
                         </div>
                       </div>
@@ -441,6 +579,160 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                         <h4>Parameters</h4>
                         <table class="graybox">
                           <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>closure</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Animation block.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Newly created promise.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4anim4anim4thenFT16constraintParentCSo6UIViewFRVS0_8SettingsFT_T__S0_"></a>
+                    <a name="//apple_ref/swift/Method/then(constraintParent:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4anim4anim4thenFT16constraintParentCSo6UIViewFRVS0_8SettingsFT_T__S0_">then(constraintParent:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new promise for <code>NSLayoutConstraint</code> animations with settings, chained to the previous one.</p>
+
+<p><li>Parameters:</p>
+
+<p><ul>
+<li>constraintParent: Top parent where constraints reside.</li>
+<li>closureWithSettings: Exposes settings values to block, and expects returning animation block.</li>
+</ul></li>
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    Newly created promise.</p>
+
+<p></div></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">then</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="n">_</span> <span class="nv">closureWithSettings</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="k">inout</span> <span class="kt"><a href="../Classes/anim/Settings.html">Settings</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">anim</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>constraintParent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Top parent where constraints reside.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>closureWithSettings</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Exposes settings values to block, and expects returning animation block.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Newly created promise.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC4anim4anim4thenFT16constraintParentCSo6UIViewFT_T__S0_"></a>
+                    <a name="//apple_ref/swift/Method/then(constraintParent:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC4anim4anim4thenFT16constraintParentCSo6UIViewFT_T__S0_">then(constraintParent:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new promise for <code>NSLayoutConstraint</code> animations with settings, chained to the previous one.</p>
+
+<p><li>Parameters:</p>
+
+<p><ul>
+<li>constraintParent: Top parent where constraints reside.</li>
+<li>closure: Animation block.</li>
+</ul></li>
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    Newly created promise.</p>
+
+<p></div></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">then</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="n">_</span> <span class="nv">closure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">anim</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>constraintParent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Top parent where constraints reside.</p>
+
+                                </div>
+                              </td>
+                            </tr>
                             <tr>
                               <td>
                                 <code>
@@ -660,7 +952,7 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="n">anim</span><span class="o">.</span><span class="kt"><a href="../Classes/anim/Ease.html">Ease</a></span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="n">anim</span><span class="o">.</span><span class="kt"><a href="../Classes/anim/Ease.html">Ease</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="n">anim</span><span class="o">.</span><span class="kt"><a href="../Classes/anim/Ease.html">Ease</a></span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="n">anim</span><span class="o">.</span><span class="kt"><a href="../Classes/anim/Ease.html">Ease</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -710,7 +1002,7 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://github.com/onurersel/anim" target="_blank" rel="external">Onur Ersel</a>. All rights reserved. (Last updated: 2017-02-08)</p>
+          <p>&copy; 2017 <a class="link" href="https://github.com/onurersel/anim" target="_blank" rel="external">Onur Ersel</a>. All rights reserved. (Last updated: 2017-02-10)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

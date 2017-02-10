@@ -31,31 +31,21 @@ class animTests: XCTestCase {
 
     }
 
-    func testInitializerWithSettings() {
-
-        anim.defaultSettings.delay = 0
-
-        let e = [
-            Event("e1", 0),
-            Event("e2", 0)
-        ]
-
-        eventSequence(e) { (log, end) in
-            anim({ (settings) -> (anim.Closure) in
-                return {
-                    log("e1")
-                }
-            })
-            .then {
-                log("e2")
-                end()
-            }
-        }
-
-    }
-
     func testCreateCustomEase() {
         XCTAssertNotNil(anim.Ease.custom(point1: CGPoint(x:0.1, y:0.2), point2: CGPoint(x:0.3, y:0.4)))
+    }
+    
+    func testInitializerForConstraints() {
+        let view = UIView()
+        
+        // with default settings
+        XCTAssertNotNil(anim(constraintParent: view) {}, "Constructor should not return nil.")
+        
+        // with custom settings
+        let a = anim(constraintParent: view) { (s) -> (anim.Closure) in
+            return {}
+        }
+        XCTAssertNotNil(a, "Constructor should not return nil.")
     }
 
     // MARK: - Properties
@@ -354,7 +344,36 @@ class animTests: XCTestCase {
             }
         }
     }
-
+    
+    func testChainingForConstraints() {
+        anim.defaultSettings.duration = 0
+        
+        let e = [
+            Event("e1", 0),
+            Event("e2", 0),
+            Event("e3", 1)
+        ]
+        let view = UIView()
+        
+        eventSequence(e) { (log, end) in
+            
+            anim(constraintParent: view) {
+                log("e1")
+            }
+            .then(constraintParent: view) {
+                log("e2")
+            }
+            .then(constraintParent: view) { (settings) -> anim.Closure in
+                settings.delay = 1
+                return {
+                    log("e3")
+                    end()
+                }
+            }
+            
+        }
+    }
+    
     // MARK: - Logging
 
     func testLog() {
