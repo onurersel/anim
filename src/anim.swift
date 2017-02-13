@@ -24,6 +24,11 @@
 
 import UIKit
 
+internal protocol animator {
+    func startAnimation(animationClosure: anim.Closure?, completion: @escaping anim.Closure, settings: anim.Settings)
+    func stopAnimation()
+}
+
 /// `anim` is an animation library written in Swift with a simple,
 /// declarative API in mind.
 ///
@@ -94,6 +99,10 @@ final public class anim {
             return Ease(point1: point1, point2: point2)
         }
 
+        internal var caMediaTimingFunction: CAMediaTimingFunction {
+            return CAMediaTimingFunction(controlPoints: Float(point1.x), Float(point1.y), Float(point2.x), Float(point2.y))
+        }
+
         /// http://easings.net/#easeInSine
         public static let easeInSine           = Ease(point1: CGPoint(x:0.47, y:0), point2: CGPoint(x:0.745, y:0.715))
         /// http://easings.net/#easeOutSine
@@ -160,6 +169,122 @@ final public class anim {
         internal var parent: UIView
     }
 
+    @available (iOS 10.0, *)
+    internal class PropertyAnimator: animator {
+
+        private var propertyAnimator: UIViewPropertyAnimator?
+        private var completion: Closure?
+
+        internal func startAnimation(animationClosure: anim.Closure?, completion: @escaping anim.Closure, settings: anim.Settings) {
+            anim.log("running PropertyAnimator")
+            propertyAnimator = UIViewPropertyAnimator(duration: settings.duration,
+                                                      controlPoint1: settings.ease.point1,
+                                                      controlPoint2: settings.ease.point2,
+                                                      animations: animationClosure)
+            propertyAnimator!.addCompletion(completeAnimation)
+            self.completion = completion
+            propertyAnimator!.isUserInteractionEnabled = settings.isUserInteractionsEnabled
+            propertyAnimator!.startAnimation()
+        }
+
+        internal func stopAnimation() {
+            propertyAnimator?.stopAnimation(true)
+            cleanup()
+        }
+
+        private func completeAnimation(position: UIViewAnimatingPosition) {
+            completion?()
+            cleanup()
+        }
+
+        private func cleanup() {
+            propertyAnimator = nil
+            completion = nil
+        }
+    }
+
+    @available (iOS, deprecated: 10.0)
+    internal class ViewAnimator: animator, CustomStringConvertible {
+
+        private struct AnimatingLayer {
+            internal var layer: CALayer
+            internal var key: String
+        }
+
+        let uid = "\(UInt32(Date().timeIntervalSince1970)^arc4random_uniform(UInt32.max))"
+
+        var description: String {
+            return "ViewAnimator(\(uid))"
+        }
+
+        static let methodOriginal = class_getInstanceMethod(CALayer.self, #selector(CALayer.add))
+        static let methodSwizzled = class_getInstanceMethod(CALayer.self, #selector(CALayer.anim_add))
+
+        static var activeInstance: ViewAnimator? = nil
+        static var timingFunction: CAMediaTimingFunction? = nil
+
+        private var animatingLayers: [AnimatingLayer]? = []
+
+        internal func startAnimation(animationClosure: anim.Closure?, completion: @escaping anim.Closure, settings: anim.Settings) {
+            anim.log("running ViewAnimator")
+
+            var optionsRaw: UInt = 0
+            if settings.isUserInteractionsEnabled {
+                optionsRaw += UIViewAnimationOptions.allowUserInteraction.rawValue
+            }
+
+            let ac = (animationClosure == nil) ? {} : animationClosure!
+
+            swizzleToAnimationExtension()
+            ViewAnimator.activeInstance = self
+            ViewAnimator.timingFunction = settings.ease.caMediaTimingFunction
+            log("\(ViewAnimator.activeInstance!) start adding")
+            UIView.animate(withDuration: settings.duration,
+                           delay: 0,
+                           options: UIViewAnimationOptions(rawValue: optionsRaw),
+                           animations: ac,
+                           completion: { success in
+                            self.cleanup()
+                            completion()
+            })
+            log("end adding. \(ViewAnimator.activeInstance!) animations count \(animatingLayers!.count)")
+            ViewAnimator.activeInstance = nil
+            ViewAnimator.timingFunction = nil
+            swizzleToAnimationOriginal()
+        }
+
+        internal func stopAnimation() {
+            animatingLayers?.forEach { animatingLayer in
+                animatingLayer.layer.removeAnimation(forKey: animatingLayer.key)
+            }
+            cleanup()
+        }
+
+        private func cleanup() {
+            anim.log("\(self) removing \(animatingLayers?.count) animations on cleanup")
+            animatingLayers?.removeAll()
+            animatingLayers = nil
+        }
+
+        private func swizzleToAnimationExtension() {
+            method_exchangeImplementations(ViewAnimator.methodOriginal, ViewAnimator.methodSwizzled)
+        }
+
+        private func swizzleToAnimationOriginal() {
+            method_exchangeImplementations(ViewAnimator.methodSwizzled, ViewAnimator.methodOriginal)
+        }
+
+        internal class func addLayerToAnimator(_ layer: CALayer, _ key: String) {
+            guard let inst = ViewAnimator.activeInstance else {
+                log("No ViewAnimator instance found!")
+                return
+            }
+
+            log("\(ViewAnimator.activeInstance!) adding animation to \(layer) with key \(key)")
+            inst.animatingLayers?.append(AnimatingLayer(layer: layer, key: key))
+        }
+    }
+
     // MARK: - Properties
 
     /// Default settings for animation. This is being copied to promise for each animation.
@@ -190,7 +315,7 @@ final public class anim {
     /// Values for constraint animation.
     internal var animationConstraintLayout: ConstraintLayout?
 
-    private var animator: UIViewPropertyAnimator?
+    private var animator: animator?
 
     // MARK: - Initializers
 
@@ -255,7 +380,8 @@ final public class anim {
     /// - Parameters:
     ///   - constraintParent: Top parent where constraints reside.
     ///   - closure: Exposes settings values to block, and expects returning animation block.
-    private convenience init(constraintParent: UIView, closureWithoutProcess closure: @escaping (inout Settings) -> (Closure)) {
+    private convenience init(constraintParent: UIView,
+                             closureWithoutProcess closure: @escaping (inout Settings) -> (Closure)) {
         var _settings = anim.defaultSettings
         let _closure = closure(&_settings)
         self.init(settings: _settings, closure:nil)
@@ -324,20 +450,28 @@ final public class anim {
 
         guard animationSettings.duration > 0 else {
             animationClosure?()
-            return completion(pos: .end)
+            return completion()
         }
 
-        animator = UIViewPropertyAnimator(duration: animationSettings.duration, controlPoint1: animationSettings.ease.point1, controlPoint2: animationSettings.ease.point2, animations: animationClosure)
-        animator!.addCompletion(self.completion)
-        animator!.isUserInteractionEnabled = animationSettings.isUserInteractionsEnabled
-        animator!.startAnimation()
+        if #available(iOS 10.0, *) {
+            animator = PropertyAnimator()
+        } else {
+            animator = ViewAnimator()
+        }
+
+        animator?.startAnimation(animationClosure: animationClosure, completion: completion, settings: animationSettings)
     }
 
     /// Animation block completion.
     ///
     /// - Parameter pos: Position of animation. Generated by `UIViewPropertyAnimator`.
-    private func completion(pos: UIViewAnimatingPosition) {
+    private func completion() {
         log("completion")
+        guard state == .started else {
+            log("\(state), aborting")
+            return
+        }
+
         animationSettings.completion?()
         state = .finished
         next?.process()
@@ -454,7 +588,7 @@ final public class anim {
         log("\(currentAnim) is the animation currently running")
 
         currentAnim?.state = .cancelled
-        currentAnim?.animator?.stopAnimation(true)
+        currentAnim?.animator?.stopAnimation()
         log("Stopped animation chain")
     }
 
@@ -503,6 +637,12 @@ internal extension anim {
     }
 }
 
+public extension anim {
+    public class func enableLogging() {
+        anim.isLogging = true
+    }
+}
+
 extension anim.Ease: Equatable {
     /// Checks equality between easing types.
     ///
@@ -512,5 +652,14 @@ extension anim.Ease: Equatable {
     /// - Returns: Return if two easing values are equal or not.
     public static func == (lhs: anim.Ease, rhs: anim.Ease) -> Bool {
         return lhs.point1 == rhs.point1 && lhs.point2 == rhs.point2
+    }
+}
+
+@available (iOS, deprecated: 10.0)
+fileprivate extension CALayer {
+    @objc func anim_add(_ animation: CAAnimation, forKey key: String?) {
+        animation.timingFunction = anim.ViewAnimator.timingFunction
+        anim.ViewAnimator.addLayerToAnimator(self, key!)
+        self.anim_add(animation, forKey: key)
     }
 }

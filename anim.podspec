@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/ethestel'
   s.source = { :git => 'https://github.com/onurersel/anim.git', :tag => s.version }
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '8.0'
 
   s.source_files = 'src/*.swift'
   s.requires_arc = true
