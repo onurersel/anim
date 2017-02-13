@@ -1,3 +1,3 @@
 #!/bin/sh
 
-pod trunk push anim.podspec
+pod trunk push ../anim.podspec
