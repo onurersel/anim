@@ -8,6 +8,7 @@ platform :ios do
     swiftlint(
       mode: :lint,
       config_file: "./.swiftlint.yml",
+      strict: true,
       ignore_exit_status: false
     )
     scan(

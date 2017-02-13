@@ -1,11 +1,7 @@
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/ustwo/formvalidator-swift/blob/master/LICENSE.md)
 [![CocoaPods](https://img.shields.io/cocoapods/v/anim.svg)](https://cocoapods.org/pods/anim)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status](https://travis-ci.org/onurersel/anim.svg?branch=master)](https://travis-ci.org/onurersel/anim)
 [![codecov.io](https://codecov.io/github/onurersel/anim/coverage.svg?branch=master)](https://codecov.io/github/onurersel/anim?branch=master)
-[![Platform](https://img.shields.io/cocoapods/p/anim.svg)](http://onurersel.github.io/anim/)
-![Swift](https://img.shields.io/badge/Swift-3.0-orange.svg)
-[![Twitter](https://img.shields.io/badge/twitter-@ethestel-blue.svg?style=flat)](http://twitter.com/ethestel)
 
 # anim
 
@@ -101,7 +97,7 @@ anim(constraintParent: self.view) {
 // that's it!
 ```
 
-Chain animations with `.then` function.
+Chain animations with `then` function.
 
 ```swift
 anim {}
@@ -133,7 +129,7 @@ anim {}
 }
 ```
 
-Wait between animation steps with `.wait` function.
+Wait between animation steps with `wait` function.
 
 ```swift
 anim{}.wait(0.25).then{} //...
@@ -147,6 +143,13 @@ anim{}
     // custom block
 }
 .then{} //...
+```
+
+Stop animations with `stop` class function.
+
+```swift
+let animation = anim{}.then{} // ...
+anim.stop(animation)
 ```
 
 #### Default settings

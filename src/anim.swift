@@ -70,11 +70,12 @@ final public class anim {
 
     /// Promise state.
     ///
-    /// - notBeginned: Animation did not started yet.
-    /// - running: Animation is running.
-    /// - completed: Animation completed running.
+    /// - created: Animation did not started yet.
+    /// - started: Animation is running.
+    /// - finished: Animation finished running.
+    /// - cancelled: Animation cancelled before it's finished.
     internal enum State {
-        case notBeginned, running, completed
+        case created, started, finished, cancelled
     }
 
     /// Easing value. Stores two points for cubic easing calculation.
@@ -164,7 +165,15 @@ final public class anim {
     /// Default settings for animation. This is being copied to promise for each animation.
     public static var defaultSettings = Settings()
     /// Enables internal logging. This is for debugging.
-    internal static var isLogging: Bool = false
+    internal static var isLogging: Bool = false {
+        didSet {
+            if isLogging {
+                startupTime = Date()
+            }
+        }
+    }
+    /// Starup time of anim library. Used for logging.
+    fileprivate static var startupTime: Date? = nil
 
     /// Unique promise id.
     fileprivate let uid = UInt32(Date().timeIntervalSince1970)^arc4random_uniform(UInt32.max)
@@ -174,11 +183,13 @@ final public class anim {
     internal var animationSettings: Settings
     /// Reference to next promise chained to this instance.
     internal var next: anim? = nil
+    /// Reference to previous promise this instance is chained.
+    internal var prev: anim? = nil
     /// State of promise.
-    internal var state: State = .notBeginned
+    internal var state: State = .created
     /// Values for constraint animation.
     internal var animationConstraintLayout: ConstraintLayout?
-    
+
     private var animator: UIViewPropertyAnimator?
 
     // MARK: - Initializers
@@ -278,12 +289,12 @@ final public class anim {
     /// Start processing animation promise.
     internal func process() {
         log("process")
+        state = .started
         delay()
     }
 
     /// Waits before starting animation block, if delay is setted.
     private func delay() {
-
         log("delay")
         guard animationSettings.delay > 0 else {
             return self.run()
@@ -299,7 +310,11 @@ final public class anim {
     /// Runs animation block.
     private func run() {
         log("run")
-        state = .running
+
+        guard state == .started else {
+            log("\(state), aborting")
+            return
+        }
 
         if let layout = animationConstraintLayout {
             layout.parent.layoutIfNeeded()
@@ -316,7 +331,6 @@ final public class anim {
         animator!.addCompletion(self.completion)
         animator!.isUserInteractionEnabled = animationSettings.isUserInteractionsEnabled
         animator!.startAnimation()
-
     }
 
     /// Animation block completion.
@@ -325,8 +339,8 @@ final public class anim {
     private func completion(pos: UIViewAnimatingPosition) {
         log("completion")
         animationSettings.completion?()
-        state = .completed
-        next?.delay()
+        state = .finished
+        next?.process()
     }
 
     // MARK: - Chaining promises
@@ -412,10 +426,36 @@ final public class anim {
     /// - Parameter chainedAnim: Newly created promise.
     private func chain(to chainedAnim: anim) {
         next = chainedAnim
+        next!.prev = self
 
-        if state == .completed {
-            chainedAnim.delay()
+        if state == .finished {
+            chainedAnim.process()
         }
+    }
+
+    // MARK: - Stop animation chain.
+
+    /// Stops animation
+    ///
+    /// - Parameter animation: Animation chain to be stopped.
+    class public func stop(_ animation: anim) {
+        log("Stopping animation chain...")
+        var currentAnim: anim? = animation
+        while let a = currentAnim?.next {
+            currentAnim = a
+        }
+        log("\(currentAnim) is at the end of animation chain.")
+
+        while let a = currentAnim, a.state == .created {
+            a.state = .cancelled
+            currentAnim = a.prev
+        }
+
+        log("\(currentAnim) is the animation currently running")
+
+        currentAnim?.state = .cancelled
+        currentAnim?.animator?.stopAnimation(true)
+        log("Stopped animation chain")
     }
 
 }
@@ -436,14 +476,29 @@ internal extension anim {
     /// Internal logging function.
     ///
     /// - Parameter message: Message to log.
-    /// - Returns: Returns true if successfully logs
+    /// - Returns: Returns true if logs successfully.
     @discardableResult
     func log(_ message: String) -> Bool {
         guard anim.isLogging else {
             return false
         }
 
-        print("\(description) \(message)")
+        anim.log("\(description) \(message)")
+        return true
+    }
+
+    /// Internal loggin on class scope.
+    ///
+    /// - Parameter message: Message to log.
+    /// - Returns: Returns true if logs successfully.
+    @discardableResult
+    class func log(_ message: String) -> Bool {
+        guard anim.isLogging, anim.startupTime != nil else {
+            return false
+        }
+
+        let since = Date().timeIntervalSince(anim.startupTime!)
+        print("\(message) | \(since)")
         return true
     }
 }

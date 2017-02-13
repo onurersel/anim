@@ -189,22 +189,22 @@ class animTests: XCTestCase {
                 }
             })
 
-            XCTAssertEqual(a.state, .notBeginned, "Something wrong with state cycles.")
-            XCTAssertEqual(t.state, .notBeginned, "Something wrong with state cycles.")
+            XCTAssertEqual(a.state, .started, "Something wrong with state cycles.")
+            XCTAssertEqual(t.state, .created, "Something wrong with state cycles.")
 
             Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false, block: { (timer) in
-                XCTAssertEqual(a.state, .notBeginned, "Something wrong with state cycles.")
-                XCTAssertEqual(t.state, .notBeginned, "Something wrong with state cycles.")
+                XCTAssertEqual(a.state, .started, "Something wrong with state cycles.")
+                XCTAssertEqual(t.state, .created, "Something wrong with state cycles.")
             })
 
             Timer.scheduledTimer(withTimeInterval: 0.7, repeats: false, block: { (timer) in
-                XCTAssertEqual(a.state, .completed, "Something wrong with state cycles.")
-                XCTAssertEqual(t.state, .notBeginned, "Something wrong with state cycles.")
+                XCTAssertEqual(a.state, .finished, "Something wrong with state cycles.")
+                XCTAssertEqual(t.state, .started, "Something wrong with state cycles.")
             })
 
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false, block: { (timer) in
-                XCTAssertEqual(a.state, .completed, "Something wrong with state cycles.")
-                XCTAssertEqual(t.state, .completed, "Something wrong with state cycles.")
+                XCTAssertEqual(a.state, .finished, "Something wrong with state cycles.")
+                XCTAssertEqual(t.state, .finished, "Something wrong with state cycles.")
             })
 
         }
@@ -374,6 +374,83 @@ class animTests: XCTestCase {
         }
     }
     
+    // MARK: - Stopping
+    
+    func testStop() {
+        let e = [
+            Event("e1", 0.7),
+            Event("e2", 1.3)
+        ]
+        
+        eventSequence(e) { (log, end) in
+            let a = anim({ (settings) -> (anim.Closure) in
+                settings.delay = 0.3
+                return {}
+            })
+            .then({ (settings) -> anim.Closure in
+                settings.delay = 0.4
+                return {
+                    log("e1")
+                }
+            })
+            .then({ (settings) -> anim.Closure in
+                settings.delay = 0.6
+                return {
+                    log("e2")
+                }
+            })
+            .then({ (settings) -> anim.Closure in
+                settings.delay = 0.8
+                return {
+                    XCTFail("Should not be called after animation chain is stopped")
+                }
+            })
+            .then({ (settings) -> anim.Closure in
+                settings.delay = 0.4
+                return {
+                    XCTFail("Should not be called after animation chain is stopped")
+                }
+            })
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1500), execute: {
+                anim.stop(a)
+            })
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2800), execute: {
+                end()
+            })
+        }
+    }
+    
+    func testStopFromMiddle() {
+        let e = [
+            Event("e1", 0.4)
+        ]
+        
+        eventSequence(e) { (log, end) in
+            
+            anim.defaultSettings.delay = 0.4
+            let a = anim {
+                log("e1")
+            }
+            
+            
+            a.then {
+                log("e2")
+            }
+            .then {
+                XCTFail("Should not be called after animation chain is stopped")
+            }
+            
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(600), execute: {
+                anim.stop(a)
+            })
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1400), execute: {
+                end()
+            })
+        }
+    }
+    
     // MARK: - Logging
 
     func testLog() {
@@ -387,6 +464,18 @@ class animTests: XCTestCase {
         let result2 = a.log("test")
         XCTAssertTrue(result2, "Should be logging while it's not disabled.")
 
+        anim.isLogging = false
+    }
+    
+    func testClassLog() {
+        anim.isLogging = false
+        let result1 = anim.log("test")
+        XCTAssertFalse(result1, "Should not be logging while it's disabled.")
+        
+        anim.isLogging = true
+        let result2 = anim.log("test")
+        XCTAssertTrue(result2, "Should be logging while it's not disabled.")
+        
         anim.isLogging = false
     }
 
