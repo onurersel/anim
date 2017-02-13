@@ -127,7 +127,7 @@
 <span class="c1">// that's it!</span>
 </code></pre>
 
-<p>Chain animations with <code>.then</code> function.</p>
+<p>Chain animations with <code>then</code> function.</p>
 <pre class="highlight swift"><code><span class="n">anim</span> <span class="p">{}</span>
 <span class="o">.</span><span class="n">then</span><span class="p">{</span>
     <span class="c1">// next animation block</span>
@@ -153,7 +153,7 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>Wait between animation steps with <code>.wait</code> function.</p>
+<p>Wait between animation steps with <code>wait</code> function.</p>
 <pre class="highlight swift"><code><span class="n">anim</span><span class="p">{}</span><span class="o">.</span><span class="nf">wait</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">{}</span> <span class="c1">//...</span>
 </code></pre>
 
@@ -163,6 +163,11 @@
     <span class="c1">// custom block</span>
 <span class="p">}</span>
 <span class="o">.</span><span class="n">then</span><span class="p">{}</span> <span class="c1">//...</span>
+</code></pre>
+
+<p>Stop animations with <code>stop</code> class function.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">animation</span> <span class="o">=</span> <span class="n">anim</span><span class="p">{}</span><span class="o">.</span><span class="n">then</span><span class="p">{}</span> <span class="c1">// ...</span>
+<span class="n">anim</span><span class="o">.</span><span class="nf">stop</span><span class="p">(</span><span class="n">animation</span><span class="p">)</span>
 </code></pre>
 <a href='#default-settings' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='default-settings'>Default settings</h4>
 
