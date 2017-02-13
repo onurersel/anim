@@ -42,6 +42,9 @@ platform :ios do
     add_git_tag(tag: version)
     ensure_git_status_clean
     push_to_git_remote
+
+    # Push to Cocoapods
+    sh './cocoapods.sh'
   end
 
 end
