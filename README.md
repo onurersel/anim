@@ -174,6 +174,6 @@ anim.defaultSettings.ease = .easeInOutCubic
 - [ ] tvOS, macOS support
 - [ ] Shape animations
 
-# Licence
+# License
 
 `anim` is released under the MIT license. See LICENSE for details.
