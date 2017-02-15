@@ -72,9 +72,9 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>It supports a bunch of easing functions and chaining multiple animations. It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its core.</p>
+<p>It supports a bunch of easing functions and chaining multiple animations. It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its core, and falls back to <code>UIView.animate</code> on versions before iOS 10.</p>
 
-<p>It only supports iOS 10 at the moment.</p>
+<p>It only supports iOS at the moment.</p>
 <a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='installation'>Installation</h1>
 <a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='cocoapods'>Cocoapods</h4>
 <pre class="highlight plaintext"><code>pod 'anim'
@@ -168,9 +168,9 @@
 <span class="o">.</span><span class="n">then</span><span class="p">{}</span> <span class="c1">//...</span>
 </code></pre>
 
-<p>Stop animations with <code>stop</code> class function.</p>
+<p>Stop animations with <code>stop</code> function.</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">animation</span> <span class="o">=</span> <span class="n">anim</span><span class="p">{}</span><span class="o">.</span><span class="n">then</span><span class="p">{}</span> <span class="c1">// ...</span>
-<span class="n">anim</span><span class="o">.</span><span class="nf">stop</span><span class="p">(</span><span class="n">animation</span><span class="p">)</span>
+<span class="n">animation</span><span class="o">.</span><span class="nf">stop</span><span class="p">()</span>
 </code></pre>
 <a href='#default-settings' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='default-settings'>Default settings</h4>
 
@@ -186,11 +186,11 @@
 <li>[x] Chaining animations</li>
 <li>[x] Wait, callback functions</li>
 <li>[x] Constraint animations</li>
-<li>[ ] iOS9 support</li>
+<li>[X] iOS 8 and 9 support</li>
 <li>[ ] tvOS, macOS support</li>
 <li>[ ] Shape animations</li>
 </ul>
-<a href='#licence' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='licence'>Licence</h1>
+<a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='license'>License</h1>
 
 <p><code>anim</code> is released under the MIT license. See LICENSE for details.</p>
 
