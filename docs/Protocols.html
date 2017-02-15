@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Classes  Reference</title>
+    <title>Protocols  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,7 +10,7 @@
     
   </head>
   <body>
-    <a title="Classes  Reference"></a>
+    <a title="Protocols  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html">anim Docs</a> (100% documented)</p>
@@ -20,7 +20,7 @@
       <p id="breadcrumbs">
         <a href="index.html">anim Reference</a>
         <img id="carat" src="img/carat.png" />
-        Classes  Reference
+        Protocols  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -56,8 +56,8 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Classes</h1>
-            <p>The following classes are available globally.</p>
+            <h1>Protocols</h1>
+            <p>The following protocols are available globally.</p>
 
           </section>
           <section class="section task-group-section">
@@ -66,9 +66,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C4anim4anim"></a>
-                    <a name="//apple_ref/swift/Class/anim" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C4anim4anim">anim</a>
+                    <a name="/s:P4anim8Animator"></a>
+                    <a name="//apple_ref/swift/Protocol/Animator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P4anim8Animator">Animator</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -76,37 +76,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p><code>anim</code> is an animation library written in Swift with a simple,
-declarative API in mind.</p>
+                        <p>Type for animation controller.</p>
 
-<pre class="highlight plaintext"><code>// moves box to 100,100 with default settings
-anim {
-    self.box.frame.origin = CGPoint(x:100, y:100)
-    }
-    // after that, waits 100 ms
-    .wait(100)
-    // moves box to 0,0 after waiting
-    .then {
-        self.box.frame.origin = CGPoint(x:0, y:0)
-    }
-    // displays message after all animations are done
-    .callback {
-        print("Just finished moving 📦 around.")
-}
-</code></pre>
-
-<p>It supports a bunch of easing functions and chaining multiple animations.
-It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its core.</p>
-
-<p>It only supports iOS 10 at the moment.</p>
-
-                        <a href="Classes/anim.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/Animator.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="n">anim</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Animator</span></code></pre>
 
                         </div>
                       </div>

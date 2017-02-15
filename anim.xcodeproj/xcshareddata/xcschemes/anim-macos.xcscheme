@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BA3FCA081E4B262F0095BE41"
+               BlueprintIdentifier = "BA7057571E549F7300565309"
                BuildableName = "anim.framework"
-               BlueprintName = "anim"
+               BlueprintName = "anim-macos"
                ReferencedContainer = "container:anim.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,9 +33,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BA150F9D1E53B85C009A14E3"
-               BuildableName = "animTests.xctest"
-               BlueprintName = "animTests"
+               BlueprintIdentifier = "BA70579D1E54EC7600565309"
+               BuildableName = "animTests-macos.xctest"
+               BlueprintName = "animTests-macos"
                ReferencedContainer = "container:anim.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,9 +43,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BA3FCA081E4B262F0095BE41"
+            BlueprintIdentifier = "BA7057571E549F7300565309"
             BuildableName = "anim.framework"
-            BlueprintName = "anim"
+            BlueprintName = "anim-macos"
             ReferencedContainer = "container:anim.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +65,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BA3FCA081E4B262F0095BE41"
+            BlueprintIdentifier = "BA7057571E549F7300565309"
             BuildableName = "anim.framework"
-            BlueprintName = "anim"
+            BlueprintName = "anim-macos"
             ReferencedContainer = "container:anim.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,9 +83,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BA3FCA081E4B262F0095BE41"
+            BlueprintIdentifier = "BA7057571E549F7300565309"
             BuildableName = "anim.framework"
-            BlueprintName = "anim"
+            BlueprintName = "anim-macos"
             ReferencedContainer = "container:anim.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

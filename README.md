@@ -25,8 +25,8 @@ anim {
 ```
 
 It supports a bunch of easing functions and chaining multiple animations. It's a wrapper on Apple's `UIViewPropertyAnimator` on its core, and falls back to `UIView.animate` on versions before iOS 10.
+It uses `NSAnimationContext` on macOS.
 
-It only supports iOS at the moment.
 
 # Installation
 
@@ -44,7 +44,7 @@ github "onurersel/anim"
 
 #### Manually
 
-Or simply drag the file `src/anim.swift` into your project.
+Or simply drag the swift files inside `src/` folder into your project.
 
 # API
 
@@ -164,14 +164,14 @@ anim.defaultSettings.ease = .easeInOutCubic
 
 `anim.Ease` exposes a bunch of easing options.
 
-
 # Roadmap
 
 - [x] Chaining animations
 - [x] Wait, callback functions
 - [x] Constraint animations
 - [X] iOS 8 and 9 support
-- [ ] tvOS, macOS support
+- [X] macOS support
+- [ ] tvOS support
 - [ ] Shape animations
 
 # License
