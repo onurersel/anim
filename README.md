@@ -24,9 +24,9 @@ anim {
 }
 ```
 
-It supports a bunch of easing functions and chaining multiple animations. It's a wrapper on Apple's `UIViewPropertyAnimator` on its core.
+It supports a bunch of easing functions and chaining multiple animations. It's a wrapper on Apple's `UIViewPropertyAnimator` on its core, and falls back to `UIView.animate` on versions before iOS 10.
 
-It only supports iOS 10 at the moment.
+It only supports iOS at the moment.
 
 # Installation
 
@@ -145,11 +145,11 @@ anim{}
 .then{} //...
 ```
 
-Stop animations with `stop` class function.
+Stop animations with `stop` function.
 
 ```swift
 let animation = anim{}.then{} // ...
-anim.stop(animation)
+animation.stop()
 ```
 
 #### Default settings
@@ -170,7 +170,7 @@ anim.defaultSettings.ease = .easeInOutCubic
 - [x] Chaining animations
 - [x] Wait, callback functions
 - [x] Constraint animations
-- [ ] iOS9 support
+- [X] iOS 8 and 9 support
 - [ ] tvOS, macOS support
 - [ ] Shape animations
 

@@ -24,11 +24,6 @@
 
 import UIKit
 
-internal protocol animator {
-    func startAnimation(animationClosure: anim.Closure?, completion: @escaping anim.Closure, settings: anim.Settings)
-    func stopAnimation()
-}
-
 /// `anim` is an animation library written in Swift with a simple,
 /// declarative API in mind.
 ///
@@ -58,21 +53,6 @@ final public class anim {
     /// Animation block.
     public typealias Closure = () -> Void
 
-    /// Animation settings.
-    public struct Settings {
-
-        /// Delay before animation starts.
-        public var delay: TimeInterval = 0
-        /// Duration of animation.
-        public var duration: TimeInterval = 1
-        /// Easing of animation.
-        public var ease: Ease = .easeOutQuint
-        /// Completion block which runs after animation.
-        public var completion: (Closure)?
-        /// Enables user interactions on views while animating.
-        public var isUserInteractionsEnabled: Bool = false
-    }
-
     /// Promise state.
     ///
     /// - created: Animation did not started yet.
@@ -83,206 +63,12 @@ final public class anim {
         case created, started, finished, cancelled
     }
 
-    /// Easing value. Stores two points for cubic easing calculation.
-    public struct Ease {
-
-        fileprivate let point1: CGPoint
-        fileprivate let point2: CGPoint
-
-        /// Creates a custom easing value for cubic easing calculation.
-        ///
-        /// - Parameters:
-        ///   - point1: First handle point.
-        ///   - point2: Second handle point.
-        /// - Returns: Easing value.
-        public static func custom(point1: CGPoint, point2: CGPoint) -> Ease {
-            return Ease(point1: point1, point2: point2)
-        }
-
-        internal var caMediaTimingFunction: CAMediaTimingFunction {
-            return CAMediaTimingFunction(controlPoints: Float(point1.x), Float(point1.y), Float(point2.x), Float(point2.y))
-        }
-
-        /// http://easings.net/#easeInSine
-        public static let easeInSine           = Ease(point1: CGPoint(x:0.47, y:0), point2: CGPoint(x:0.745, y:0.715))
-        /// http://easings.net/#easeOutSine
-        public static let easeOutSine          = Ease(point1: CGPoint(x:0.39, y:0.575), point2: CGPoint(x:0.565, y:1))
-        /// http://easings.net/#easeInOutSine
-        public static let easeInOutSine        = Ease(point1: CGPoint(x:0.445, y:0.05), point2: CGPoint(x:0.55, y:0.95))
-
-        /// http://easings.net/#easeInQuad
-        public static let easeInQuad           = Ease(point1: CGPoint(x:0.55, y:0.085), point2: CGPoint(x:0.68, y:0.53))
-        /// http://easings.net/#easeOutQuad
-        public static let easeOutQuad          = Ease(point1: CGPoint(x:0.25, y:0.46), point2: CGPoint(x:0.45, y:0.94))
-        /// http://easings.net/#easeInOutQuad
-        public static let easeInOutQuad        = Ease(point1: CGPoint(x:0.455, y:0.03), point2: CGPoint(x:0.515, y:0.955))
-
-        /// http://easings.net/#easeInCubic
-        public static let easeInCubic          = Ease(point1: CGPoint(x:0.55, y:0.055), point2: CGPoint(x:0.675, y:0.19))
-        /// http://easings.net/#easeOutCubic
-        public static let easeOutCubic         = Ease(point1: CGPoint(x:0.215, y:0.61), point2: CGPoint(x:0.355, y:1))
-        /// http://easings.net/#easeInOutCubic
-        public static let easeInOutCubic       = Ease(point1: CGPoint(x:0.645, y:0.045), point2: CGPoint(x:0.355, y:1))
-
-        /// http://easings.net/#easeInQuart
-        public static let easeInQuart          = Ease(point1: CGPoint(x:0.895, y:0.03), point2: CGPoint(x:0.685, y:0.22))
-        /// http://easings.net/#easeOutQuart
-        public static let easeOutQuart         = Ease(point1: CGPoint(x:0.165, y:0.84), point2: CGPoint(x:0.44, y:1))
-        /// http://easings.net/#easeInOutQuart
-        public static let easeInOutQuart       = Ease(point1: CGPoint(x:0.77, y:0), point2: CGPoint(x:0.175, y:1))
-
-        /// http://easings.net/#easeInQuint
-        public static let easeInQuint          = Ease(point1: CGPoint(x:0.755, y:0.05), point2: CGPoint(x:0.855, y:0.06))
-        /// http://easings.net/#easeOutQuint
-        public static let easeOutQuint         = Ease(point1: CGPoint(x:0.23, y:1), point2: CGPoint(x:0.32, y:1))
-        /// http://easings.net/#easeInOutQuint
-        public static let easeInOutQuint       = Ease(point1: CGPoint(x:0.86, y:0), point2: CGPoint(x:0.07, y:1))
-
-        /// http://easings.net/#easeInExpo
-        public static let easeInExpo           = Ease(point1: CGPoint(x:0.95, y:0.05), point2: CGPoint(x:0.795, y:0.035))
-        /// http://easings.net/#easeOutExpo
-        public static let easeOutExpo          = Ease(point1: CGPoint(x:0.19, y:1), point2: CGPoint(x:0.22, y:1))
-        /// http://easings.net/#easeInOutExpo
-        public static let easeInOutExpo        = Ease(point1: CGPoint(x:1, y:0), point2: CGPoint(x:0, y:1))
-
-        /// http://easings.net/#easeInCirc
-        public static let easeInCirc           = Ease(point1: CGPoint(x:0.6, y:0.04), point2: CGPoint(x:0.98, y:0.335))
-        /// http://easings.net/#easeOutCirc
-        public static let easeOutCirc          = Ease(point1: CGPoint(x:0.075, y:0.82), point2: CGPoint(x:0.165, y:1))
-        /// http://easings.net/#easeInOutCirc
-        public static let easeInOutCirc        = Ease(point1: CGPoint(x:0.785, y:0.135), point2: CGPoint(x:0.15, y:0.86))
-
-        /// http://easings.net/#easeInBack
-        public static let easeInBack           = Ease(point1: CGPoint(x:0.6, y:-0.28), point2: CGPoint(x:0.735, y:0.045))
-        /// http://easings.net/#easeOutBack
-        public static let easeOutBack          = Ease(point1: CGPoint(x:0.175, y:0.885), point2: CGPoint(x:0.32, y:1.275))
-        /// http://easings.net/#easeInOutBack
-        public static let easeInOutBack        = Ease(point1: CGPoint(x:0.68, y:-0.55), point2: CGPoint(x:0.265, y:1.55))
-
-    }
-
     /// Constraint animation information is stored with this value, instead of a single `Closure`.
     internal struct ConstraintLayout {
         /// Animation block.
         internal var closure: Closure
         /// Top parent of constraints to be animated.
         internal var parent: UIView
-    }
-
-    @available (iOS 10.0, *)
-    internal class PropertyAnimator: animator {
-
-        private var propertyAnimator: UIViewPropertyAnimator?
-        private var completion: Closure?
-
-        internal func startAnimation(animationClosure: anim.Closure?, completion: @escaping anim.Closure, settings: anim.Settings) {
-            anim.log("running PropertyAnimator")
-            propertyAnimator = UIViewPropertyAnimator(duration: settings.duration,
-                                                      controlPoint1: settings.ease.point1,
-                                                      controlPoint2: settings.ease.point2,
-                                                      animations: animationClosure)
-            propertyAnimator!.addCompletion(completeAnimation)
-            self.completion = completion
-            propertyAnimator!.isUserInteractionEnabled = settings.isUserInteractionsEnabled
-            propertyAnimator!.startAnimation()
-        }
-
-        internal func stopAnimation() {
-            propertyAnimator?.stopAnimation(true)
-            cleanup()
-        }
-
-        private func completeAnimation(position: UIViewAnimatingPosition) {
-            completion?()
-            cleanup()
-        }
-
-        private func cleanup() {
-            propertyAnimator = nil
-            completion = nil
-        }
-    }
-
-    @available (iOS, deprecated: 10.0)
-    internal class ViewAnimator: animator, CustomStringConvertible {
-
-        private struct AnimatingLayer {
-            internal var layer: CALayer
-            internal var key: String
-        }
-
-        let uid = "\(UInt32(Date().timeIntervalSince1970)^arc4random_uniform(UInt32.max))"
-
-        var description: String {
-            return "ViewAnimator(\(uid))"
-        }
-
-        static let methodOriginal = class_getInstanceMethod(CALayer.self, #selector(CALayer.add))
-        static let methodSwizzled = class_getInstanceMethod(CALayer.self, #selector(CALayer.anim_add))
-
-        static var activeInstance: ViewAnimator? = nil
-        static var timingFunction: CAMediaTimingFunction? = nil
-
-        private var animatingLayers: [AnimatingLayer]? = []
-
-        internal func startAnimation(animationClosure: anim.Closure?, completion: @escaping anim.Closure, settings: anim.Settings) {
-            anim.log("running ViewAnimator")
-
-            var optionsRaw: UInt = 0
-            if settings.isUserInteractionsEnabled {
-                optionsRaw += UIViewAnimationOptions.allowUserInteraction.rawValue
-            }
-
-            let ac = (animationClosure == nil) ? {} : animationClosure!
-
-            swizzleToAnimationExtension()
-            ViewAnimator.activeInstance = self
-            ViewAnimator.timingFunction = settings.ease.caMediaTimingFunction
-            log("\(ViewAnimator.activeInstance!) start adding")
-            UIView.animate(withDuration: settings.duration,
-                           delay: 0,
-                           options: UIViewAnimationOptions(rawValue: optionsRaw),
-                           animations: ac,
-                           completion: { success in
-                            self.cleanup()
-                            completion()
-            })
-            log("end adding. \(ViewAnimator.activeInstance!) animations count \(animatingLayers!.count)")
-            ViewAnimator.activeInstance = nil
-            ViewAnimator.timingFunction = nil
-            swizzleToAnimationOriginal()
-        }
-
-        internal func stopAnimation() {
-            animatingLayers?.forEach { animatingLayer in
-                animatingLayer.layer.removeAnimation(forKey: animatingLayer.key)
-            }
-            cleanup()
-        }
-
-        private func cleanup() {
-            anim.log("\(self) removing \(animatingLayers?.count) animations on cleanup")
-            animatingLayers?.removeAll()
-            animatingLayers = nil
-        }
-
-        private func swizzleToAnimationExtension() {
-            method_exchangeImplementations(ViewAnimator.methodOriginal, ViewAnimator.methodSwizzled)
-        }
-
-        private func swizzleToAnimationOriginal() {
-            method_exchangeImplementations(ViewAnimator.methodSwizzled, ViewAnimator.methodOriginal)
-        }
-
-        internal class func addLayerToAnimator(_ layer: CALayer, _ key: String) {
-            guard let inst = ViewAnimator.activeInstance else {
-                log("No ViewAnimator instance found!")
-                return
-            }
-
-            log("\(ViewAnimator.activeInstance!) adding animation to \(layer) with key \(key)")
-            inst.animatingLayers?.append(AnimatingLayer(layer: layer, key: key))
-        }
     }
 
     // MARK: - Properties
@@ -314,8 +100,8 @@ final public class anim {
     internal var state: State = .created
     /// Values for constraint animation.
     internal var animationConstraintLayout: ConstraintLayout?
-
-    private var animator: animator?
+    /// Animator which is being used for animations.
+    private var animator: Animator?
 
     // MARK: - Initializers
 
@@ -337,28 +123,6 @@ final public class anim {
         process()
     }
 
-    /// Creates initial animation promise for `NSLayoutConstraint` animations, with settings.
-    ///
-    /// - Parameters:
-    ///   - constraintParent: Top parent where constraints reside.
-    ///   - closureWithSettings: Exposes settings values to block, and expects returning animation block.
-    @discardableResult
-    public convenience init(constraintParent: UIView, _ closureWithSettings: @escaping (inout Settings) -> (Closure)) {
-        self.init(constraintParent: constraintParent, closureWithoutProcess: closureWithSettings)
-        process()
-    }
-
-    /// Creates initial animation promise for `NSLayoutConstraint` animations.
-    ///
-    /// - Parameters:
-    ///   - constraintParent: Top parent where constraints reside.
-    ///   - closure: Animation block.
-    @discardableResult
-    public convenience init(constraintParent: UIView, _ closure: @escaping Closure) {
-        self.init(constraintParent: constraintParent, closureWithoutProcess: closure)
-        process()
-    }
-
     /// Creates animation promise, with settings. To be used while chaining promises.
     ///
     /// - Parameter closure: Exposes settings values to block, and expects returning animation block.
@@ -375,17 +139,39 @@ final public class anim {
         self.init(settings: anim.defaultSettings, closure:closure)
     }
 
+    /// Creates initial animation promise for `NSLayoutConstraint` animations, with settings.
+    ///
+    /// - Parameters:
+    ///   - constraintParent: Top parent where constraints reside.
+    ///   - closureWithSettings: Exposes settings values to block, and expects returning animation block.
+    @discardableResult
+    public convenience init(constraintParent: UIView, _ closureWithSettings: @escaping (inout Settings) -> Closure) {
+        self.init(constraintParent: constraintParent, closureWithoutProcess: closureWithSettings)
+        process()
+    }
+
+    /// Creates initial animation promise for `NSLayoutConstraint` animations.
+    ///
+    /// - Parameters:
+    ///   - constraintParent: Top parent where constraints reside.
+    ///   - closure: Animation block.
+    @discardableResult
+    public convenience init(constraintParent: UIView, _ closure: @escaping Closure) {
+        self.init(constraintParent: constraintParent, closureWithoutProcess: closure)
+        process()
+    }
+
     /// Creates promise for `NSLayoutConstraint` animations, with settings. To be used while chaining promises.
     ///
     /// - Parameters:
     ///   - constraintParent: Top parent where constraints reside.
     ///   - closure: Exposes settings values to block, and expects returning animation block.
     private convenience init(constraintParent: UIView,
-                             closureWithoutProcess closure: @escaping (inout Settings) -> (Closure)) {
+                             closureWithoutProcess closure: @escaping (inout anim.Settings) -> Closure) {
         var _settings = anim.defaultSettings
         let _closure = closure(&_settings)
         self.init(settings: _settings, closure:nil)
-        self.animationConstraintLayout = ConstraintLayout(closure: _closure, parent: constraintParent)
+        self.animationConstraintLayout = anim.ConstraintLayout(closure: _closure, parent: constraintParent)
     }
 
     /// Creates promise for `NSLayoutConstraint` animations. To be used while chaining promises.
@@ -395,7 +181,7 @@ final public class anim {
     ///   - closure: Animation block.
     private convenience init(constraintParent: UIView, closureWithoutProcess closure: @escaping Closure) {
         self.init(settings: anim.defaultSettings, closure:nil)
-        self.animationConstraintLayout = ConstraintLayout(closure: closure, parent: constraintParent)
+        self.animationConstraintLayout = anim.ConstraintLayout(closure: closure, parent: constraintParent)
     }
 
     /// Main initializer.
@@ -403,7 +189,7 @@ final public class anim {
     /// - Parameters:
     ///   - settings: Animation settings.
     ///   - closure: Animation closure.
-    private init(settings: Settings, closure: Closure?) {
+    internal init(settings: Settings, closure: Closure?) {
         self.animationSettings = settings
         self.animationClosure = closure
 
@@ -453,13 +239,8 @@ final public class anim {
             return completion()
         }
 
-        if #available(iOS 10.0, *) {
-            animator = PropertyAnimator()
-        } else {
-            animator = ViewAnimator()
-        }
-
-        animator?.startAnimation(animationClosure: animationClosure, completion: completion, settings: animationSettings)
+        animator = animationSettings.preferredAnimator.availableInstance
+        animator?.startAnimation(animationClosure: animationClosure!, completion: completion, settings: animationSettings)
     }
 
     /// Animation block completion.
@@ -508,7 +289,7 @@ final public class anim {
     ///   - closureWithSettings: Exposes settings values to block, and expects returning animation block.
     /// - Returns: Newly created promise.
     @discardableResult
-    public func then(constraintParent: UIView, _ closureWithSettings: @escaping (inout Settings) -> Closure) -> anim {
+    public func then(constraintParent: UIView, _ closureWithSettings: @escaping (inout anim.Settings) -> Closure) -> anim {
         let nextAnim = anim(constraintParent: constraintParent, closureWithoutProcess: closureWithSettings)
         chain(to: nextAnim)
         return nextAnim
@@ -558,7 +339,7 @@ final public class anim {
     /// Chains newly created promise to current one.
     ///
     /// - Parameter chainedAnim: Newly created promise.
-    private func chain(to chainedAnim: anim) {
+    internal func chain(to chainedAnim: anim) {
         next = chainedAnim
         next!.prev = self
 
@@ -567,14 +348,9 @@ final public class anim {
         }
     }
 
-    // MARK: - Stop animation chain.
-
-    /// Stops animation
-    ///
-    /// - Parameter animation: Animation chain to be stopped.
-    class public func stop(_ animation: anim) {
-        log("Stopping animation chain...")
-        var currentAnim: anim? = animation
+    /// Stops animation and promise chain.
+    public func stop() {
+        var currentAnim: anim? = self
         while let a = currentAnim?.next {
             currentAnim = a
         }
@@ -634,32 +410,5 @@ internal extension anim {
         let since = Date().timeIntervalSince(anim.startupTime!)
         print("\(message) | \(since)")
         return true
-    }
-}
-
-public extension anim {
-    public class func enableLogging() {
-        anim.isLogging = true
-    }
-}
-
-extension anim.Ease: Equatable {
-    /// Checks equality between easing types.
-    ///
-    /// - Parameters:
-    ///   - lhs: First easing value.
-    ///   - rhs: Second easing value.
-    /// - Returns: Return if two easing values are equal or not.
-    public static func == (lhs: anim.Ease, rhs: anim.Ease) -> Bool {
-        return lhs.point1 == rhs.point1 && lhs.point2 == rhs.point2
-    }
-}
-
-@available (iOS, deprecated: 10.0)
-fileprivate extension CALayer {
-    @objc func anim_add(_ animation: CAAnimation, forKey key: String?) {
-        animation.timingFunction = anim.ViewAnimator.timingFunction
-        anim.ViewAnimator.addLayerToAnimator(self, key!)
-        self.anim_add(animation, forKey: key)
     }
 }

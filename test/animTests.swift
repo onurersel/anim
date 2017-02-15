@@ -189,20 +189,17 @@ class animTests: XCTestCase {
                 }
             })
 
-            XCTAssertEqual(a.state, .started, "Something wrong with state cycles.")
-            XCTAssertEqual(t.state, .created, "Something wrong with state cycles.")
-
-            Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false, block: { (timer) in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(200), execute: { 
                 XCTAssertEqual(a.state, .started, "Something wrong with state cycles.")
                 XCTAssertEqual(t.state, .created, "Something wrong with state cycles.")
             })
-
-            Timer.scheduledTimer(withTimeInterval: 0.7, repeats: false, block: { (timer) in
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(700), execute: {
                 XCTAssertEqual(a.state, .finished, "Something wrong with state cycles.")
                 XCTAssertEqual(t.state, .started, "Something wrong with state cycles.")
             })
-
-            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false, block: { (timer) in
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1200), execute: {
                 XCTAssertEqual(a.state, .finished, "Something wrong with state cycles.")
                 XCTAssertEqual(t.state, .finished, "Something wrong with state cycles.")
             })
@@ -376,7 +373,7 @@ class animTests: XCTestCase {
     
     // MARK: - Stopping
     
-    func testStop() {
+    func testStopDelay() {
         let e = [
             Event("e1", 0.7),
             Event("e2", 1.3)
@@ -413,7 +410,7 @@ class animTests: XCTestCase {
             })
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1500), execute: {
-                anim.stop(a)
+                a.stop()
             })
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2800), execute: {
                 end()
@@ -443,10 +440,53 @@ class animTests: XCTestCase {
             
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(600), execute: {
-                anim.stop(a)
+                a.stop()
             })
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1400), execute: {
                 end()
+            })
+        }
+    }
+    
+    // MARK: - Animators
+    
+    func testViewAnimator() {
+        runWithAnimator(.viewAnimator)
+    }
+    
+    func testPropertyAnimator() {
+        runWithAnimator(.propertyAnimator)
+    }
+    
+    private func runWithAnimator(_ animator: anim.AnimatorType) {
+        anim.defaultSettings.preferredAnimator = animator
+        anim.defaultSettings.duration = 1
+        
+        let view = UIView()
+        let e = [
+            Event("e1", 0),
+            Event("e2", 0),
+            Event("e3", 0)
+        ]
+        
+        eventSequence(e) { (log, end) in
+            let a = anim {
+                view.frame.origin.x = 100
+                log("e1")
+            }
+            
+            a.then {
+                view.frame.origin.x = 0
+                log("e2")
+            }
+            .then({ (settings) -> anim.Closure in
+                settings.isUserInteractionsEnabled = true
+                return {
+                    view.frame.origin.x = 35
+                    log("e3")
+                    a.stop()
+                    end()
+                }
             })
         }
     }
