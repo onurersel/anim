@@ -44,7 +44,7 @@ github "onurersel/anim"
 
 #### Manually
 
-Or simply drag the file `src/anim.swift` into your project.
+Or simply drag the swift files inside `src/` folder into your project.
 
 # API
 
