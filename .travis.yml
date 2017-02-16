@@ -3,7 +3,6 @@ osx_image: xcode8.2
 before_install:
   - brew update
   - brew outdated swiftlint || brew upgrade swiftlint
-  - gem update fastlane
 script:
   - ./fastlane/travis.sh
 after_success:

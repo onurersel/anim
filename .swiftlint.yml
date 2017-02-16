@@ -4,6 +4,8 @@ disabled_rules:
   - file_length
   - type_body_length
   - nesting
+  - number_separator
+  - file_header
 opt_in_rules:
   - attributes
   - closure_end_indentation
