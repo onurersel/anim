@@ -9,6 +9,14 @@
 import XCTest
 @testable import anim
 
+#if os(iOS)
+import UIKit
+public typealias View = UIView
+#elseif os(OSX)
+import Cocoa
+public typealias View = NSView
+#endif
+
 class animTests: XCTestCase {
 
     override func setUp() {
@@ -36,7 +44,7 @@ class animTests: XCTestCase {
     }
     
     func testInitializerForConstraints() {
-        let view = UIView()
+        let view = View()
         
         // with default settings
         XCTAssertNotNil(anim(constraintParent: view) {}, "Constructor should not return nil.")
@@ -350,7 +358,7 @@ class animTests: XCTestCase {
             Event("e2", 0),
             Event("e3", 1)
         ]
-        let view = UIView()
+        let view = View()
         
         eventSequence(e) { (log, end) in
             
@@ -448,7 +456,7 @@ class animTests: XCTestCase {
         }
     }
     
-    // MARK: - Animators
+    // MARK: - Animator
     
     func testViewAnimator() {
         runWithAnimator(.viewAnimator)
@@ -458,37 +466,8 @@ class animTests: XCTestCase {
         runWithAnimator(.propertyAnimator)
     }
     
-    private func runWithAnimator(_ animator: anim.AnimatorType) {
-        anim.defaultSettings.preferredAnimator = animator
-        anim.defaultSettings.duration = 1
-        
-        let view = UIView()
-        let e = [
-            Event("e1", 0),
-            Event("e2", 0),
-            Event("e3", 0)
-        ]
-        
-        eventSequence(e) { (log, end) in
-            let a = anim {
-                view.frame.origin.x = 100
-                log("e1")
-            }
-            
-            a.then {
-                view.frame.origin.x = 0
-                log("e2")
-            }
-            .then({ (settings) -> anim.Closure in
-                settings.isUserInteractionsEnabled = true
-                return {
-                    view.frame.origin.x = 35
-                    log("e3")
-                    a.stop()
-                    end()
-                }
-            })
-        }
+    func testMacAnimator() {
+        runWithAnimator(.macAnimator)
     }
     
     // MARK: - Logging
@@ -524,6 +503,16 @@ class animTests: XCTestCase {
     // Test callbacks are running in order with correct delays
     typealias EndClosure = () -> Void
     typealias LogClosure = (String) -> Void
+    struct Event {
+        var key: String
+        var delay: TimeInterval
+        
+        init(_ key: String, _ delay: TimeInterval) {
+            self.key = key
+            self.delay = delay
+        }
+    }
+    
     func eventSequence(_ events: [Event], _ closure: @escaping ( @escaping LogClosure, @escaping EndClosure) -> Void) {
         let exp = self.expectation(description: "")
 
@@ -555,16 +544,56 @@ class animTests: XCTestCase {
         }
 
         closure(log, end)
-        self.waitForExpectations(timeout: 5, handler: nil)
+        self.waitForExpectations(timeout: 65, handler: nil)
     }
-
-    struct Event {
-        var key: String
-        var delay: TimeInterval
-
-        init(_ key: String, _ delay: TimeInterval) {
-            self.key = key
-            self.delay = delay
+    
+    func runWithAnimator(_ animatorType: anim.AnimatorType) {
+        var view = View()
+        
+        anim.isLogging = true
+        anim.defaultSettings.preferredAnimator = animatorType
+        
+        #if os(OSX)
+        anim.defaultSettings.duration = 0.1
+        #endif
+        
+        var viewAnimatable: View {
+            #if os(iOS)
+            return view
+            #elseif os(OSX)
+            return view.animator()
+            #endif
+        }
+        
+        let e = [
+            Event("e1", 0),
+            Event("e2", 0),
+            Event("e3", 0)
+        ]
+        
+        eventSequence(e) { (log, end) in
+            let a = anim {
+                viewAnimatable.frame = CGRect(x: 100, y: 0, width: 10, height: 10)
+                log("e1")
+            }
+            
+            a.then {
+                viewAnimatable.frame = CGRect(x: 0, y: 100, width: 20, height: 20)
+                log("e2")
+                }
+                .then({ (settings) -> anim.Closure in
+                    
+                    #if os(iOS)
+                        settings.isUserInteractionsEnabled = true
+                    #endif
+                    
+                    return {
+                        viewAnimatable.frame = CGRect(x: 100, y: 0, width: 10, height: 10)
+                        log("e3")
+                        a.stop()
+                        end()
+                    }
+                })
         }
     }
 }

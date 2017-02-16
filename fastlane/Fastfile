@@ -1,4 +1,4 @@
-fastlane_version "2.16.0"
+fastlane_version "2.14.2"
 default_platform :ios
 
 platform :ios do
@@ -14,10 +14,17 @@ platform :ios do
       ignore_exit_status: false
     )
 
+    # Runs unit tests on macOS
+    scan(
+      project: 'anim.xcodeproj',
+      scheme: 'anim-macos',
+      code_coverage: true
+    )
+
     # Runs unit tests on iOS 8, 9 and 10
     scan(
       project: 'anim.xcodeproj',
-      scheme: 'anim',
+      scheme: 'anim-ios',
       devices: ['iPhone 5s (8.4)', 'iPhone 5s (9.3)', 'iPhone 5s (10.2)'],
       code_coverage: true
     )

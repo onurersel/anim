@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Animator Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/Animator" class="dashAnchor"></a>
+    <a title="Animator Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">anim Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">anim Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Animator Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/anim.html">anim</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/anim/AnimatorType.html">– AnimatorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/anim/Ease.html">– Ease</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/anim/Settings.html">– Settings</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Animator.html">Animator</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Animator</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Animator</span></code></pre>
+
+                </div>
+              </div>
+            <p>Type for animation controller.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP4anim8Animator14startAnimationFT16animationClosureFT_T_10completionFT_T_8settingsVCS_4anim8Settings_T_"></a>
+                    <a name="//apple_ref/swift/Method/startAnimation(animationClosure:completion:settings:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP4anim8Animator14startAnimationFT16animationClosureFT_T_10completionFT_T_8settingsVCS_4anim8Settings_T_">startAnimation(animationClosure:completion:settings:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Should start animation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">startAnimation</span><span class="p">(</span><span class="nv">animationClosure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="n"><a href="../Classes/anim.html">anim</a></span><span class="o">.</span><span class="kt">Closure</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="n"><a href="../Classes/anim.html">anim</a></span><span class="o">.</span><span class="kt">Closure</span><span class="p">,</span> <span class="nv">settings</span><span class="p">:</span> <span class="n"><a href="../Classes/anim.html">anim</a></span><span class="o">.</span><span class="kt">Settings</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animationClosure</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Animation block which sets new values of animatable properties.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Completion block which should be called when animation is over, but not stopped.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>settings</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Animation settings.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP4anim8Animator13stopAnimationFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/stopAnimation()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP4anim8Animator13stopAnimationFT_T_">stopAnimation()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Should stop animation before it&rsquo;s finished.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">stopAnimation</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="https://github.com/onurersel/anim" target="_blank" rel="external">Onur Ersel</a>. All rights reserved. (Last updated: 2017-02-16)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

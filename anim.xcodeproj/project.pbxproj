@@ -9,24 +9,48 @@
 /* Begin PBXBuildFile section */
 		BA150FA91E53B870009A14E3 /* animTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA150F961E53B838009A14E3 /* animTests.swift */; };
 		BA150FAA1E53D2EB009A14E3 /* anim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3FCA091E4B262F0095BE41 /* anim.framework */; };
-		BA3FCA1A1E4B262F0095BE41 /* anim.h in Headers */ = {isa = PBXBuildFile; fileRef = BA3FCA0C1E4B262F0095BE41 /* anim.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA3FCA251E4B26430095BE41 /* anim.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3FCA241E4B26430095BE41 /* anim.swift */; };
-		BAE19D571E532224000A41AB /* AnimatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D561E532224000A41AB /* AnimatorType.swift */; };
-		BAE19D591E53313F000A41AB /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D581E53313F000A41AB /* Animator.swift */; };
+		BA7057601E549FA100565309 /* anim.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3FCA241E4B26430095BE41 /* anim.swift */; };
+		BA7057631E549FA100565309 /* Ease.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5A1E5331A0000A41AB /* Ease.swift */; };
+		BA7057641E549FA100565309 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5C1E53329B000A41AB /* Settings.swift */; };
+		BA7057661E54D1F600565309 /* AnimatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7057651E54D1F600565309 /* AnimatorType.swift */; };
+		BA7057671E54D1F600565309 /* AnimatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7057651E54D1F600565309 /* AnimatorType.swift */; };
+		BA7057691E54D32A00565309 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7057681E54D32A00565309 /* Animator.swift */; };
+		BA70576A1E54D32A00565309 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7057681E54D32A00565309 /* Animator.swift */; };
+		BA70576C1E54D37000565309 /* Animator-macos.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA70576B1E54D37000565309 /* Animator-macos.swift */; };
+		BA70576E1E54D76E00565309 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA70576D1E54D76E00565309 /* Constraint.swift */; };
+		BA70576F1E54D76E00565309 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA70576D1E54D76E00565309 /* Constraint.swift */; };
+		BA7057A31E54EC7600565309 /* anim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA7057581E549F7300565309 /* anim.framework */; };
+		BA7057AA1E54ECDD00565309 /* animTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA150F961E53B838009A14E3 /* animTests.swift */; };
+		BAE19D591E53313F000A41AB /* Animator-ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D581E53313F000A41AB /* Animator-ios.swift */; };
 		BAE19D5B1E5331A0000A41AB /* Ease.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5A1E5331A0000A41AB /* Ease.swift */; };
 		BAE19D5D1E53329B000A41AB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5C1E53329B000A41AB /* Settings.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BA7057A41E54EC7600565309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA3FCA001E4B262F0095BE41 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA7057571E549F7300565309;
+			remoteInfo = "anim-macosx";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		BA150F961E53B838009A14E3 /* animTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = animTests.swift; sourceTree = "<group>"; };
 		BA150F971E53B838009A14E3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BA150F9E1E53B85C009A14E3 /* animTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = animTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA150F9E1E53B85C009A14E3 /* animTests-ios.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "animTests-ios.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3FCA091E4B262F0095BE41 /* anim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = anim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA3FCA0C1E4B262F0095BE41 /* anim.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = anim.h; sourceTree = "<group>"; };
 		BA3FCA0D1E4B262F0095BE41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA3FCA241E4B26430095BE41 /* anim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = anim.swift; sourceTree = "<group>"; };
-		BAE19D561E532224000A41AB /* AnimatorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatorType.swift; sourceTree = "<group>"; };
-		BAE19D581E53313F000A41AB /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		BA7057581E549F7300565309 /* anim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = anim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA7057651E54D1F600565309 /* AnimatorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatorType.swift; sourceTree = "<group>"; };
+		BA7057681E54D32A00565309 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		BA70576B1E54D37000565309 /* Animator-macos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Animator-macos.swift"; sourceTree = "<group>"; };
+		BA70576D1E54D76E00565309 /* Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
+		BA70579E1E54EC7600565309 /* animTests-macos.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "animTests-macos.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAE19D581E53313F000A41AB /* Animator-ios.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Animator-ios.swift"; sourceTree = "<group>"; };
 		BAE19D5A1E5331A0000A41AB /* Ease.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ease.swift; sourceTree = "<group>"; };
 		BAE19D5C1E53329B000A41AB /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -44,6 +68,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA7057541E549F7300565309 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA70579B1E54EC7600565309 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA7057A31E54EC7600565309 /* anim.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				BA3FCA091E4B262F0095BE41 /* anim.framework */,
-				BA150F9E1E53B85C009A14E3 /* animTests.xctest */,
+				BA150F9E1E53B85C009A14E3 /* animTests-ios.xctest */,
+				BA7057581E549F7300565309 /* anim.framework */,
+				BA70579E1E54EC7600565309 /* animTests-macos.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,7 +122,6 @@
 		BA3FCA0B1E4B262F0095BE41 /* anim */ = {
 			isa = PBXGroup;
 			children = (
-				BA3FCA0C1E4B262F0095BE41 /* anim.h */,
 				BA3FCA0D1E4B262F0095BE41 /* Info.plist */,
 			);
 			path = anim;
@@ -91,8 +131,11 @@
 			isa = PBXGroup;
 			children = (
 				BA3FCA241E4B26430095BE41 /* anim.swift */,
-				BAE19D561E532224000A41AB /* AnimatorType.swift */,
-				BAE19D581E53313F000A41AB /* Animator.swift */,
+				BA7057651E54D1F600565309 /* AnimatorType.swift */,
+				BA70576D1E54D76E00565309 /* Constraint.swift */,
+				BA7057681E54D32A00565309 /* Animator.swift */,
+				BAE19D581E53313F000A41AB /* Animator-ios.swift */,
+				BA70576B1E54D37000565309 /* Animator-macos.swift */,
 				BAE19D5A1E5331A0000A41AB /* Ease.swift */,
 				BAE19D5C1E53329B000A41AB /* Settings.swift */,
 			);
@@ -106,16 +149,22 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA3FCA1A1E4B262F0095BE41 /* anim.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA7057551E549F7300565309 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		BA150F9D1E53B85C009A14E3 /* animTests */ = {
+		BA150F9D1E53B85C009A14E3 /* animTests-ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BA150FA61E53B85C009A14E3 /* Build configuration list for PBXNativeTarget "animTests" */;
+			buildConfigurationList = BA150FA61E53B85C009A14E3 /* Build configuration list for PBXNativeTarget "animTests-ios" */;
 			buildPhases = (
 				BA150F9A1E53B85C009A14E3 /* Sources */,
 				BA150F9B1E53B85C009A14E3 /* Frameworks */,
@@ -125,14 +174,14 @@
 			);
 			dependencies = (
 			);
-			name = animTests;
+			name = "animTests-ios";
 			productName = animTests;
-			productReference = BA150F9E1E53B85C009A14E3 /* animTests.xctest */;
+			productReference = BA150F9E1E53B85C009A14E3 /* animTests-ios.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		BA3FCA081E4B262F0095BE41 /* anim */ = {
+		BA3FCA081E4B262F0095BE41 /* anim-ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BA3FCA1D1E4B262F0095BE41 /* Build configuration list for PBXNativeTarget "anim" */;
+			buildConfigurationList = BA3FCA1D1E4B262F0095BE41 /* Build configuration list for PBXNativeTarget "anim-ios" */;
 			buildPhases = (
 				BA3FCA041E4B262F0095BE41 /* Sources */,
 				BA3FCA051E4B262F0095BE41 /* Frameworks */,
@@ -143,10 +192,46 @@
 			);
 			dependencies = (
 			);
-			name = anim;
+			name = "anim-ios";
 			productName = anim;
 			productReference = BA3FCA091E4B262F0095BE41 /* anim.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		BA7057571E549F7300565309 /* anim-macos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA70575F1E549F7300565309 /* Build configuration list for PBXNativeTarget "anim-macos" */;
+			buildPhases = (
+				BA7057531E549F7300565309 /* Sources */,
+				BA7057541E549F7300565309 /* Frameworks */,
+				BA7057551E549F7300565309 /* Headers */,
+				BA7057561E549F7300565309 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "anim-macos";
+			productName = "anim-macosx";
+			productReference = BA7057581E549F7300565309 /* anim.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BA70579D1E54EC7600565309 /* animTests-macos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA7057A61E54EC7600565309 /* Build configuration list for PBXNativeTarget "animTests-macos" */;
+			buildPhases = (
+				BA70579A1E54EC7600565309 /* Sources */,
+				BA70579B1E54EC7600565309 /* Frameworks */,
+				BA70579C1E54EC7600565309 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA7057A51E54EC7600565309 /* PBXTargetDependency */,
+			);
+			name = "animTests-macos";
+			productName = "animTests-macosx";
+			productReference = BA70579E1E54EC7600565309 /* animTests-macos.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -168,6 +253,16 @@
 						DevelopmentTeam = SC8T7A8Q3S;
 						ProvisioningStyle = Automatic;
 					};
+					BA7057571E549F7300565309 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = SC8T7A8Q3S;
+						ProvisioningStyle = Automatic;
+					};
+					BA70579D1E54EC7600565309 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = SC8T7A8Q3S;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = BA3FCA031E4B262F0095BE41 /* Build configuration list for PBXProject "anim" */;
@@ -183,8 +278,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BA3FCA081E4B262F0095BE41 /* anim */,
-				BA150F9D1E53B85C009A14E3 /* animTests */,
+				BA3FCA081E4B262F0095BE41 /* anim-ios */,
+				BA7057571E549F7300565309 /* anim-macos */,
+				BA150F9D1E53B85C009A14E3 /* animTests-ios */,
+				BA70579D1E54EC7600565309 /* animTests-macos */,
 			);
 		};
 /* End PBXProject section */
@@ -198,6 +295,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BA3FCA071E4B262F0095BE41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA7057561E549F7300565309 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA70579C1E54EC7600565309 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -219,15 +330,47 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAE19D591E53313F000A41AB /* Animator.swift in Sources */,
-				BAE19D571E532224000A41AB /* AnimatorType.swift in Sources */,
+				BA7057691E54D32A00565309 /* Animator.swift in Sources */,
+				BA7057661E54D1F600565309 /* AnimatorType.swift in Sources */,
+				BA70576E1E54D76E00565309 /* Constraint.swift in Sources */,
+				BAE19D591E53313F000A41AB /* Animator-ios.swift in Sources */,
 				BA3FCA251E4B26430095BE41 /* anim.swift in Sources */,
 				BAE19D5B1E5331A0000A41AB /* Ease.swift in Sources */,
 				BAE19D5D1E53329B000A41AB /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA7057531E549F7300565309 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA70576A1E54D32A00565309 /* Animator.swift in Sources */,
+				BA7057671E54D1F600565309 /* AnimatorType.swift in Sources */,
+				BA70576F1E54D76E00565309 /* Constraint.swift in Sources */,
+				BA7057601E549FA100565309 /* anim.swift in Sources */,
+				BA7057631E549FA100565309 /* Ease.swift in Sources */,
+				BA70576C1E54D37000565309 /* Animator-macos.swift in Sources */,
+				BA7057641E549FA100565309 /* Settings.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA70579A1E54EC7600565309 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA7057AA1E54ECDD00565309 /* animTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BA7057A51E54EC7600565309 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA7057571E549F7300565309 /* anim-macos */;
+			targetProxy = BA7057A41E54EC7600565309 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		BA150FA71E53B85C009A14E3 /* Debug */ = {
@@ -237,6 +380,7 @@
 				INFOPLIST_FILE = test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.onurersel.animTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -250,6 +394,7 @@
 				INFOPLIST_FILE = test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.onurersel.animTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -367,8 +512,8 @@
 				INFOPLIST_FILE = anim/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.onurersel.anim;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.anim-ios";
+				PRODUCT_NAME = anim;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -387,18 +532,94 @@
 				INFOPLIST_FILE = anim/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.onurersel.anim;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.anim-ios";
+				PRODUCT_NAME = anim;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
+		BA70575D1E549F7300565309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SC8T7A8Q3S;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = anim/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.anim-macosx";
+				PRODUCT_NAME = anim;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		BA70575E1E549F7300565309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SC8T7A8Q3S;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = anim/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.anim-macosx";
+				PRODUCT_NAME = anim;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		BA7057A71E54EC7600565309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = SC8T7A8Q3S;
+				INFOPLIST_FILE = test/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.animTests-macosx";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		BA7057A81E54EC7600565309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = SC8T7A8Q3S;
+				INFOPLIST_FILE = test/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.animTests-macosx";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BA150FA61E53B85C009A14E3 /* Build configuration list for PBXNativeTarget "animTests" */ = {
+		BA150FA61E53B85C009A14E3 /* Build configuration list for PBXNativeTarget "animTests-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BA150FA71E53B85C009A14E3 /* Debug */,
@@ -416,11 +637,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BA3FCA1D1E4B262F0095BE41 /* Build configuration list for PBXNativeTarget "anim" */ = {
+		BA3FCA1D1E4B262F0095BE41 /* Build configuration list for PBXNativeTarget "anim-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BA3FCA1E1E4B262F0095BE41 /* Debug */,
 				BA3FCA1F1E4B262F0095BE41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA70575F1E549F7300565309 /* Build configuration list for PBXNativeTarget "anim-macos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA70575D1E549F7300565309 /* Debug */,
+				BA70575E1E549F7300565309 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA7057A61E54EC7600565309 /* Build configuration list for PBXNativeTarget "animTests-macos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA7057A71E54EC7600565309 /* Debug */,
+				BA7057A81E54EC7600565309 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -44,6 +44,14 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Animator.html">Animator</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -182,12 +190,6 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                       <div class="abstract">
                         <p>Creates initial animation promise, with settings.</p>
 
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter closure: Exposes settings values to block, and expects returning animation block.
-
-</div>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -234,12 +236,6 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Creates initial animation promise.</p>
-
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter closure: Animation block.
-
-</div>
 
                       </div>
                       <div class="declaration">
@@ -288,21 +284,12 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                       <div class="abstract">
                         <p>Creates initial animation promise for <code>NSLayoutConstraint</code> animations, with settings.</p>
 
-<ul>
-<li>Parameters:
-
-<ul>
-<li>constraintParent: Top parent where constraints reside.</li>
-<li>closureWithSettings: Exposes settings values to block, and expects returning animation block.</li>
-</ul></li>
-</ul>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="n">_</span> <span class="nv">closureWithSettings</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="k">inout</span> <span class="kt"><a href="../Classes/anim/Settings.html">Settings</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="kt">View</span><span class="p">,</span> <span class="n">_</span> <span class="nv">closureWithSettings</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="k">inout</span> <span class="kt"><a href="../Classes/anim/Settings.html">Settings</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -357,21 +344,12 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                       <div class="abstract">
                         <p>Creates initial animation promise for <code>NSLayoutConstraint</code> animations.</p>
 
-<ul>
-<li>Parameters:
-
-<ul>
-<li>constraintParent: Top parent where constraints reside.</li>
-<li>closure: Animation block.</li>
-</ul></li>
-</ul>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="n">_</span> <span class="nv">closure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="kt">View</span><span class="p">,</span> <span class="n">_</span> <span class="nv">closure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -437,18 +415,6 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                       <div class="abstract">
                         <p>Creates a new animation promise with settings, chained to the previous one.</p>
 
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter closure: Exposes settings values to block, and expects returning animation block.
-
-</div>
-
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    Newly created promise.
-
-</div>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -500,18 +466,6 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Creates a new animation promise, chained to the previous one.</p>
-
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter closure: Animation block.
-
-</div>
-
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    Newly created promise.
-
-</div>
 
                       </div>
                       <div class="declaration">
@@ -565,24 +519,12 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                       <div class="abstract">
                         <p>Creates a new promise for <code>NSLayoutConstraint</code> animations with settings, chained to the previous one.</p>
 
-<p><li>Parameters:</p>
-
-<p><ul>
-<li>constraintParent: Top parent where constraints reside.</li>
-<li>closureWithSettings: Exposes settings values to block, and expects returning animation block.</li>
-</ul></li>
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    Newly created promise.</p>
-
-<p></div></p>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">then</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="n">_</span> <span class="nv">closureWithSettings</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="k">inout</span> <span class="n">anim</span><span class="o">.</span><span class="kt"><a href="../Classes/anim/Settings.html">Settings</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">anim</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">then</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="kt">View</span><span class="p">,</span> <span class="n">_</span> <span class="nv">closureWithSettings</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="k">inout</span> <span class="n">anim</span><span class="o">.</span><span class="kt"><a href="../Classes/anim/Settings.html">Settings</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">anim</span></code></pre>
 
                         </div>
                       </div>
@@ -642,24 +584,12 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                       <div class="abstract">
                         <p>Creates a new promise for <code>NSLayoutConstraint</code> animations with settings, chained to the previous one.</p>
 
-<p><li>Parameters:</p>
-
-<p><ul>
-<li>constraintParent: Top parent where constraints reside.</li>
-<li>closure: Animation block.</li>
-</ul></li>
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    Newly created promise.</p>
-
-<p></div></p>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">then</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="n">_</span> <span class="nv">closure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">anim</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">then</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="kt">View</span><span class="p">,</span> <span class="n">_</span> <span class="nv">closure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Classes/anim.html#/s:C4anim4anim7Closure">Closure</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">anim</span></code></pre>
 
                         </div>
                       </div>
@@ -719,18 +649,6 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                       <div class="abstract">
                         <p>Creates a promise only waits before running next promise.</p>
 
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter milliseconds: Milliseconds to wait.
-
-</div>
-
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    Newly created promise.
-
-</div>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -782,18 +700,6 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Creates a promise only calls a block before running next promise.</p>
-
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter closure: Block to be runned.
-
-</div>
-
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    Newly created promise.
-
-</div>
 
                       </div>
                       <div class="declaration">
@@ -876,7 +782,7 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Describes which animator to be used.</p>
+                        <p>Defines which animator will be used in animation.</p>
 
                         <a href="../Classes/anim/AnimatorType.html" class="slightly-smaller">See more</a>
                       </div>
@@ -973,18 +879,6 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                       <div class="abstract">
                         <p>Checks equality between easing types.</p>
 
-<p><li>Parameters:</p>
-
-<p><ul>
-<li>lhs: First easing value.</li>
-<li>rhs: Second easing value.</li>
-</ul></li>
-<div class="aside aside-returns">
-    <p class="aside-title">Returns</p>
-    Return if two easing values are equal or not.</p>
-
-<p></div></p>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -1072,8 +966,8 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://github.com/onurersel/anim" target="_blank" rel="external">Onur Ersel</a>. All rights reserved. (Last updated: 2017-02-15)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://github.com/onurersel/anim" target="_blank" rel="external">Onur Ersel</a>. All rights reserved. (Last updated: 2017-02-16)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

@@ -24,22 +24,23 @@
 
 import Foundation
 
-public extension anim {
+internal extension anim {
 
-    /// Animation settings.
-    public struct Settings {
+    /// Constraint animation information is stored with this value, instead of a single `Closure`.
+    internal struct ConstraintLayout {
+        /// Animation block.
+        internal var closure: Closure
+        /// Top parent of constraints to be animated.
+        internal var parent: View
 
-        /// Delay before animation starts.
-        public var delay: TimeInterval = 0
-        /// Duration of animation.
-        public var duration: TimeInterval = 1
-        /// Easing of animation.
-        public var ease: Ease = .easeOutQuint
-        /// Completion block which runs after animation.
-        public var completion: (Closure)?
-        /// Preferred animator used for the animation.
-        lazy public var preferredAnimator: AnimatorType = AnimatorType.default
-        /// Enables user interactions on views while animating. Not available on macOS.
-        public var isUserInteractionsEnabled: Bool = false
+        /// Calls update function for layouts on different platforms.
+        internal func update() {
+            #if os(iOS)
+            parent.layoutIfNeeded()
+            #elseif os(OSX)
+            parent.layoutSubtreeIfNeeded()
+            #endif
+        }
     }
+
 }
