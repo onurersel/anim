@@ -1,4 +1,4 @@
 source "https://rubygems.org"
 
 gem 'fastlane'
-get 'slather'
+gem 'slather'

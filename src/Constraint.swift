@@ -18,7 +18,7 @@ internal extension anim {
 
         /// Calls update function for layouts on different platforms.
         internal func update() {
-            #if os(iOS)
+            #if os(iOS) || os(tvOS)
             parent.layoutIfNeeded()
             #elseif os(OSX)
             parent.layoutSubtreeIfNeeded()
