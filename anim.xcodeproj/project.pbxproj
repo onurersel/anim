@@ -10,6 +10,18 @@
 		BA150FA91E53B870009A14E3 /* animTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA150F961E53B838009A14E3 /* animTests.swift */; };
 		BA150FAA1E53D2EB009A14E3 /* anim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3FCA091E4B262F0095BE41 /* anim.framework */; };
 		BA3FCA251E4B26430095BE41 /* anim.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3FCA241E4B26430095BE41 /* anim.swift */; };
+		BA656D931E574E35006A8221 /* anim.h in Headers */ = {isa = PBXBuildFile; fileRef = BA656D921E574E35006A8221 /* anim.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA656D951E574E35006A8221 /* anim.h in Headers */ = {isa = PBXBuildFile; fileRef = BA656D921E574E35006A8221 /* anim.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA656D971E575728006A8221 /* animosx.h in Headers */ = {isa = PBXBuildFile; fileRef = BA656D961E575728006A8221 /* animosx.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA656DA11E57576F006A8221 /* anim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA656D701E5726EF006A8221 /* anim.framework */; };
+		BA656DA71E5757A6006A8221 /* animTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA150F961E53B838009A14E3 /* animTests.swift */; };
+		BA656DA81E575883006A8221 /* anim.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3FCA241E4B26430095BE41 /* anim.swift */; };
+		BA656DA91E575883006A8221 /* AnimatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7057651E54D1F600565309 /* AnimatorType.swift */; };
+		BA656DAA1E575883006A8221 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA70576D1E54D76E00565309 /* Constraint.swift */; };
+		BA656DAB1E575883006A8221 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7057681E54D32A00565309 /* Animator.swift */; };
+		BA656DAC1E575883006A8221 /* Animator-ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D581E53313F000A41AB /* Animator-ios.swift */; };
+		BA656DAD1E575883006A8221 /* Ease.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5A1E5331A0000A41AB /* Ease.swift */; };
+		BA656DAE1E575883006A8221 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5C1E53329B000A41AB /* Settings.swift */; };
 		BA7057601E549FA100565309 /* anim.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3FCA241E4B26430095BE41 /* anim.swift */; };
 		BA7057631E549FA100565309 /* Ease.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5A1E5331A0000A41AB /* Ease.swift */; };
 		BA7057641E549FA100565309 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5C1E53329B000A41AB /* Settings.swift */; };
@@ -27,16 +39,6 @@
 		BAE19D5D1E53329B000A41AB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5C1E53329B000A41AB /* Settings.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		BA7057A41E54EC7600565309 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BA3FCA001E4B262F0095BE41 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BA7057571E549F7300565309;
-			remoteInfo = "anim-macosx";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		BA150F961E53B838009A14E3 /* animTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = animTests.swift; sourceTree = "<group>"; };
 		BA150F971E53B838009A14E3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -44,6 +46,10 @@
 		BA3FCA091E4B262F0095BE41 /* anim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = anim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3FCA0D1E4B262F0095BE41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA3FCA241E4B26430095BE41 /* anim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = anim.swift; sourceTree = "<group>"; };
+		BA656D701E5726EF006A8221 /* anim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = anim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA656D921E574E35006A8221 /* anim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anim.h; sourceTree = "<group>"; };
+		BA656D961E575728006A8221 /* animosx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = animosx.h; sourceTree = "<group>"; };
+		BA656D9C1E57576F006A8221 /* animTests-tvos.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "animTests-tvos.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA7057581E549F7300565309 /* anim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = anim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA7057651E54D1F600565309 /* AnimatorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatorType.swift; sourceTree = "<group>"; };
 		BA7057681E54D32A00565309 /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
@@ -68,6 +74,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA656D6C1E5726EF006A8221 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA656D991E57576F006A8221 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA656DA11E57576F006A8221 /* anim.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +136,8 @@
 				BA150F9E1E53B85C009A14E3 /* animTests-ios.xctest */,
 				BA7057581E549F7300565309 /* anim.framework */,
 				BA70579E1E54EC7600565309 /* animTests-macos.xctest */,
+				BA656D701E5726EF006A8221 /* anim.framework */,
+				BA656D9C1E57576F006A8221 /* animTests-tvos.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				BA3FCA0D1E4B262F0095BE41 /* Info.plist */,
+				BA656D921E574E35006A8221 /* anim.h */,
+				BA656D961E575728006A8221 /* animosx.h */,
 			);
 			path = anim;
 			sourceTree = "<group>";
@@ -149,6 +174,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA656D931E574E35006A8221 /* anim.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA656D6D1E5726EF006A8221 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA656D951E574E35006A8221 /* anim.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +190,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA656D971E575728006A8221 /* animosx.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +232,41 @@
 			productReference = BA3FCA091E4B262F0095BE41 /* anim.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		BA656D6F1E5726EF006A8221 /* anim-tvos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA656D771E5726F0006A8221 /* Build configuration list for PBXNativeTarget "anim-tvos" */;
+			buildPhases = (
+				BA656D6B1E5726EF006A8221 /* Sources */,
+				BA656D6C1E5726EF006A8221 /* Frameworks */,
+				BA656D6D1E5726EF006A8221 /* Headers */,
+				BA656D6E1E5726EF006A8221 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "anim-tvos";
+			productName = "anim-tvos";
+			productReference = BA656D701E5726EF006A8221 /* anim.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BA656D9B1E57576F006A8221 /* animTests-tvos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA656DA41E57576F006A8221 /* Build configuration list for PBXNativeTarget "animTests-tvos" */;
+			buildPhases = (
+				BA656D981E57576F006A8221 /* Sources */,
+				BA656D991E57576F006A8221 /* Frameworks */,
+				BA656D9A1E57576F006A8221 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "animTests-tvos";
+			productName = "animTests-tvos";
+			productReference = BA656D9C1E57576F006A8221 /* animTests-tvos.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		BA7057571E549F7300565309 /* anim-macos */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BA70575F1E549F7300565309 /* Build configuration list for PBXNativeTarget "anim-macos" */;
@@ -226,7 +296,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				BA7057A51E54EC7600565309 /* PBXTargetDependency */,
 			);
 			name = "animTests-macos";
 			productName = "animTests-macosx";
@@ -249,6 +318,16 @@
 						ProvisioningStyle = Automatic;
 					};
 					BA3FCA081E4B262F0095BE41 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = SC8T7A8Q3S;
+						ProvisioningStyle = Automatic;
+					};
+					BA656D6F1E5726EF006A8221 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = SC8T7A8Q3S;
+						ProvisioningStyle = Automatic;
+					};
+					BA656D9B1E57576F006A8221 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = SC8T7A8Q3S;
 						ProvisioningStyle = Automatic;
@@ -280,8 +359,10 @@
 			targets = (
 				BA3FCA081E4B262F0095BE41 /* anim-ios */,
 				BA7057571E549F7300565309 /* anim-macos */,
+				BA656D6F1E5726EF006A8221 /* anim-tvos */,
 				BA150F9D1E53B85C009A14E3 /* animTests-ios */,
 				BA70579D1E54EC7600565309 /* animTests-macos */,
+				BA656D9B1E57576F006A8221 /* animTests-tvos */,
 			);
 		};
 /* End PBXProject section */
@@ -295,6 +376,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BA3FCA071E4B262F0095BE41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA656D6E1E5726EF006A8221 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA656D9A1E57576F006A8221 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -340,6 +435,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA656D6B1E5726EF006A8221 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA656DAB1E575883006A8221 /* Animator.swift in Sources */,
+				BA656DAA1E575883006A8221 /* Constraint.swift in Sources */,
+				BA656DA91E575883006A8221 /* AnimatorType.swift in Sources */,
+				BA656DA81E575883006A8221 /* anim.swift in Sources */,
+				BA656DAE1E575883006A8221 /* Settings.swift in Sources */,
+				BA656DAC1E575883006A8221 /* Animator-ios.swift in Sources */,
+				BA656DAD1E575883006A8221 /* Ease.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA656D981E57576F006A8221 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA656DA71E5757A6006A8221 /* animTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BA7057531E549F7300565309 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -363,14 +480,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		BA7057A51E54EC7600565309 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BA7057571E549F7300565309 /* anim-macos */;
-			targetProxy = BA7057A41E54EC7600565309 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		BA150FA71E53B85C009A14E3 /* Debug */ = {
@@ -540,6 +649,78 @@
 			};
 			name = Release;
 		};
+		BA656D751E5726F0006A8221 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SC8T7A8Q3S;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = anim/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.anim-tvos";
+				PRODUCT_NAME = anim;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Debug;
+		};
+		BA656D761E5726F0006A8221 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SC8T7A8Q3S;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = anim/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.anim-tvos";
+				PRODUCT_NAME = anim;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Release;
+		};
+		BA656DA51E57576F006A8221 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = SC8T7A8Q3S;
+				INFOPLIST_FILE = test/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.animTests-tvos";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Debug;
+		};
+		BA656DA61E57576F006A8221 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = SC8T7A8Q3S;
+				INFOPLIST_FILE = test/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.animTests-tvos";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Release;
+		};
 		BA70575D1E549F7300565309 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -645,6 +826,23 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		BA656D771E5726F0006A8221 /* Build configuration list for PBXNativeTarget "anim-tvos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA656D751E5726F0006A8221 /* Debug */,
+				BA656D761E5726F0006A8221 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA656DA41E57576F006A8221 /* Build configuration list for PBXNativeTarget "animTests-tvos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA656DA51E57576F006A8221 /* Debug */,
+				BA656DA61E57576F006A8221 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		BA70575F1E549F7300565309 /* Build configuration list for PBXNativeTarget "anim-macos" */ = {
 			isa = XCConfigurationList;

@@ -7,13 +7,14 @@
 
 import Foundation
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 
 internal extension anim {
 
     /// `PropetyAnimator` uses new `UIViewPropertyAnimator` which's introduced with iOS 10.
     @available (iOS 10.0, *)
+    @available (tvOS 10.0, *)
     internal class PropertyAnimator: Animator {
 
         /// Storing property animator, so it can be used for stopping animations later.

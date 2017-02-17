@@ -9,7 +9,7 @@
 import XCTest
 @testable import anim
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 public typealias View = UIView
 #elseif os(OSX)
@@ -553,14 +553,14 @@ class animTests: XCTestCase {
         anim.isLogging = true
         anim.defaultSettings.preferredAnimator = animatorType
         
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
         anim.defaultSettings.duration = 1
-        #elseif(OSX)
+        #elseif os(OSX)
         anim.defaultSettings.duration = 0.1
         #endif
         
         var viewAnimatable: View {
-            #if os(iOS)
+            #if os(iOS) || os(tvOS)
             return view
             #elseif os(OSX)
             return view.animator()
@@ -585,7 +585,7 @@ class animTests: XCTestCase {
                 }
                 .then({ (settings) -> anim.Closure in
                     
-                    #if os(iOS)
+                    #if os(iOS) || os(tvOS)
                         settings.isUserInteractionsEnabled = true
                     #endif
                     

@@ -28,14 +28,14 @@ internal protocol AnimatorTypeProtocol {
     var instance: Animator { get }
 }
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 extension anim.AnimatorType: AnimatorTypeProtocol {
     internal static var `default`: anim.AnimatorType {
         return .propertyAnimator
     }
 
     internal var instance: Animator {
-        if #available(iOS 10.0, *), self == .propertyAnimator {
+        if #available(iOS 10.0, *), #available(tvOS 10.0, *), self == .propertyAnimator {
             return anim.PropertyAnimator()
         }
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2017 Onur Ersel. All rights reserved.
 
 import Foundation
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 #elseif os(OSX)
 import AppKit
