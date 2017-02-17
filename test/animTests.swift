@@ -553,7 +553,9 @@ class animTests: XCTestCase {
         anim.isLogging = true
         anim.defaultSettings.preferredAnimator = animatorType
         
-        #if os(OSX)
+        #if os(iOS)
+        anim.defaultSettings.duration = 1
+        #elseif(OSX)
         anim.defaultSettings.duration = 0.1
         #endif
         

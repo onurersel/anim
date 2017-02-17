@@ -18,29 +18,40 @@ public extension anim {
         case viewAnimator
         /// Uses `NSAnimationContext`. Only available on macOS.
         case macAnimator
-
-        /// Returns default animator for different platforms.
-        static public var `default`: AnimatorType {
-            #if os(iOS)
-                return .propertyAnimator
-            #elseif os(OSX)
-                return .macAnimator
-            #endif
-        }
-
-        /// Returns an instance of animator.
-        public var instance: Animator {
-            #if os(iOS)
-            if #available(iOS 10.0, *), self == .propertyAnimator {
-                return PropertyAnimator()
-            } else {
-                return ViewAnimator()
-            }
-            #elseif os(OSX)
-            return MacAnimator()
-            #endif
-        }
-
     }
 
 }
+
+/// Animator type should fulfill this protocol on each platform.
+internal protocol AnimatorTypeProtocol {
+    static var `default`: Self { get }
+    var instance: Animator { get }
+}
+
+#if os(iOS)
+extension anim.AnimatorType: AnimatorTypeProtocol {
+    internal static var `default`: anim.AnimatorType {
+        return .propertyAnimator
+    }
+
+    internal var instance: Animator {
+        if #available(iOS 10.0, *), self == .propertyAnimator {
+            return anim.PropertyAnimator()
+        }
+
+        return anim.ViewAnimator()
+    }
+}
+#endif
+
+#if os(OSX)
+extension anim.AnimatorType: AnimatorTypeProtocol {
+    internal static var `default`: anim.AnimatorType {
+        return .macAnimator
+    }
+
+    internal var instance: Animator {
+        return anim.MacAnimator()
+    }
+}
+#endif

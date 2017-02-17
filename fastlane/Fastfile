@@ -16,17 +16,29 @@ platform :ios do
 
     # Runs unit tests on macOS
     scan(
-      project: 'anim.xcodeproj',
-      scheme: 'anim-macos',
-      code_coverage: true
+      project: "anim.xcodeproj",
+      scheme: "anim-macos",
+      clean: true
     )
 
     # Runs unit tests on iOS 8, 9 and 10
     scan(
-      project: 'anim.xcodeproj',
-      scheme: 'anim-ios',
-      devices: ['iPhone 5s (8.4)', 'iPhone 5s (9.3)', 'iPhone 5s (10.2)'],
-      code_coverage: true
+      project: "anim.xcodeproj",
+      scheme: "anim-ios",
+      devices: ["iPhone 5s (8.4)", "iPhone 5s (9.3)", "iPhone 5s (10.2)"],
+      derived_data_path: "./build/",
+      code_coverage: true,
+      clean: true
+    )
+
+    # Generates code coverage report
+    slather(
+      proj: "anim.xcodeproj",
+      scheme: "anim-ios",
+      build_directory: "./build/",
+      output_directory: "./fastlane/cov_output/",
+      html: true,
+      travis: true
     )
   end
 
@@ -57,7 +69,7 @@ platform :ios do
     push_to_git_remote
 
     # Push to Cocoapods
-    sh './cocoapods.sh'
+    sh "./cocoapods.sh"
   end
 
 end
