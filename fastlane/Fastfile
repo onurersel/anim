@@ -21,6 +21,13 @@ platform :ios do
       clean: true
     )
 
+    # Runs unit tests on tvOS
+    scan(
+      project: "anim.xcodeproj",
+      scheme: "anim-tvos",
+      clean: true
+    )
+
     # Runs unit tests on iOS 8, 9 and 10
     scan(
       project: "anim.xcodeproj",

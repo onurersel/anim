@@ -24,7 +24,7 @@ anim {
 }
 ```
 
-It supports a bunch of easing functions and chaining multiple animations. It's a wrapper on Apple's `UIViewPropertyAnimator` on its core, and falls back to `UIView.animate` on versions before iOS 10.
+It supports a bunch of easing functions and chaining multiple animations. It's a wrapper on Apple's `UIViewPropertyAnimator` on its core, and falls back to `UIView.animate` on versions before iOS and tvOS 10.
 It uses `NSAnimationContext` on macOS.
 
 
@@ -169,9 +169,9 @@ anim.defaultSettings.ease = .easeInOutCubic
 - [x] Chaining animations
 - [x] Wait, callback functions
 - [x] Constraint animations
-- [X] iOS 8 and 9 support
-- [X] macOS support
-- [ ] tvOS support
+- [x] iOS 8 and 9 support
+- [x] macOS support
+- [x] tvOS support
 - [ ] Shape animations
 
 # License
