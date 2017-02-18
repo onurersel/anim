@@ -12,6 +12,7 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     babosa (1.0.2)
     claide (1.0.1)
+    clamp (0.6.5)
     colored (1.2)
     commander (4.4.1)
       highline (~> 1.7.2)
@@ -94,11 +95,14 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_magick (4.5.1)
+    mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nanaimo (0.2.3)
+    nokogiri (1.6.8.1)
+      mini_portile2 (~> 2.1.0)
     os (0.9.6)
     plist (3.2.0)
     public_suffix (2.0.4)
@@ -114,6 +118,11 @@ GEM
       jwt (~> 1.5)
       multi_json (~> 1.10)
     slack-notifier (1.5.1)
+    slather (2.3.0)
+      activesupport (>= 4.0.2, < 5)
+      clamp (~> 0.6)
+      nokogiri (~> 1.6.3)
+      xcodeproj (>= 0.20, < 2.0.0)
     terminal-notifier (1.7.1)
     terminal-table (1.4.5)
     thread_safe (0.3.5)
@@ -140,6 +149,7 @@ PLATFORMS
 
 DEPENDENCIES
   fastlane
+  slather
 
 BUNDLED WITH
-   1.14.3
+   1.14.4
