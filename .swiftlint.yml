@@ -22,6 +22,5 @@ opt_in_rules:
   - prohibited_super_call
   - redundant_nil_coalescing
   - switch_case_on_newline
-
-excluded:
-  - test
+included:
+  - src
