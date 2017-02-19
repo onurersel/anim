@@ -248,12 +248,12 @@ class animTests: XCTestCase {
 
     func testDelayDefaultSettings() {
 
-        anim.defaultSettings.delay = 0.3
+        anim.defaultSettings.delay = 1.5
 
         let e = [
-            Event("e1", 0.3),
-            Event("e2", 0.6),
-            Event("e3", 0.9)
+            Event("e1", 1.5),
+            Event("e2", 3.0),
+            Event("e3", 4.5)
         ]
 
         eventSequence(e) { (log, end) in
