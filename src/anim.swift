@@ -196,9 +196,11 @@ final public class anim {
         }
 
         log("started waiting...")
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(Int(animationSettings.delay*1000))) {
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + .milliseconds(Int(animationSettings.delay*1000))) {
             self.log("ended waiting")
-            self.run()
+            DispatchQueue.main.async {
+                self.run()
+            }
         }
     }
 
