@@ -843,6 +843,7 @@
 				BA656DA61E57576F006A8221 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BA70575F1E549F7300565309 /* Build configuration list for PBXNativeTarget "anim-macos" */ = {
 			isa = XCConfigurationList;

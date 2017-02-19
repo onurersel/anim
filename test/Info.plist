@@ -18,5 +18,7 @@
 	<string>1.1.7</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>delayMultiplier</key>
+	<integer>1</integer>
 </dict>
 </plist>

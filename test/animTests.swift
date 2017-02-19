@@ -18,6 +18,14 @@ public typealias View = NSView
 #endif
 
 class animTests: XCTestCase {
+    
+    static var delayMultiplier: Double = 1
+    
+    override class func setUp() {
+        if let multiplier = Bundle.init(for: self).infoDictionary?["delayMultiplier"] as? Double {
+            delayMultiplier = multiplier
+        }
+    }
 
     override func setUp() {
         anim.defaultSettings = anim.Settings()
@@ -60,8 +68,8 @@ class animTests: XCTestCase {
 
     func testAnimationSpecificCompletion() {
         let e = [
-            Event("e1", 0.5),
-            Event("e2", 0.8)
+            Event("e1", 0.5*animTests.delayMultiplier),
+            Event("e2", 0.8*animTests.delayMultiplier)
         ]
 
         eventSequence(e) { (log, end) in
@@ -74,11 +82,11 @@ class animTests: XCTestCase {
             }
 
             anim({ (settings) -> (anim.Closure) in
-                settings.delay = 0.5
+                settings.delay = 0.5*animTests.delayMultiplier
                 settings.completion = completion1
                 return {}
             }).then({ (settings) -> anim.Closure in
-                settings.delay = 0.3
+                settings.delay = 0.3*animTests.delayMultiplier
                 settings.completion = completion2
                 return {}
             })
@@ -87,9 +95,9 @@ class animTests: XCTestCase {
 
     func testDefaultCompletion() {
         let e = [
-            Event("e1", 0.6),
-            Event("e1", 1.2),
-            Event("e1", 1.8)
+            Event("e1", 0.6*animTests.delayMultiplier),
+            Event("e1", 1.2*animTests.delayMultiplier),
+            Event("e1", 1.8*animTests.delayMultiplier)
         ]
 
         eventSequence(e) { (log, end) in
@@ -97,7 +105,7 @@ class animTests: XCTestCase {
                 log("e1")
             }
 
-            anim.defaultSettings.delay = 0.6
+            anim.defaultSettings.delay = 0.6*animTests.delayMultiplier
             anim.defaultSettings.completion = completion
 
             anim {}
@@ -182,32 +190,32 @@ class animTests: XCTestCase {
         eventSequence(e) { (log, end) in
 
             let a = anim { (settings) -> (anim.Closure) in
-                settings.delay = 0.5
+                settings.delay = 0.5*animTests.delayMultiplier
                 return {}
             }
             let t = a.then { (settings) -> anim.Closure in
-                settings.delay = 0.5
+                settings.delay = 0.5*animTests.delayMultiplier
                 return {}
             }
 
             t.then({ (settings) -> anim.Closure in
-                settings.delay = 0.5
+                settings.delay = 0.5*animTests.delayMultiplier
                 return {
                     end()
                 }
             })
 
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(200), execute: { 
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(200*Int(animTests.delayMultiplier)), execute: {
                 XCTAssertEqual(a.state, .started, "Something wrong with state cycles.")
                 XCTAssertEqual(t.state, .created, "Something wrong with state cycles.")
             })
             
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(700), execute: {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(700*Int(animTests.delayMultiplier)), execute: {
                 XCTAssertEqual(a.state, .finished, "Something wrong with state cycles.")
                 XCTAssertEqual(t.state, .started, "Something wrong with state cycles.")
             })
             
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1200), execute: {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1200*Int(animTests.delayMultiplier)), execute: {
                 XCTAssertEqual(a.state, .finished, "Something wrong with state cycles.")
                 XCTAssertEqual(t.state, .finished, "Something wrong with state cycles.")
             })
@@ -248,12 +256,12 @@ class animTests: XCTestCase {
 
     func testDelayDefaultSettings() {
 
-        anim.defaultSettings.delay = 0.3
+        anim.defaultSettings.delay = 0.3*animTests.delayMultiplier
 
         let e = [
-            Event("e1", 0.3),
-            Event("e2", 0.6),
-            Event("e3", 0.9)
+            Event("e1", 0.3*animTests.delayMultiplier),
+            Event("e2", 0.6*animTests.delayMultiplier),
+            Event("e3", 0.9*animTests.delayMultiplier)
         ]
 
         eventSequence(e) { (log, end) in
@@ -274,26 +282,26 @@ class animTests: XCTestCase {
         anim.defaultSettings.delay = 0
 
         let e = [
-            Event("e1", 0.8),
-            Event("e2", 1.2),
-            Event("e3", 1.7)
+            Event("e1", 0.8*animTests.delayMultiplier),
+            Event("e2", 1.2*animTests.delayMultiplier),
+            Event("e3", 1.7*animTests.delayMultiplier)
         ]
 
         eventSequence(e) { (log, end) in
             anim({ (settings) -> (anim.Closure) in
-                settings.delay = 0.8
+                settings.delay = 0.8*animTests.delayMultiplier
                 return {
                     log("e1")
                 }
             })
             .then({ (settings) -> anim.Closure in
-                settings.delay = 0.4
+                settings.delay = 0.4*animTests.delayMultiplier
                 return {
                     log("e2")
                 }
             })
             .then({ (settings) -> anim.Closure in
-                settings.delay = 0.5
+                settings.delay = 0.5*animTests.delayMultiplier
                 return {
                     log("e3")
                     end()
@@ -305,20 +313,20 @@ class animTests: XCTestCase {
     func testCallback() {
 
         let e = [
-            Event("e1", 0.3),
-            Event("e2", 0.5)
+            Event("e1", 0.3*animTests.delayMultiplier),
+            Event("e2", 0.5*animTests.delayMultiplier)
         ]
 
         eventSequence(e) { (log, end) in
             anim({ (settings) -> (anim.Closure) in
-                settings.delay = 0.3
+                settings.delay = 0.3*animTests.delayMultiplier
                 return {}
             })
             .callback {
                 log("e1")
             }
             .then({ (settings) -> anim.Closure in
-                settings.delay = 0.2
+                settings.delay = 0.2*animTests.delayMultiplier
                 return {}
             })
             .callback {
@@ -332,17 +340,17 @@ class animTests: XCTestCase {
         anim.defaultSettings.delay = 0
 
         let e = [
-            Event("e1", 0.7),
-            Event("e2", 1.1)
+            Event("e1", 0.7*animTests.delayMultiplier),
+            Event("e2", 1.1*animTests.delayMultiplier)
         ]
 
         eventSequence(e) { (log, end) in
             anim {}
-            .wait(0.7)
+            .wait(0.7*animTests.delayMultiplier)
             .callback {
                 log("e1")
             }
-            .wait(0.4)
+            .wait(0.4*animTests.delayMultiplier)
             .callback {
                 log("e2")
                 end()
@@ -356,7 +364,7 @@ class animTests: XCTestCase {
         let e = [
             Event("e1", 0),
             Event("e2", 0),
-            Event("e3", 1)
+            Event("e3", 1*animTests.delayMultiplier)
         ]
         let view = View()
         
@@ -369,7 +377,7 @@ class animTests: XCTestCase {
                 log("e2")
             }
             .then(constraintParent: view) { (settings) -> anim.Closure in
-                settings.delay = 1
+                settings.delay = 1*animTests.delayMultiplier
                 return {
                     log("e3")
                     end()
@@ -383,44 +391,44 @@ class animTests: XCTestCase {
     
     func testStopDelay() {
         let e = [
-            Event("e1", 0.7),
-            Event("e2", 1.3)
+            Event("e1", 0.7*animTests.delayMultiplier),
+            Event("e2", 1.3*animTests.delayMultiplier)
         ]
         
         eventSequence(e) { (log, end) in
             let a = anim({ (settings) -> (anim.Closure) in
-                settings.delay = 0.3
+                settings.delay = 0.3*animTests.delayMultiplier
                 return {}
             })
             .then({ (settings) -> anim.Closure in
-                settings.delay = 0.4
+                settings.delay = 0.4*animTests.delayMultiplier
                 return {
                     log("e1")
                 }
             })
             .then({ (settings) -> anim.Closure in
-                settings.delay = 0.6
+                settings.delay = 0.6*animTests.delayMultiplier
                 return {
                     log("e2")
                 }
             })
             .then({ (settings) -> anim.Closure in
-                settings.delay = 0.8
+                settings.delay = 0.8*animTests.delayMultiplier
                 return {
                     XCTFail("Should not be called after animation chain is stopped")
                 }
             })
             .then({ (settings) -> anim.Closure in
-                settings.delay = 0.4
+                settings.delay = 0.4*animTests.delayMultiplier
                 return {
                     XCTFail("Should not be called after animation chain is stopped")
                 }
             })
             
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1500), execute: {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1500*Int(animTests.delayMultiplier)), execute: {
                 a.stop()
             })
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2800), execute: {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(2800*Int(animTests.delayMultiplier)), execute: {
                 end()
             })
         }
@@ -428,12 +436,12 @@ class animTests: XCTestCase {
     
     func testStopFromMiddle() {
         let e = [
-            Event("e1", 0.4)
+            Event("e1", 0.4*animTests.delayMultiplier)
         ]
         
         eventSequence(e) { (log, end) in
             
-            anim.defaultSettings.delay = 0.4
+            anim.defaultSettings.delay = 0.4*animTests.delayMultiplier
             let a = anim {
                 log("e1")
             }
@@ -447,10 +455,10 @@ class animTests: XCTestCase {
             }
             
             
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(600), execute: {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(600*Int(animTests.delayMultiplier)), execute: {
                 a.stop()
             })
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1400), execute: {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1400*Int(animTests.delayMultiplier)), execute: {
                 end()
             })
         }
@@ -537,7 +545,7 @@ class animTests: XCTestCase {
                 XCTAssertEqual(expectedEvent.key, loggedEvent.key)
 
                 let expectedDelayDiff: TimeInterval = (i == 0) ? expectedEvent.delay : expectedEvent.delay-events[i-1].delay
-                XCTAssertEqualWithAccuracy(expectedDelayDiff, loggedEvent.delay, accuracy: 0.28)
+                XCTAssertEqualWithAccuracy(expectedDelayDiff, loggedEvent.delay, accuracy: 0.28*animTests.delayMultiplier)
             }
 
             exp.fulfill()

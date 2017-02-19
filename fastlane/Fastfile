@@ -14,6 +14,8 @@ platform :ios do
       ignore_exit_status: false
     )
 
+    set_info_plist_value(path: "./test/Info.plist", key: "delayMultiplier", value: 5)
+
     # Runs unit tests on macOS
     scan(
       project: "anim.xcodeproj",
@@ -37,6 +39,8 @@ platform :ios do
       code_coverage: true,
       clean: true
     )
+
+    set_info_plist_value(path: "./test/Info.plist", key: "delayMultiplier", value: 1)
 
     # Generates code coverage report
     slather(
