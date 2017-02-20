@@ -34,6 +34,9 @@
 		BA70576F1E54D76E00565309 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA70576D1E54D76E00565309 /* Constraint.swift */; };
 		BA7057A31E54EC7600565309 /* anim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA7057581E549F7300565309 /* anim.framework */; };
 		BA7057AA1E54ECDD00565309 /* animTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA150F961E53B838009A14E3 /* animTests.swift */; };
+		BA75D68B1E5B40E500755E5D /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA75D68A1E5B40E500755E5D /* Promise.swift */; };
+		BA75D68C1E5B40E500755E5D /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA75D68A1E5B40E500755E5D /* Promise.swift */; };
+		BA75D68D1E5B40E500755E5D /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA75D68A1E5B40E500755E5D /* Promise.swift */; };
 		BAE19D591E53313F000A41AB /* Animator-ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D581E53313F000A41AB /* Animator-ios.swift */; };
 		BAE19D5B1E5331A0000A41AB /* Ease.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5A1E5331A0000A41AB /* Ease.swift */; };
 		BAE19D5D1E53329B000A41AB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5C1E53329B000A41AB /* Settings.swift */; };
@@ -56,6 +59,7 @@
 		BA70576B1E54D37000565309 /* Animator-macos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Animator-macos.swift"; sourceTree = "<group>"; };
 		BA70576D1E54D76E00565309 /* Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
 		BA70579E1E54EC7600565309 /* animTests-macos.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "animTests-macos.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA75D68A1E5B40E500755E5D /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		BAE19D581E53313F000A41AB /* Animator-ios.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Animator-ios.swift"; sourceTree = "<group>"; };
 		BAE19D5A1E5331A0000A41AB /* Ease.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ease.swift; sourceTree = "<group>"; };
 		BAE19D5C1E53329B000A41AB /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 				BA70576B1E54D37000565309 /* Animator-macos.swift */,
 				BAE19D5A1E5331A0000A41AB /* Ease.swift */,
 				BAE19D5C1E53329B000A41AB /* Settings.swift */,
+				BA75D68A1E5B40E500755E5D /* Promise.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -432,6 +437,7 @@
 				BA3FCA251E4B26430095BE41 /* anim.swift in Sources */,
 				BAE19D5B1E5331A0000A41AB /* Ease.swift in Sources */,
 				BAE19D5D1E53329B000A41AB /* Settings.swift in Sources */,
+				BA75D68B1E5B40E500755E5D /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +452,7 @@
 				BA656DAE1E575883006A8221 /* Settings.swift in Sources */,
 				BA656DAC1E575883006A8221 /* Animator-ios.swift in Sources */,
 				BA656DAD1E575883006A8221 /* Ease.swift in Sources */,
+				BA75D68D1E5B40E500755E5D /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +475,7 @@
 				BA7057631E549FA100565309 /* Ease.swift in Sources */,
 				BA70576C1E54D37000565309 /* Animator-macos.swift in Sources */,
 				BA7057641E549FA100565309 /* Settings.swift in Sources */,
+				BA75D68C1E5B40E500755E5D /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

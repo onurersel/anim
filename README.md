@@ -61,7 +61,7 @@ anim {
 
 ```swift
 // or initialize with it's own settings
-anim { (settings) -> (anim.Closure) in
+anim { (settings) -> (animClosure) in
     settings.delay = 1
     settings.duration = 0.7
     settings.ease = .easeInOutBack
@@ -78,7 +78,7 @@ anim(constraintParent: self.view) {
     // animation block
 }
 
-anim(constraintParent: self.view) { (settings) -> (anim.Closure) in
+anim(constraintParent: self.view) { (settings) -> (animClosure) in
     // settings...
     return {
         // animation block
@@ -108,7 +108,7 @@ anim {}
 
 ```swift
 anim {}
-.then { (settings) -> anim.Closure in
+.then { (settings) -> animClosure in
     settings.duration = 1
     return {
         // next animation block
@@ -121,7 +121,7 @@ anim {}
 .then(constraintParent: self.view) {
     // chaining constraint animations
 }
-.then(constraintParent: self.view) { (settings) -> anim.Closure in
+.then(constraintParent: self.view) { (settings) -> animClosure in
     settings.duration = 1
     return {
         // next animation block for constraints

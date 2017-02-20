@@ -15,6 +15,9 @@ import AppKit
 public typealias View = NSView
 #endif
 
+/// Animation block definition.
+public typealias animClosure = () -> Void
+
 /// `anim` is an animation library written in Swift with a simple,
 /// declarative API in mind.
 ///
@@ -37,52 +40,21 @@ public typealias View = NSView
 /// It's a wrapper on Apple's `UIViewPropertyAnimator` on its core.
 ///
 /// It only supports iOS 10 at the moment.
-final public class anim {
-
-    // MARK: - Types
-
-    /// Animation block.
-    public typealias Closure = () -> Void
-
-    /// Promise state.
-    ///
-    /// - created: Animation did not started yet.
-    /// - started: Animation is running.
-    /// - finished: Animation finished running.
-    /// - cancelled: Animation cancelled before it's finished.
-    internal enum State {
-        case created, started, finished, cancelled
-    }
+final public class anim: NSObject {
 
     // MARK: - Properties
 
     /// Default settings for animation. This is being copied to promise for each animation.
-    public static var defaultSettings = Settings()
-    /// Enables internal logging. This is for debugging.
-    internal static var isLogging: Bool = false {
-        didSet {
-            if isLogging {
-                startupTime = Date()
-            }
-        }
-    }
-    /// Starup time of anim library. Used for logging.
-    fileprivate static var startupTime: Date?
-
-    /// Unique promise id.
-    fileprivate let uid = UInt32(Date().timeIntervalSince1970)^arc4random_uniform(UInt32.max)
+    public static var defaultSettings = animSettings()
     /// Stored animation block.
-    private var animationClosure: Closure?
+    private var animationClosure: animClosure?
     /// Animation settings.
-    internal var animationSettings: Settings
-    /// Reference to next promise chained to this instance.
-    internal var next: anim?
-    /// Reference to previous promise this instance is chained.
-    internal var prev: anim?
-    /// State of promise.
-    internal var state: State = .created
+    internal var animationSettings: animSettings
+
+    internal var promise: Promise
+
     /// Values for constraint animation.
-    internal var animationConstraintLayout: ConstraintLayout?
+    internal var animationConstraintLayout: Constraint?
     /// Animator which is being used for animations.
     private var animator: Animator?
 
@@ -92,7 +64,7 @@ final public class anim {
     ///
     /// - Parameter closure: Exposes settings values to block, and expects returning animation block.
     @discardableResult
-    public convenience init(_ closureWithSettings: @escaping (inout Settings) -> (Closure)) {
+    public convenience init(_ closureWithSettings: @escaping (inout animSettings) -> (animClosure)) {
         self.init(closureWithoutProcess:closureWithSettings)
         process()
     }
@@ -101,7 +73,7 @@ final public class anim {
     ///
     /// - Parameter closure: Animation block.
     @discardableResult
-    public convenience init(_ closure: @escaping Closure) {
+    public convenience init(_ closure: @escaping animClosure) {
         self.init(closureWithoutProcess:closure)
         process()
     }
@@ -109,7 +81,7 @@ final public class anim {
     /// Creates animation promise, with settings. To be used while chaining promises.
     ///
     /// - Parameter closure: Exposes settings values to block, and expects returning animation block.
-    private convenience init(closureWithoutProcess closure: @escaping (inout Settings) -> (Closure)) {
+    internal convenience init(closureWithoutProcess closure: @escaping (inout animSettings) -> (animClosure)) {
         var _settings = anim.defaultSettings
         let _closure = closure(&_settings)
         self.init(settings:_settings, closure:_closure)
@@ -118,53 +90,8 @@ final public class anim {
     /// Creates animation promise. To be used while chaining promises.
     ///
     /// - Parameter closure: Animation block.
-    private convenience init(closureWithoutProcess closure: @escaping Closure) {
+    internal convenience init(closureWithoutProcess closure: @escaping animClosure) {
         self.init(settings: anim.defaultSettings, closure:closure)
-    }
-
-    /// Creates initial animation promise for `NSLayoutConstraint` animations, with settings.
-    ///
-    /// - Parameters:
-    ///   - constraintParent: Top parent where constraints reside.
-    ///   - closureWithSettings: Exposes settings values to block, and expects returning animation block.
-    @discardableResult
-    public convenience init(constraintParent: View, _ closureWithSettings: @escaping (inout Settings) -> Closure) {
-        self.init(constraintParent: constraintParent, closureWithoutProcess: closureWithSettings)
-        process()
-    }
-
-    /// Creates initial animation promise for `NSLayoutConstraint` animations.
-    ///
-    /// - Parameters:
-    ///   - constraintParent: Top parent where constraints reside.
-    ///   - closure: Animation block.
-    @discardableResult
-    public convenience init(constraintParent: View, _ closure: @escaping Closure) {
-        self.init(constraintParent: constraintParent, closureWithoutProcess: closure)
-        process()
-    }
-
-    /// Creates promise for `NSLayoutConstraint` animations, with settings. To be used while chaining promises.
-    ///
-    /// - Parameters:
-    ///   - constraintParent: Top parent where constraints reside.
-    ///   - closure: Exposes settings values to block, and expects returning animation block.
-    private convenience init(constraintParent: View,
-                             closureWithoutProcess closure: @escaping (inout anim.Settings) -> Closure) {
-        var _settings = anim.defaultSettings
-        let _closure = closure(&_settings)
-        self.init(settings: _settings, closure:nil)
-        self.animationConstraintLayout = anim.ConstraintLayout(closure: _closure, parent: constraintParent)
-    }
-
-    /// Creates promise for `NSLayoutConstraint` animations. To be used while chaining promises.
-    ///
-    /// - Parameters:
-    ///   - constraintParent: Top parent where constraints reside.
-    ///   - closure: Animation block.
-    private convenience init(constraintParent: View, closureWithoutProcess closure: @escaping Closure) {
-        self.init(settings: anim.defaultSettings, closure:nil)
-        self.animationConstraintLayout = anim.ConstraintLayout(closure: closure, parent: constraintParent)
     }
 
     /// Main initializer.
@@ -172,42 +99,35 @@ final public class anim {
     /// - Parameters:
     ///   - settings: Animation settings.
     ///   - closure: Animation closure.
-    internal init(settings: Settings, closure: Closure?) {
-        self.animationSettings = settings
-        self.animationClosure = closure
+    internal init(settings: animSettings, closure: animClosure?) {
+        promise = Promise()
 
-        log("initted")
+        animationSettings = settings
+        animationClosure = closure
     }
 
     // MARK: - Running promises
 
     /// Start processing animation promise.
     internal func process() {
-        log("process")
-        state = .started
+        promise.state = .started
         delay()
     }
 
     /// Waits before starting animation block, if delay is setted.
     private func delay() {
-        log("delay")
         guard animationSettings.delay > 0 else {
             return self.run()
         }
 
-        log("started waiting...")
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(Int(animationSettings.delay*1000))) {
-            self.log("ended waiting")
             self.run()
         }
     }
 
     /// Runs animation block.
     private func run() {
-        log("run")
-
-        guard state == .started else {
-            log("\(state), aborting")
+        guard promise.state == .started else {
             return
         }
 
@@ -228,168 +148,29 @@ final public class anim {
 
     /// Animation block completion.
     private func completion() {
-        log("completion")
-        guard state == .started else {
-            log("\(state), aborting")
+        guard promise.state == .started else {
             return
         }
 
         animationSettings.completion?()
-        state = .finished
-        next?.process()
-    }
-
-    // MARK: - Chaining promises
-
-    /// Creates a new animation promise with settings, chained to the previous one.
-    ///
-    /// - Parameter closure: Exposes settings values to block, and expects returning animation block.
-    /// - Returns: Newly created promise.
-    @discardableResult
-    public func then(_ closureWithSettings: @escaping (inout Settings) -> Closure) -> anim {
-        let nextAnim = anim(closureWithoutProcess: closureWithSettings)
-        chain(to: nextAnim)
-        return nextAnim
-    }
-
-    /// Creates a new animation promise, chained to the previous one.
-    ///
-    /// - Parameter closure: Animation block.
-    /// - Returns: Newly created promise.
-    @discardableResult
-    public func then(_ closure: @escaping Closure) -> anim {
-        let nextAnim = anim(closureWithoutProcess: closure)
-        chain(to: nextAnim)
-        return nextAnim
-    }
-
-    /// Creates a new promise for `NSLayoutConstraint` animations with settings, chained to the previous one.
-    ///
-    /// - Parameters:
-    ///   - constraintParent: Top parent where constraints reside.
-    ///   - closureWithSettings: Exposes settings values to block, and expects returning animation block.
-    /// - Returns: Newly created promise.
-    @discardableResult
-    public func then(constraintParent: View, _ closureWithSettings: @escaping (inout anim.Settings) -> Closure) -> anim {
-        let nextAnim = anim(constraintParent: constraintParent, closureWithoutProcess: closureWithSettings)
-        chain(to: nextAnim)
-        return nextAnim
-    }
-
-    /// Creates a new promise for `NSLayoutConstraint` animations with settings, chained to the previous one.
-    ///
-    /// - Parameters:
-    ///   - constraintParent: Top parent where constraints reside.
-    ///   - closure: Animation block.
-    /// - Returns: Newly created promise.
-    @discardableResult
-    public func then(constraintParent: View, _ closure: @escaping Closure) -> anim {
-        let nextAnim = anim(constraintParent: constraintParent, closureWithoutProcess: closure)
-        chain(to: nextAnim)
-        return nextAnim
-    }
-
-    /// Creates a promise only waits before running next promise.
-    ///
-    /// - Parameter milliseconds: Milliseconds to wait.
-    /// - Returns: Newly created promise.
-    @discardableResult
-    public func wait(_ seconds: TimeInterval) -> anim {
-        var settings = anim.defaultSettings
-        settings.delay = seconds
-        settings.duration = 0
-        let nextAnim = anim(settings: settings, closure: {})
-        chain(to: nextAnim)
-        return nextAnim
-    }
-
-    /// Creates a promise only calls a block before running next promise.
-    ///
-    /// - Parameter closure: Block to be runned.
-    /// - Returns: Newly created promise.
-    @discardableResult
-    public func callback(_ closure: @escaping Closure) -> anim {
-        var settings = anim.defaultSettings
-        settings.delay = 0
-        settings.duration = 0
-        let nextAnim = anim(settings: settings, closure: closure)
-        chain(to: nextAnim)
-        return nextAnim
-    }
-
-    /// Chains newly created promise to current one.
-    ///
-    /// - Parameter chainedAnim: Newly created promise.
-    internal func chain(to chainedAnim: anim) {
-        next = chainedAnim
-        next!.prev = self
-
-        if state == .finished {
-            chainedAnim.process()
-        }
+        promise.state = .finished
+        promise.next?.process()
     }
 
     /// Stops animation and promise chain.
     public func stop() {
         var currentAnim: anim? = self
-        while let a = currentAnim?.next {
+        while let a = currentAnim?.promise.next {
             currentAnim = a
         }
-        log("\(currentAnim) is at the end of animation chain.")
 
-        while let a = currentAnim, a.state == .created {
-            a.state = .cancelled
-            currentAnim = a.prev
+        while let a = currentAnim, a.promise.state == .created {
+            a.promise.state = .cancelled
+            currentAnim = a.promise.prev
         }
 
-        log("\(currentAnim) is the animation currently running")
-
-        currentAnim?.state = .cancelled
+        currentAnim?.promise.state = .cancelled
         currentAnim?.animator?.stopAnimation()
-        log("Stopped animation chain")
     }
 
-}
-
-// MARK: - CustomStringConvertible
-extension anim: CustomStringConvertible {
-
-    /// String representation
-    public var description: String {
-        return "anim(\(uid))"
-    }
-
-}
-
-// MARK: - Utilities
-internal extension anim {
-
-    /// Internal logging function.
-    ///
-    /// - Parameter message: Message to log.
-    /// - Returns: Returns true if logs successfully.
-    @discardableResult
-    func log(_ message: String) -> Bool {
-        guard anim.isLogging else {
-            return false
-        }
-
-        anim.log("\(description) \(message)")
-        return true
-    }
-
-    /// Internal loggin on class scope.
-    ///
-    /// - Parameter message: Message to log.
-    /// - Returns: Returns true if logs successfully.
-    @discardableResult
-    class func log(_ message: String) -> Bool {
-        guard anim.isLogging, anim.startupTime != nil else {
-            return false
-        }
-
-        let since = Date().timeIntervalSince(anim.startupTime!)
-        print("\(message) | \(since)")
-        return true
-    }
 }

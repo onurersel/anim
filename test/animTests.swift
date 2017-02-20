@@ -28,7 +28,7 @@ class animTests: XCTestCase {
     }
 
     override func setUp() {
-        anim.defaultSettings = anim.Settings()
+        anim.defaultSettings = animSettings()
         anim.defaultSettings.duration = 0
     }
 
@@ -40,7 +40,7 @@ class animTests: XCTestCase {
         XCTAssertNotNil(anim {}, "Constructor should not return nil.")
 
         // with custom settings
-        let a = anim { (s) -> (anim.Closure) in
+        let a = anim { (s) -> (animClosure) in
             return {}
         }
         XCTAssertNotNil(a, "Constructor should not return nil.")
@@ -48,7 +48,7 @@ class animTests: XCTestCase {
     }
 
     func testCreateCustomEase() {
-        XCTAssertNotNil(anim.Ease.custom(point1: CGPoint(x:0.1, y:0.2), point2: CGPoint(x:0.3, y:0.4)))
+        XCTAssertNotNil(animEase.custom(point1: CGPoint(x:0.1, y:0.2), point2: CGPoint(x:0.3, y:0.4)))
     }
     
     func testInitializerForConstraints() {
@@ -58,7 +58,7 @@ class animTests: XCTestCase {
         XCTAssertNotNil(anim(constraintParent: view) {}, "Constructor should not return nil.")
         
         // with custom settings
-        let a = anim(constraintParent: view) { (s) -> (anim.Closure) in
+        let a = anim(constraintParent: view) { (s) -> (animClosure) in
             return {}
         }
         XCTAssertNotNil(a, "Constructor should not return nil.")
@@ -81,11 +81,11 @@ class animTests: XCTestCase {
                 end()
             }
 
-            anim({ (settings) -> (anim.Closure) in
+            anim({ (settings) -> (animClosure) in
                 settings.delay = 0.5*animTests.delayMultiplier
                 settings.completion = completion1
                 return {}
-            }).then({ (settings) -> anim.Closure in
+            }).then({ (settings) -> animClosure in
                 settings.delay = 0.3*animTests.delayMultiplier
                 settings.completion = completion2
                 return {}
@@ -139,13 +139,13 @@ class animTests: XCTestCase {
         anim.defaultSettings.duration = 0.0014
         anim.defaultSettings.ease = .easeInCirc
 
-        let a = anim { (settings) -> (anim.Closure) in
+        let a = anim { (settings) -> (animClosure) in
             settings.delay = 0.76
             settings.duration = 0.301
             settings.ease = .easeInQuad
             return {}
         }
-        let t = a.then { (settings) -> (anim.Closure) in
+        let t = a.then { (settings) -> (animClosure) in
             settings.delay = 0.9987
             settings.duration = 0.2743
             settings.ease = .easeInOutCubic
@@ -168,19 +168,19 @@ class animTests: XCTestCase {
         let w = t2.wait(0)
         let c = w.callback {}
 
-        XCTAssertNotNil(a.next, "Instance should contain reference to next instance.")
-        XCTAssertEqual(a.next!.description, t1.description, "Something wrong with the chaining function.")
+        XCTAssertNotNil(a.promise.next, "Instance should contain reference to next instance.")
+        XCTAssertEqual(a.promise.next!, t1, "Something wrong with the chaining function.")
 
-        XCTAssertNotNil(t1.next, "Instance should contain reference to next instance.")
-        XCTAssertEqual(t1.next!.description, t2.description, "Something wrong with the chaining function.")
+        XCTAssertNotNil(t1.promise.next, "Instance should contain reference to next instance.")
+        XCTAssertEqual(t1.promise.next!, t2, "Something wrong with the chaining function.")
 
-        XCTAssertNotNil(t2.next, "Instance should contain reference to next instance.")
-        XCTAssertEqual(t2.next!.description, w.description, "Something wrong with the chaining function.")
+        XCTAssertNotNil(t2.promise.next, "Instance should contain reference to next instance.")
+        XCTAssertEqual(t2.promise.next!, w, "Something wrong with the chaining function.")
 
-        XCTAssertNotNil(w.next, "Instance should contain reference to next instance.")
-        XCTAssertEqual(w.next!.description, c.description, "Something wrong with the chaining function.")
+        XCTAssertNotNil(w.promise.next, "Instance should contain reference to next instance.")
+        XCTAssertEqual(w.promise.next!, c, "Something wrong with the chaining function.")
 
-        XCTAssertNil(c.next, "Instance should not contain reference to next instance.")
+        XCTAssertNil(c.promise.next, "Instance should not contain reference to next instance.")
     }
 
     func testState() {
@@ -189,16 +189,16 @@ class animTests: XCTestCase {
 
         eventSequence(e) { (log, end) in
 
-            let a = anim { (settings) -> (anim.Closure) in
+            let a = anim { (settings) -> (animClosure) in
                 settings.delay = 0.5*animTests.delayMultiplier
                 return {}
             }
-            let t = a.then { (settings) -> anim.Closure in
+            let t = a.then { (settings) -> animClosure in
                 settings.delay = 0.5*animTests.delayMultiplier
                 return {}
             }
 
-            t.then({ (settings) -> anim.Closure in
+            t.then({ (settings) -> animClosure in
                 settings.delay = 0.5*animTests.delayMultiplier
                 return {
                     end()
@@ -206,18 +206,18 @@ class animTests: XCTestCase {
             })
 
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(200*Int(animTests.delayMultiplier)), execute: {
-                XCTAssertEqual(a.state, .started, "Something wrong with state cycles.")
-                XCTAssertEqual(t.state, .created, "Something wrong with state cycles.")
+                XCTAssertEqual(a.promise.state, .started, "Something wrong with state cycles.")
+                XCTAssertEqual(t.promise.state, .created, "Something wrong with state cycles.")
             })
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(700*Int(animTests.delayMultiplier)), execute: {
-                XCTAssertEqual(a.state, .finished, "Something wrong with state cycles.")
-                XCTAssertEqual(t.state, .started, "Something wrong with state cycles.")
+                XCTAssertEqual(a.promise.state, .finished, "Something wrong with state cycles.")
+                XCTAssertEqual(t.promise.state, .started, "Something wrong with state cycles.")
             })
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1200*Int(animTests.delayMultiplier)), execute: {
-                XCTAssertEqual(a.state, .finished, "Something wrong with state cycles.")
-                XCTAssertEqual(t.state, .finished, "Something wrong with state cycles.")
+                XCTAssertEqual(a.promise.state, .finished, "Something wrong with state cycles.")
+                XCTAssertEqual(t.promise.state, .finished, "Something wrong with state cycles.")
             })
 
         }
@@ -243,7 +243,7 @@ class animTests: XCTestCase {
             .then {
                 log("e2")
             }
-            .then { (settings) -> anim.Closure in
+            .then { (settings) -> animClosure in
                 return {
                     log("e3")
                     end()
@@ -288,19 +288,19 @@ class animTests: XCTestCase {
         ]
 
         eventSequence(e) { (log, end) in
-            anim({ (settings) -> (anim.Closure) in
+            anim({ (settings) -> (animClosure) in
                 settings.delay = 0.8*animTests.delayMultiplier
                 return {
                     log("e1")
                 }
             })
-            .then({ (settings) -> anim.Closure in
+            .then({ (settings) -> animClosure in
                 settings.delay = 0.4*animTests.delayMultiplier
                 return {
                     log("e2")
                 }
             })
-            .then({ (settings) -> anim.Closure in
+            .then({ (settings) -> animClosure in
                 settings.delay = 0.5*animTests.delayMultiplier
                 return {
                     log("e3")
@@ -318,14 +318,14 @@ class animTests: XCTestCase {
         ]
 
         eventSequence(e) { (log, end) in
-            anim({ (settings) -> (anim.Closure) in
+            anim({ (settings) -> (animClosure) in
                 settings.delay = 0.3*animTests.delayMultiplier
                 return {}
             })
             .callback {
                 log("e1")
             }
-            .then({ (settings) -> anim.Closure in
+            .then({ (settings) -> animClosure in
                 settings.delay = 0.2*animTests.delayMultiplier
                 return {}
             })
@@ -376,7 +376,7 @@ class animTests: XCTestCase {
             .then(constraintParent: view) {
                 log("e2")
             }
-            .then(constraintParent: view) { (settings) -> anim.Closure in
+            .then(constraintParent: view) { (settings) -> animClosure in
                 settings.delay = 1*animTests.delayMultiplier
                 return {
                     log("e3")
@@ -396,29 +396,29 @@ class animTests: XCTestCase {
         ]
         
         eventSequence(e) { (log, end) in
-            let a = anim({ (settings) -> (anim.Closure) in
+            let a = anim({ (settings) -> (animClosure) in
                 settings.delay = 0.3*animTests.delayMultiplier
                 return {}
             })
-            .then({ (settings) -> anim.Closure in
+            .then({ (settings) -> animClosure in
                 settings.delay = 0.4*animTests.delayMultiplier
                 return {
                     log("e1")
                 }
             })
-            .then({ (settings) -> anim.Closure in
+            .then({ (settings) -> animClosure in
                 settings.delay = 0.6*animTests.delayMultiplier
                 return {
                     log("e2")
                 }
             })
-            .then({ (settings) -> anim.Closure in
+            .then({ (settings) -> animClosure in
                 settings.delay = 0.8*animTests.delayMultiplier
                 return {
                     XCTFail("Should not be called after animation chain is stopped")
                 }
             })
-            .then({ (settings) -> anim.Closure in
+            .then({ (settings) -> animClosure in
                 settings.delay = 0.4*animTests.delayMultiplier
                 return {
                     XCTFail("Should not be called after animation chain is stopped")
@@ -477,34 +477,6 @@ class animTests: XCTestCase {
     func testMacAnimator() {
         runWithAnimator(.macAnimator)
     }
-    
-    // MARK: - Logging
-
-    func testLog() {
-        let a = anim {}
-
-        anim.isLogging = false
-        let result1 = a.log("test")
-        XCTAssertFalse(result1, "Should not be logging while it's disabled.")
-
-        anim.isLogging = true
-        let result2 = a.log("test")
-        XCTAssertTrue(result2, "Should be logging while it's not disabled.")
-
-        anim.isLogging = false
-    }
-    
-    func testClassLog() {
-        anim.isLogging = false
-        let result1 = anim.log("test")
-        XCTAssertFalse(result1, "Should not be logging while it's disabled.")
-        
-        anim.isLogging = true
-        let result2 = anim.log("test")
-        XCTAssertTrue(result2, "Should be logging while it's not disabled.")
-        
-        anim.isLogging = false
-    }
 
     // MARK: - Helpers
 
@@ -555,10 +527,9 @@ class animTests: XCTestCase {
         self.waitForExpectations(timeout: 65, handler: nil)
     }
     
-    func runWithAnimator(_ animatorType: anim.AnimatorType) {
+    func runWithAnimator(_ animatorType: AnimatorType) {
         var view = View()
         
-        anim.isLogging = true
         anim.defaultSettings.preferredAnimator = animatorType
         
         #if os(iOS) || os(tvOS)
@@ -591,7 +562,7 @@ class animTests: XCTestCase {
                 viewAnimatable.frame = CGRect(x: 0, y: 100, width: 20, height: 20)
                 log("e2")
                 }
-                .then({ (settings) -> anim.Closure in
+                .then({ (settings) -> animClosure in
                     
                     #if os(iOS) || os(tvOS)
                         settings.isUserInteractionsEnabled = true
