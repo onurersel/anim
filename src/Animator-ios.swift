@@ -65,7 +65,7 @@ internal extension anim {
     /// New method lets animator store layer and key information for the newly created animation.
     /// After animations are created, it swizzles back to original `CALayer.add` method.
     /// When `stopAnimation` function is called, it uses the stored information to stop animations.
-    @available (iOS, deprecated: 10.0)
+    @available (iOS, deprecated: 10.0, message: "`ViewAnimator` is deprecated at iOS 10. Use `PropertyAnimator` instead.")
     internal class ViewAnimator: Animator {
 
         /// `AnimationLayer` value type stores added animation information, in order to
