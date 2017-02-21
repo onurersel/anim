@@ -121,7 +121,7 @@ It uses <code>NSAnimationContext</code> on macOS.</p>
 <span class="p">}</span>
 </code></pre>
 <pre class="highlight swift"><code><span class="c1">// or initialize with it's own settings</span>
-<span class="n">anim</span> <span class="p">{</span> <span class="p">(</span><span class="n">settings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">anim</span><span class="o">.</span><span class="kt">Closure</span><span class="p">)</span> <span class="k">in</span>
+<span class="n">anim</span> <span class="p">{</span> <span class="p">(</span><span class="n">settings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">animClosure</span><span class="p">)</span> <span class="k">in</span>
     <span class="n">settings</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">settings</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mf">0.7</span>
     <span class="n">settings</span><span class="o">.</span><span class="n">ease</span> <span class="o">=</span> <span class="o">.</span><span class="n">easeInOutBack</span>
@@ -136,7 +136,7 @@ It uses <code>NSAnimationContext</code> on macOS.</p>
     <span class="c1">// animation block</span>
 <span class="p">}</span>
 
-<span class="nf">anim</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">settings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">anim</span><span class="o">.</span><span class="kt">Closure</span><span class="p">)</span> <span class="k">in</span>
+<span class="nf">anim</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">settings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">animClosure</span><span class="p">)</span> <span class="k">in</span>
     <span class="c1">// settings...</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="c1">// animation block</span>
@@ -162,7 +162,7 @@ It uses <code>NSAnimationContext</code> on macOS.</p>
 <span class="p">}</span>
 </code></pre>
 <pre class="highlight swift"><code><span class="n">anim</span> <span class="p">{}</span>
-<span class="o">.</span><span class="n">then</span> <span class="p">{</span> <span class="p">(</span><span class="n">settings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">anim</span><span class="o">.</span><span class="kt">Closure</span> <span class="k">in</span>
+<span class="o">.</span><span class="n">then</span> <span class="p">{</span> <span class="p">(</span><span class="n">settings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">animClosure</span> <span class="k">in</span>
     <span class="n">settings</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="c1">// next animation block</span>
@@ -173,7 +173,7 @@ It uses <code>NSAnimationContext</code> on macOS.</p>
 <span class="o">.</span><span class="nf">then</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// chaining constraint animations</span>
 <span class="p">}</span>
-<span class="o">.</span><span class="nf">then</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">settings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">anim</span><span class="o">.</span><span class="kt">Closure</span> <span class="k">in</span>
+<span class="o">.</span><span class="nf">then</span><span class="p">(</span><span class="nv">constraintParent</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">settings</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">animClosure</span> <span class="k">in</span>
     <span class="n">settings</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="c1">// next animation block for constraints</span>
