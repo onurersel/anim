@@ -1,9 +1,11 @@
+<img src="img/logo.png" alt="anim: Swift animation library for iOS, tvOS and macOS." width="446">
+
+-----
 [![CocoaPods](https://img.shields.io/cocoapods/v/anim.svg)](https://cocoapods.org/pods/anim)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status](https://travis-ci.org/onurersel/anim.svg?branch=master)](https://travis-ci.org/onurersel/anim)
 [![codecov.io](https://codecov.io/github/onurersel/anim/coverage.svg?branch=master)](https://codecov.io/github/onurersel/anim?branch=master)
 
-# anim
 
 `anim` is an animation library written in Swift with a simple, declarative API in mind.
 
@@ -27,18 +29,18 @@ anim {
 It supports a bunch of easing functions and chaining multiple animations. It's a wrapper on Apple's `UIViewPropertyAnimator` on its core, and falls back to `UIView.animate` on versions before iOS and tvOS 10.
 It uses `NSAnimationContext` on macOS.
 
-
-# Installation
+---
+<img src="img/installation.png" alt="Installation" width="274">
 
 #### Cocoapods
 
-```
+```ruby
 pod 'anim'
 ```
 
 #### Carthage
 
-```
+```ogdl
 github "onurersel/anim"
 ```
 
@@ -46,7 +48,8 @@ github "onurersel/anim"
 
 Or simply drag the swift files inside `src/` folder into your project.
 
-# API
+---
+<img src="img/api.png" alt="API" width="116">
 
 For complete documentation, visit [http://onurersel.github.io/anim/](http://onurersel.github.io/anim/).
 
@@ -164,7 +167,8 @@ anim.defaultSettings.ease = .easeInOutCubic
 
 `anim.Ease` exposes a bunch of easing options.
 
-# Roadmap
+---
+<img src="img/roadmap.png" alt="Roadmap" width="238">
 
 - [x] Chaining animations
 - [x] Wait, callback functions
@@ -174,6 +178,7 @@ anim.defaultSettings.ease = .easeInOutCubic
 - [x] tvOS support
 - [ ] Shape animations
 
-# License
+---
+<img src="img/license.png" alt="License" width="152">
 
 `anim` is released under the MIT license. See LICENSE for details.
