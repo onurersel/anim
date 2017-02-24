@@ -7,25 +7,37 @@
 
 import UIKit
 
-
-extension CGFloat {
+struct DoubleRange {
+    var min: Double
+    var max: Double
     
-    static var random: CGFloat {
+    static var random01: Double {
         let max: UInt32 = 10000
-        return CGFloat(arc4random_uniform(max)) / CGFloat(max)
+        return Double(arc4random_uniform(max)) / Double(max)
     }
     
+    var random: Double {
+        let diff = max - min
+        return min + diff * DoubleRange.random01
+    }
+    
+}
+
+extension Double {
+    var cgFloat: CGFloat {
+        return CGFloat(self)
+    }
+}
+
+extension CGFloat {
     var radian: CGFloat {
         return CGFloat.pi * self / 180.0
     }
     
-    static func random(from: CGFloat, to: CGFloat) -> CGFloat {
-        let diff = to-from
-        return from + diff*random
+    func randomize(range: CGFloat) -> CGFloat {
+        return self - range * 0.5 + range * DoubleRange.random01.cgFloat
     }
-    
-    static func random(offset: CGFloat, range: CGFloat) -> CGFloat {
-        return random(from: offset-range/2.0, to: offset+range/2.0)
-    }
-    
 }
+
+
+

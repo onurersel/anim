@@ -5,6 +5,7 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status](https://travis-ci.org/onurersel/anim.svg?branch=master)](https://travis-ci.org/onurersel/anim)
 [![codecov.io](https://codecov.io/github/onurersel/anim/coverage.svg?branch=master)](https://codecov.io/github/onurersel/anim?branch=master)
+[![codebeat badge](https://codebeat.co/badges/67e95eda-c701-43d0-921c-541a427750bd)](https://codebeat.co/projects/github-com-onurersel-anim)
 
 
 `anim` is an animation library written in Swift with a simple, declarative API in mind.

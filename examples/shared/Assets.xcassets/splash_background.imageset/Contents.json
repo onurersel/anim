@@ -9,14 +9,14 @@
           "height" : 1
         },
         "cap-insets" : {
-          "bottom" : 19,
-          "top" : 19,
-          "right" : 19,
-          "left" : 19
+          "bottom" : 23,
+          "top" : 23,
+          "right" : 23,
+          "left" : 23
         }
       },
       "idiom" : "universal",
-      "filename" : "background.png",
+      "filename" : "splash_background.png",
       "scale" : "1x"
     },
     {
@@ -28,14 +28,14 @@
           "height" : 1
         },
         "cap-insets" : {
-          "bottom" : 40,
-          "top" : 40,
-          "right" : 40,
-          "left" : 40
+          "bottom" : 46,
+          "top" : 46,
+          "right" : 46,
+          "left" : 46
         }
       },
       "idiom" : "universal",
-      "filename" : "background@2x.png",
+      "filename" : "splash_background@2x.png",
       "scale" : "2x"
     },
     {
@@ -47,14 +47,14 @@
           "height" : 1
         },
         "cap-insets" : {
-          "bottom" : 60,
-          "top" : 60,
-          "right" : 63,
-          "left" : 63
+          "bottom" : 70,
+          "top" : 69,
+          "right" : 70,
+          "left" : 69
         }
       },
       "idiom" : "universal",
-      "filename" : "background@3x.png",
+      "filename" : "splash_background@3x.png",
       "scale" : "3x"
     }
   ],

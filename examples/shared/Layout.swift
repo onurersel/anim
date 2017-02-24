@@ -13,9 +13,16 @@ extension UIView {
         UIView.alignMultiple(parent: to, child: self, attributes: [.left, .right, .top, .bottom])
     }
     
-    func center(to: UIView) {
+    func center(to: UIView, horizontalAdjustment: CGFloat = 0, verticalAdjustment: CGFloat = 0) {
         disableTranslation()
-        UIView.alignMultiple(parent: to, child: self, attributes: [.centerX, .centerY])
+        UIView.align(parent: to, child: self, attribute: .centerX, constant: horizontalAdjustment)
+        UIView.align(parent: to, child: self, attribute: .centerY, constant: verticalAdjustment)
+    }
+    
+    func bottom(to: UIView, verticalAdjustment: CGFloat = 0) {
+        disableTranslation()
+        UIView.align(parent: to, child: self, attribute: .centerX, constant: 0)
+        UIView.align(parent: to, child: self, attribute: .bottom, constant: verticalAdjustment)
     }
     
     func sizeWithoutDisablingTranslation(width: CGFloat, height: CGFloat) {

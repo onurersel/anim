@@ -21,16 +21,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Zhc-uu-hYY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_background" translatesAutoresizingMaskIntoConstraints="NO" id="5uY-b8-EWn">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.1859381675" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Zhc-uu-hYY" secondAttribute="trailing" id="WNT-s0-heD"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Zhc-uu-hYY" secondAttribute="bottom" id="YWP-Yw-GDZ"/>
-                            <constraint firstItem="Zhc-uu-hYY" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="aAa-gg-v22"/>
-                            <constraint firstItem="Zhc-uu-hYY" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="xzI-1f-fbp"/>
+                            <constraint firstAttribute="trailing" secondItem="5uY-b8-EWn" secondAttribute="trailing" id="F35-fx-8aC"/>
+                            <constraint firstItem="5uY-b8-EWn" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="IHa-hK-0B5"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="5uY-b8-EWn" secondAttribute="bottom" id="PDM-wy-YnE"/>
+                            <constraint firstItem="5uY-b8-EWn" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="vfC-wa-CtP"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -40,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="40" height="40"/>
+        <image name="splash_background" width="46" height="46"/>
     </resources>
 </document>

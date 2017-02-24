@@ -9,24 +9,52 @@ import UIKit
 
 class Emitter: UIView {
     
-    let emitterSize = CGSize(width: 120, height: 20)
+    struct Settings {
+        var image: UIImage
+        var emitSize: CGSize
+        var pullToCenter: Bool
+        var frequency: DoubleRange
+        var ascend: DoubleRange
+        var wobble: DoubleRange
+        var rotate: Bool
+        var scale: CGFloat
+        var duration: TimeInterval
+        var initialAlpha: CGFloat
+    }
     
-    func start() {
+    var settings: Settings!
+    private var availableParticles = [Particle]()
+    
+    
+    func start(_ settings: Settings) {
+        self.settings = settings
         self.clipsToBounds = false
-        self.backgroundColor = UIColor.red
         
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
-            let particle = Particle.create()
-            self.addSubview(particle)
-            self.position(particle: particle)
-            particle.move()
-        }
+        fire()
     }
     
-    private func position(particle: Particle) {
-        let x = -emitterSize.width/2.0 + emitterSize.width*CGFloat.random
-        let y = -emitterSize.height/2.0 + emitterSize.height*CGFloat.random
-        particle.frame.origin = CGPoint(x: x, y: y)
+    func fire() {
+        addParticle()
+        
+        let delay = Int(settings.frequency.random * 1000)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(delay), execute: fire)
     }
     
+    func addParticle() {
+        let particle = self.dequeueParticle()
+        addSubview(particle)
+        particle.move()
+    }
+    
+    func dequeueParticle() -> Particle {
+        let particle: Particle = (availableParticles.popLast() ?? Particle.new(withEmitter:self))
+        particle.reset()
+        
+        return particle
+    }
+    
+    func recycle(particle: Particle) {
+        particle.removeFromSuperview()
+        availableParticles.append(particle)
+    }
 }
