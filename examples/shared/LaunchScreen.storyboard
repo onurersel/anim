@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.59999999999999998" green="0.1859381675" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.15686274509803921" green="0.1764705882352941" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="5uY-b8-EWn" secondAttribute="trailing" id="F35-fx-8aC"/>
                             <constraint firstItem="5uY-b8-EWn" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="IHa-hK-0B5"/>
