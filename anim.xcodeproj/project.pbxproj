@@ -17,6 +17,9 @@
 		BA20433C1E5C86CF00E8FDCA /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20433B1E5C86CF00E8FDCA /* Emitter.swift */; };
 		BA20433E1E5C8A7000E8FDCA /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20433D1E5C8A7000E8FDCA /* Math.swift */; };
 		BA3FCA251E4B26430095BE41 /* anim.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3FCA241E4B26430095BE41 /* anim.swift */; };
+		BA4590711E6855CF00CAB89B /* BLOKKNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA4590701E6855CF00CAB89B /* BLOKKNeue-Regular.ttf */; };
+		BA4590731E6861F400CAB89B /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4590721E6861F400CAB89B /* Dummy.swift */; };
+		BA4590741E6861F400CAB89B /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4590721E6861F400CAB89B /* Dummy.swift */; };
 		BA5A67F31E602AF400CD560F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA5A67F21E602AF400CD560F /* Assets.xcassets */; };
 		BA656D931E574E35006A8221 /* anim.h in Headers */ = {isa = PBXBuildFile; fileRef = BA656D921E574E35006A8221 /* anim.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA656D951E574E35006A8221 /* anim.h in Headers */ = {isa = PBXBuildFile; fileRef = BA656D921E574E35006A8221 /* anim.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,9 +48,25 @@
 		BA75D68B1E5B40E500755E5D /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA75D68A1E5B40E500755E5D /* Promise.swift */; };
 		BA75D68C1E5B40E500755E5D /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA75D68A1E5B40E500755E5D /* Promise.swift */; };
 		BA75D68D1E5B40E500755E5D /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA75D68A1E5B40E500755E5D /* Promise.swift */; };
+		BA7925ED1E65B389002A57A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20432D1E5C81AD00E8FDCA /* AppDelegate.swift */; };
+		BA7925EE1E65B38D002A57A9 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2043141E5C7BDC00E8FDCA /* Layout.swift */; };
+		BA7925EF1E65B38D002A57A9 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20433D1E5C8A7000E8FDCA /* Math.swift */; };
+		BA7925F11E65B3A4002A57A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA82DC031E5F0DDA00FCEE49 /* Assets.xcassets */; };
+		BA7925F21E65B3A4002A57A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA20430C1E5C571100E8FDCA /* LaunchScreen.storyboard */; };
+		BA7925F41E65B3B6002A57A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA7925F31E65B3B6002A57A9 /* Assets.xcassets */; };
+		BA7925F91E65B3F2002A57A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7925F81E65B3F2002A57A9 /* ViewController.swift */; };
+		BA7925FB1E65BA51002A57A9 /* CircleMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7925FA1E65BA51002A57A9 /* CircleMenu.swift */; };
 		BA82DC041E5F0DDA00FCEE49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA82DC031E5F0DDA00FCEE49 /* Assets.xcassets */; };
 		BAB0E5251E5F434600E11EA8 /* anim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3FCA091E4B262F0095BE41 /* anim.framework */; };
 		BAB0E5261E5F434600E11EA8 /* anim.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA3FCA091E4B262F0095BE41 /* anim.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BABCF2DD1E65F88300158464 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABCF2DB1E65F87700158464 /* Event.swift */; };
+		BABCF2DE1E66EF0400158464 /* anim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3FCA091E4B262F0095BE41 /* anim.framework */; };
+		BABCF2DF1E66EF0400158464 /* anim.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA3FCA091E4B262F0095BE41 /* anim.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BABCF2E61E67021E00158464 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABCF2E51E67021E00158464 /* Style.swift */; };
+		BABCF2E71E67021E00158464 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABCF2E51E67021E00158464 /* Style.swift */; };
+		BACCCD441E71A21900547FAB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACCCD431E71A21900547FAB /* ProfileViewController.swift */; };
+		BACCCD461E71A4C500547FAB /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACCCD451E71A4C500547FAB /* ProfileDetailViewController.swift */; };
+		BACCCD481E71AAE400547FAB /* ProfileTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACCCD471E71AAE300547FAB /* ProfileTransition.swift */; };
 		BAE19D591E53313F000A41AB /* Animator-ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D581E53313F000A41AB /* Animator-ios.swift */; };
 		BAE19D5B1E5331A0000A41AB /* Ease.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5A1E5331A0000A41AB /* Ease.swift */; };
 		BAE19D5D1E53329B000A41AB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5C1E53329B000A41AB /* Settings.swift */; };
@@ -55,6 +74,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		BA2043391E5C84E800E8FDCA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA3FCA001E4B262F0095BE41 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA3FCA081E4B262F0095BE41;
+			remoteInfo = "anim-ios";
+		};
+		BA7925F51E65B3BF002A57A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BA3FCA001E4B262F0095BE41 /* Project object */;
 			proxyType = 1;
@@ -75,6 +101,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BABCF2E01E66EF0400158464 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BABCF2DF1E66EF0400158464 /* anim.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -84,7 +121,7 @@
 		BA20430B1E5C571100E8FDCA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA20430C1E5C571100E8FDCA /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA2043141E5C7BDC00E8FDCA /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
-		BA20431A1E5C80EB00E8FDCA /* example-bonfire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "example-bonfire.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA20431A1E5C80EB00E8FDCA /* animBonfire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = animBonfire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA20432D1E5C81AD00E8FDCA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA20432E1E5C81AD00E8FDCA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BA2043371E5C840600E8FDCA /* Particle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Particle.swift; sourceTree = "<group>"; };
@@ -93,6 +130,8 @@
 		BA3FCA091E4B262F0095BE41 /* anim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = anim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3FCA0D1E4B262F0095BE41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA3FCA241E4B26430095BE41 /* anim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = anim.swift; sourceTree = "<group>"; };
+		BA4590701E6855CF00CAB89B /* BLOKKNeue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BLOKKNeue-Regular.ttf"; sourceTree = "<group>"; };
+		BA4590721E6861F400CAB89B /* Dummy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
 		BA5A67F21E602AF400CD560F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA656D701E5726EF006A8221 /* anim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = anim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA656D921E574E35006A8221 /* anim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anim.h; sourceTree = "<group>"; };
@@ -105,7 +144,16 @@
 		BA70576D1E54D76E00565309 /* Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
 		BA70579E1E54EC7600565309 /* animTests-macos.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "animTests-macos.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA75D68A1E5B40E500755E5D /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		BA7925DA1E65B335002A57A9 /* animMessage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = animMessage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA7925F31E65B3B6002A57A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BA7925F81E65B3F2002A57A9 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BA7925FA1E65BA51002A57A9 /* CircleMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMenu.swift; sourceTree = "<group>"; };
 		BA82DC031E5F0DDA00FCEE49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BABCF2DB1E65F87700158464 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		BABCF2E51E67021E00158464 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		BACCCD431E71A21900547FAB /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		BACCCD451E71A4C500547FAB /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
+		BACCCD471E71AAE300547FAB /* ProfileTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTransition.swift; sourceTree = "<group>"; };
 		BAE19D581E53313F000A41AB /* Animator-ios.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Animator-ios.swift"; sourceTree = "<group>"; };
 		BAE19D5A1E5331A0000A41AB /* Ease.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ease.swift; sourceTree = "<group>"; };
 		BAE19D5C1E53329B000A41AB /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -165,6 +213,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA7925D71E65B335002A57A9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BABCF2DE1E66EF0400158464 /* anim.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -173,6 +229,7 @@
 			children = (
 				BA2043131E5C7BAD00E8FDCA /* shared */,
 				BA20432C1E5C81AD00E8FDCA /* bonfire */,
+				BA7925EC1E65B365002A57A9 /* message */,
 			);
 			path = examples;
 			sourceTree = "<group>";
@@ -180,12 +237,15 @@
 		BA2043131E5C7BAD00E8FDCA /* shared */ = {
 			isa = PBXGroup;
 			children = (
+				BA4590701E6855CF00CAB89B /* BLOKKNeue-Regular.ttf */,
 				BA20430B1E5C571100E8FDCA /* Info.plist */,
 				BA82DC031E5F0DDA00FCEE49 /* Assets.xcassets */,
 				BA20430C1E5C571100E8FDCA /* LaunchScreen.storyboard */,
 				BA20432D1E5C81AD00E8FDCA /* AppDelegate.swift */,
 				BA2043141E5C7BDC00E8FDCA /* Layout.swift */,
 				BA20433D1E5C8A7000E8FDCA /* Math.swift */,
+				BABCF2E51E67021E00158464 /* Style.swift */,
+				BA4590721E6861F400CAB89B /* Dummy.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -230,7 +290,8 @@
 				BA70579E1E54EC7600565309 /* animTests-macos.xctest */,
 				BA656D701E5726EF006A8221 /* anim.framework */,
 				BA656D9C1E57576F006A8221 /* animTests-tvos.xctest */,
-				BA20431A1E5C80EB00E8FDCA /* example-bonfire.app */,
+				BA20431A1E5C80EB00E8FDCA /* animBonfire.app */,
+				BA7925DA1E65B335002A57A9 /* animMessage.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,6 +320,20 @@
 				BA75D68A1E5B40E500755E5D /* Promise.swift */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		BA7925EC1E65B365002A57A9 /* message */ = {
+			isa = PBXGroup;
+			children = (
+				BA7925F31E65B3B6002A57A9 /* Assets.xcassets */,
+				BA7925F81E65B3F2002A57A9 /* ViewController.swift */,
+				BA7925FA1E65BA51002A57A9 /* CircleMenu.swift */,
+				BABCF2DB1E65F87700158464 /* Event.swift */,
+				BACCCD431E71A21900547FAB /* ProfileViewController.swift */,
+				BACCCD451E71A4C500547FAB /* ProfileDetailViewController.swift */,
+				BACCCD471E71AAE300547FAB /* ProfileTransition.swift */,
+			);
+			path = message;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,7 +399,7 @@
 			);
 			name = "example-bonfire";
 			productName = "example-bonfire";
-			productReference = BA20431A1E5C80EB00E8FDCA /* example-bonfire.app */;
+			productReference = BA20431A1E5C80EB00E8FDCA /* animBonfire.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BA3FCA081E4B262F0095BE41 /* anim-ios */ = {
@@ -415,6 +490,25 @@
 			productReference = BA70579E1E54EC7600565309 /* animTests-macos.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		BA7925D91E65B335002A57A9 /* example-message */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA7925EB1E65B335002A57A9 /* Build configuration list for PBXNativeTarget "example-message" */;
+			buildPhases = (
+				BA7925D61E65B335002A57A9 /* Sources */,
+				BA7925D71E65B335002A57A9 /* Frameworks */,
+				BA7925D81E65B335002A57A9 /* Resources */,
+				BABCF2E01E66EF0400158464 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA7925F61E65B3BF002A57A9 /* PBXTargetDependency */,
+			);
+			name = "example-message";
+			productName = "example-message";
+			productReference = BA7925DA1E65B335002A57A9 /* animMessage.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -460,6 +554,11 @@
 						DevelopmentTeam = SC8T7A8Q3S;
 						ProvisioningStyle = Automatic;
 					};
+					BA7925D91E65B335002A57A9 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = SC8T7A8Q3S;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = BA3FCA031E4B262F0095BE41 /* Build configuration list for PBXProject "anim" */;
@@ -482,6 +581,7 @@
 				BA70579D1E54EC7600565309 /* animTests-macos */,
 				BA656D9B1E57576F006A8221 /* animTests-tvos */,
 				BA2043191E5C80EB00E8FDCA /* example-bonfire */,
+				BA7925D91E65B335002A57A9 /* example-message */,
 			);
 		};
 /* End PBXProject section */
@@ -539,6 +639,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA7925D81E65B335002A57A9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA7925F11E65B3A4002A57A9 /* Assets.xcassets in Resources */,
+				BA7925F41E65B3B6002A57A9 /* Assets.xcassets in Resources */,
+				BA7925F21E65B3A4002A57A9 /* LaunchScreen.storyboard in Resources */,
+				BA4590711E6855CF00CAB89B /* BLOKKNeue-Regular.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -556,9 +667,11 @@
 			files = (
 				BA2043301E5C81AD00E8FDCA /* ViewController.swift in Sources */,
 				BA2043381E5C840600E8FDCA /* Particle.swift in Sources */,
+				BA4590731E6861F400CAB89B /* Dummy.swift in Sources */,
 				BA20432F1E5C81AD00E8FDCA /* AppDelegate.swift in Sources */,
 				BA20433C1E5C86CF00E8FDCA /* Emitter.swift in Sources */,
 				BA2043311E5C81C000E8FDCA /* Layout.swift in Sources */,
+				BABCF2E61E67021E00158464 /* Style.swift in Sources */,
 				BA20433E1E5C8A7000E8FDCA /* Math.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -624,6 +737,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA7925D61E65B335002A57A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA7925ED1E65B389002A57A9 /* AppDelegate.swift in Sources */,
+				BA7925EE1E65B38D002A57A9 /* Layout.swift in Sources */,
+				BA7925F91E65B3F2002A57A9 /* ViewController.swift in Sources */,
+				BA7925EF1E65B38D002A57A9 /* Math.swift in Sources */,
+				BABCF2DD1E65F88300158464 /* Event.swift in Sources */,
+				BACCCD461E71A4C500547FAB /* ProfileDetailViewController.swift in Sources */,
+				BA7925FB1E65BA51002A57A9 /* CircleMenu.swift in Sources */,
+				BACCCD441E71A21900547FAB /* ProfileViewController.swift in Sources */,
+				BACCCD481E71AAE400547FAB /* ProfileTransition.swift in Sources */,
+				BA4590741E6861F400CAB89B /* Dummy.swift in Sources */,
+				BABCF2E71E67021E00158464 /* Style.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -631,6 +762,11 @@
 			isa = PBXTargetDependency;
 			target = BA3FCA081E4B262F0095BE41 /* anim-ios */;
 			targetProxy = BA2043391E5C84E800E8FDCA /* PBXContainerItemProxy */;
+		};
+		BA7925F61E65B3BF002A57A9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA3FCA081E4B262F0095BE41 /* anim-ios */;
+			targetProxy = BA7925F51E65B3BF002A57A9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -673,7 +809,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-bonfire";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = animBonfire;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -688,7 +824,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-bonfire";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = animBonfire;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -980,6 +1116,36 @@
 			};
 			name = Release;
 		};
+		BA7925E91E65B335002A57A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SC8T7A8Q3S;
+				INFOPLIST_FILE = examples/shared/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-message";
+				PRODUCT_NAME = animMessage;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		BA7925EA1E65B335002A57A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SC8T7A8Q3S;
+				INFOPLIST_FILE = examples/shared/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-message";
+				PRODUCT_NAME = animMessage;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1051,6 +1217,15 @@
 			buildConfigurations = (
 				BA7057A71E54EC7600565309 /* Debug */,
 				BA7057A81E54EC7600565309 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA7925EB1E65B335002A57A9 /* Build configuration list for PBXNativeTarget "example-message" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA7925E91E65B335002A57A9 /* Debug */,
+				BA7925EA1E65B335002A57A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
