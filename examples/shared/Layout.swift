@@ -13,9 +13,12 @@ extension UIView {
         return UIView.alignMultiple(view: self, to: to, attributes: [.left, .right, .top, .bottom], constant: offset)
     }
     
-    func center(to: UIView, horizontalAdjustment: CGFloat = 0, verticalAdjustment: CGFloat = 0, parent: UIView? = nil) {
-        UIView.align(view: self, to: to, attribute: .centerX, constant: horizontalAdjustment, parent: parent)
-        UIView.align(view: self, to: to, attribute: .centerY, constant: verticalAdjustment, parent: parent)
+    @discardableResult
+    func center(to: UIView, horizontalAdjustment: CGFloat = 0, verticalAdjustment: CGFloat = 0, parent: UIView? = nil) -> [NSLayoutConstraint] {
+        return [
+            UIView.align(view: self, to: to, attribute: .centerX, constant: horizontalAdjustment, parent: parent),
+            UIView.align(view: self, to: to, attribute: .centerY, constant: verticalAdjustment, parent: parent)
+        ]
     }
     
     func bottom(to: UIView, verticalAdjustment: CGFloat = 0) {
@@ -28,10 +31,14 @@ extension UIView {
         UIView.align(view: self, to: to, attribute: .bottom, constant: bottomMargin)
     }
     
-    func size(width: CGFloat, height: CGFloat) {
+    @discardableResult
+    func size(width: CGFloat, height: CGFloat) -> [NSLayoutConstraint] {
         self.translatesAutoresizingMaskIntoConstraints = false
-        UIView.align(view: self, to: nil, attribute: .width, constant: width)
-        UIView.align(view: self, to: nil, attribute: .height, constant: height)
+        
+        return [
+            UIView.align(view: self, to: nil, attribute: .width, constant: width),
+            UIView.align(view: self, to: nil, attribute: .height, constant: height)
+        ]
     }
     
     @discardableResult

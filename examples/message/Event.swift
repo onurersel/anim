@@ -10,5 +10,6 @@ import Foundation
 struct Event {
     static let MenuToggle = NSNotification.Name(rawValue: "menu_toggle")
     static let MenuStateChange = NSNotification.Name(rawValue: "menu_state_change")
-    static let ShowProfileDetail = NSNotification.Name(rawValue: "show_profile_detail")
+    static let MenuHide = NSNotification.Name(rawValue: "menu_hide")
+    static let MenuShow = NSNotification.Name(rawValue: "menu_show")
 }

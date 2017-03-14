@@ -39,5 +39,8 @@ extension CGFloat {
     }
 }
 
-
-
+extension Int {
+    var randomTill: Int {
+        return Int( floor(DoubleRange.random01 * (Double(self)-0.00001)) )
+    }
+}

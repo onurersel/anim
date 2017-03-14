@@ -23,8 +23,10 @@ class CircleMenuController {
     private var buttonMessage: MenuButton
     private var buttonProfile: MenuButton
     private var state: State = .closed
+    private var isHidden: Bool = false
     
     private var runningAnimations = [anim]()
+    private var mainButtonBottomConstraint: NSLayoutConstraint!
     
     @discardableResult
     init(parent: UIView) {
@@ -33,7 +35,8 @@ class CircleMenuController {
         // main button
         buttonMain = MenuButton.create(hierarchy: .main, icon: .menu)
         parent.addSubview(buttonMain)
-        buttonMain.bottomRight(to: parent, rightMargin: -33, bottomMargin: -23)
+        UIView.align(view: buttonMain, to: parent, attribute: .right, constant: -33)
+        mainButtonBottomConstraint = UIView.align(view: buttonMain, to: parent, attribute: .bottom, constant: -23)
         
         // message button
         buttonMessage = MenuButton.create(hierarchy: .sub, icon: .message)
@@ -50,6 +53,8 @@ class CircleMenuController {
         // event listeners
         NotificationCenter.default.addObserver(self, selector: #selector(self.menuToggleHandler), name: Event.MenuToggle, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.menuStateChangeHandler), name: Event.MenuStateChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.hideHandler), name: Event.MenuHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.showHandler), name: Event.MenuShow, object: nil)
     }
     
     
@@ -206,6 +211,28 @@ class CircleMenuController {
             self.updateViewsForClosed()
         default:
             self.updateViewsForOpened()
+        }
+    }
+    
+    @objc
+    func hideHandler() {
+        anim(constraintParent: parent) { (settings) -> animClosure in
+            settings.ease = .easeInSine
+            settings.duration = 0.4
+            return {
+                self.mainButtonBottomConstraint.constant = 120
+            }
+        }
+    }
+    
+    @objc
+    func showHandler() {
+        anim(constraintParent: parent) { (settings) -> animClosure in
+            settings.ease = .easeOutBack
+            settings.duration = 0.5
+            return {
+                self.mainButtonBottomConstraint.constant = -23
+            }
         }
     }
     

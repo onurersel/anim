@@ -10,12 +10,17 @@ import UIKit
 
 struct Color {
     
-    static let lightGray    = UIColor(red: 219/255.0, green: 228/255.0, blue: 228/255.0, alpha: 1)
-    static let midGray      = UIColor(red: 187/255.0, green: 193/255.0, blue: 195/255.0, alpha: 1)
-    static let darkGray     = UIColor(red: 40/255.0, green: 45/255.0, blue: 47/255.0, alpha: 1)
-    static let red          = UIColor(red: 255/255.0, green: 66/255.0, blue: 85/255.0, alpha: 1)
-    static let orange       = UIColor(red: 232/255.0, green: 165/255.0, blue: 48/255.0, alpha: 1)
+    static let lightGray    = UIColor(red: 219.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 1)
+    static let midGray      = UIColor(red: 187.0/255.0, green: 193.0/255.0, blue: 195.0/255.0, alpha: 1)
+    static let darkGray     = UIColor(red: 40.0/255.0, green: 45.0/255.0, blue: 47.0/255.0, alpha: 1)
+    static let red          = UIColor(red: 255.0/255.0, green: 66.0/255.0, blue: 85.0/255.0, alpha: 1)
+    static let orange       = UIColor(red: 232.0/255.0, green: 165.0/255.0, blue: 48.0/255.0, alpha: 1)
+    static let yellow       = UIColor(red: 240.0/255.0, green: 243.0/255.0, blue: 8.0/255.0, alpha: 1)
+    static let lightGreen   = UIColor(red: 207.0/255.0, green: 255.0/255.0, blue: 136.0/255.0, alpha: 1)
+    static let blue         = UIColor(red: 85.0/255.0, green: 48.0/255.0, blue: 232.0/255.0, alpha: 1)
+    static let green        = UIColor(red: 79.0/255.0, green: 173.0/255.0, blue: 167.0/255.0, alpha: 1)
     
+    static let all          = [red, orange, yellow, lightGreen, blue, green]
 }
 
 struct Font {

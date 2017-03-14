@@ -17,6 +17,7 @@ class ViewController: UINavigationController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         anim.defaultSettings.isUserInteractionsEnabled = true
         
+        // navigation bar
         NavigationBarController.configure(navigationBar: self.navigationBar)
         self.delegate = self
         
@@ -29,8 +30,10 @@ class ViewController: UINavigationController, UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if operation == .push {
+        if fromVC is ProfileViewController && toVC is ProfileDetailViewController && operation == .push {
             return ProfileDetailShowAnimator()
+        } else if fromVC is ProfileDetailViewController && toVC is ProfileViewController && operation == .pop {
+            return ProfileDetailHideAnimator()
         }
         
         return nil
@@ -41,7 +44,9 @@ class NavigationBarController {
     static let shared = NavigationBarController()
     private static var navigationBar: UINavigationBar!
     
+    fileprivate let heightDefault: CGFloat = 71
     fileprivate var height: CGFloat = 71
+    
     private var navigationBar: UINavigationBar {
         return NavigationBarController.navigationBar
     }
@@ -52,6 +57,7 @@ class NavigationBarController {
     }
     
     func configureForProfile() {
+        height = heightDefault
         navigationBar.backgroundColor = Color.lightGray
         navigationBar.shadowImage = UIImage()
         navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -59,6 +65,11 @@ class NavigationBarController {
     
     func hide() {
         height = 0
+        navigationBar.sizeToFit()
+    }
+    
+    func show() {
+        height = heightDefault
         navigationBar.sizeToFit()
     }
 }
