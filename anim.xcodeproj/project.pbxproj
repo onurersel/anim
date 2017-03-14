@@ -11,6 +11,8 @@
 		BA150FAA1E53D2EB009A14E3 /* anim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3FCA091E4B262F0095BE41 /* anim.framework */; };
 		BA184E101E77EC16001CAE47 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA184E0F1E77EC16001CAE47 /* Foundation.swift */; };
 		BA184E111E77EC16001CAE47 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA184E0F1E77EC16001CAE47 /* Foundation.swift */; };
+		BA184E141E77EEB2001CAE47 /* MessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA184E121E77EEB2001CAE47 /* MessageListViewController.swift */; };
+		BA184E161E77FA31001CAE47 /* LayoutMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA184E151E77FA31001CAE47 /* LayoutMessage.swift */; };
 		BA20432F1E5C81AD00E8FDCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20432D1E5C81AD00E8FDCA /* AppDelegate.swift */; };
 		BA2043301E5C81AD00E8FDCA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20432E1E5C81AD00E8FDCA /* ViewController.swift */; };
 		BA2043311E5C81C000E8FDCA /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2043141E5C7BDC00E8FDCA /* Layout.swift */; };
@@ -121,6 +123,8 @@
 		BA150F971E53B838009A14E3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA150F9E1E53B85C009A14E3 /* animTests-ios.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "animTests-ios.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA184E0F1E77EC16001CAE47 /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
+		BA184E121E77EEB2001CAE47 /* MessageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListViewController.swift; sourceTree = "<group>"; };
+		BA184E151E77FA31001CAE47 /* LayoutMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutMessage.swift; sourceTree = "<group>"; };
 		BA20430B1E5C571100E8FDCA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA20430C1E5C571100E8FDCA /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA2043141E5C7BDC00E8FDCA /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
@@ -336,6 +340,8 @@
 				BACCCD431E71A21900547FAB /* ProfileViewController.swift */,
 				BACCCD451E71A4C500547FAB /* ProfileDetailViewController.swift */,
 				BACCCD471E71AAE300547FAB /* ProfileTransition.swift */,
+				BA184E121E77EEB2001CAE47 /* MessageListViewController.swift */,
+				BA184E151E77FA31001CAE47 /* LayoutMessage.swift */,
 			);
 			path = message;
 			sourceTree = "<group>";
@@ -758,6 +764,8 @@
 				BACCCD481E71AAE400547FAB /* ProfileTransition.swift in Sources */,
 				BA4590741E6861F400CAB89B /* Dummy.swift in Sources */,
 				BABCF2E71E67021E00158464 /* Style.swift in Sources */,
+				BA184E141E77EEB2001CAE47 /* MessageListViewController.swift in Sources */,
+				BA184E161E77FA31001CAE47 /* LayoutMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

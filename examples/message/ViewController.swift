@@ -25,7 +25,8 @@ class ViewController: UINavigationController, UINavigationControllerDelegate {
         circleMenuController = CircleMenuController(parent: self.view)
         
         // initial view controller
-        self.pushViewController(ProfileViewController(), animated: false)
+        //self.pushViewController(ProfileViewController(), animated: false)
+        self.pushViewController(MessageListViewController(), animated: false)
     }
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
