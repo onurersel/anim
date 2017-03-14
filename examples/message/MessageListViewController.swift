@@ -81,11 +81,12 @@ class BubbleScrollView: UIScrollView, UIScrollViewDelegate {
             return
         }
         
-        if contentOffset.y <= 0 || contentOffset.y + scrollView.frame.size.height >= contentSize.height  {
-            let currentVelocity = contentOffset - previousOffset
-            velocity = CGPoint.lerp(current: velocity, target: currentVelocity, t: 0.5)
+        if contentOffset.y <= 0 || contentOffset.y + scrollView.frame.size.height - contentInset.bottom >= contentSize.height  {
             NotificationCenter.default.post(name: Event.ConversationScroll, object: nil, userInfo: ["velocity": velocity])
         }
+        
+        let currentVelocity = contentOffset - previousOffset
+        velocity = CGPoint.lerp(current: velocity, target: currentVelocity, t: 0.5)
     }
 }
 
@@ -155,16 +156,16 @@ class ConversationBubble: UIButton {
         
         stopAnimation()
         
-        let initialDuration = DoubleRange(min: 0.2, max: 0.3).random
+        let initialDuration = DoubleRange(min: 0.18, max: 0.28).random
         let initialHorizontalDrift = DoubleRange(min: -0.4, max: 0.4).random.cgFloat
-        let initialVelocityMultiplier = DoubleRange(min: 2.6, max: 3.8).random.cgFloat
+        let initialVelocityMultiplier = DoubleRange(min: 2.1, max: 2.9).random.cgFloat
         
         animation = anim(constraintParent: parent) { (settings) -> animClosure in
             settings.ease = .easeOutQuad
             settings.duration = initialDuration
             settings.isUserInteractionsEnabled = true
             return {
-                self.positionConstraints.positionFloatingContainer(x: velocity*initialHorizontalDrift, y: velocity*initialVelocityMultiplier)
+                self.positionConstraints.positionFloatingContainer(x: velocity*initialHorizontalDrift, y: -velocity*initialVelocityMultiplier)
             }
         }
         .then(constraintParent: parent, { (settings) -> animClosure in
@@ -172,7 +173,7 @@ class ConversationBubble: UIButton {
             settings.duration = 0.4
             settings.isUserInteractionsEnabled = true
             return {
-                self.positionConstraints.positionFloatingContainer(x: 0, y: -velocity*1.4)
+                self.positionConstraints.positionFloatingContainer(x: 0, y: velocity*0.3)
             }
         })
         .then(constraintParent: parent, { (settings) -> animClosure in
@@ -205,7 +206,7 @@ class ConversationBubble: UIButton {
             return
         }
         
-        let limit: CGFloat = 18
+        let limit: CGFloat = 28
         let velocityY = max(min(velocity.y, limit), -limit)
         bounceOnEndScroll(withVelocity: velocityY)
     }
