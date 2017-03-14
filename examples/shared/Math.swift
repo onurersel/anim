@@ -34,6 +34,13 @@ extension CGFloat {
         return CGFloat.pi * self / 180.0
     }
     
+    var randomPointWithRadius: CGPoint {
+        let theta = CGFloat(arc4random_uniform(UInt32.max))/CGFloat(UInt32.max-1) * CGFloat.pi * 2.0
+        let x = self * cos(theta)
+        let y = self * sin(theta)
+        return CGPoint(x: CGFloat(x),y: CGFloat(y))
+    }
+    
     func randomize(range: CGFloat) -> CGFloat {
         return self - range * 0.5 + range * DoubleRange.random01.cgFloat
     }
@@ -42,5 +49,23 @@ extension CGFloat {
 extension Int {
     var randomTill: Int {
         return Int( floor(DoubleRange.random01 * (Double(self)-0.00001)) )
+    }
+}
+
+extension CGPoint {
+    static func + (left: CGPoint, right: CGPoint) -> CGPoint {
+        return CGPoint(x: left.x + right.x, y: left.y + right.y)
+    }
+    
+    static func - (left: CGPoint, right: CGPoint) -> CGPoint {
+        return CGPoint(x: left.x - right.x, y: left.y - right.y)
+    }
+    
+    static func * (left: CGPoint, right: CGFloat) -> CGPoint {
+        return CGPoint(x: left.x * right, y: left.y * right)
+    }
+    
+    static func lerp(current: CGPoint, target: CGPoint, t: CGFloat) -> CGPoint {
+        return current + ((target - current) * t)
     }
 }

@@ -12,4 +12,5 @@ struct Event {
     static let MenuStateChange = NSNotification.Name(rawValue: "menu_state_change")
     static let MenuHide = NSNotification.Name(rawValue: "menu_hide")
     static let MenuShow = NSNotification.Name(rawValue: "menu_show")
+    static let ConversationScroll = NSNotification.Name(rawValue: "conversation_scroll")
 }
