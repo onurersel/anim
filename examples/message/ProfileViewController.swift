@@ -22,8 +22,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return nil
     }
     
+    func profilePicturePositionInViewController() -> CGPoint? {
+        if let cell = selectedProfileCell {
+            let profilePicture = cell.profilePictureView!
+            return cell.profileBoxView.convert(profilePicture.center, to: self.view)
+        }
+        
+        return nil
+    }
+    
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.white
+        
+        self.automaticallyAdjustsScrollViewInsets = false
         
         tableView = UITableView()
         self.view.addSubview(tableView)
@@ -31,7 +42,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         tableView.rowHeight = 179
         tableView.separatorColor = UIColor.clear
-        tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
+        tableView.contentInset = UIEdgeInsetsMake(91, 0, 0, 0)
         self.tableView.setContentOffset(CGPoint(x:0, y:-91), animated: false)
         tableView.snapEdges(to: self.view)
         
@@ -84,6 +95,42 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         lastCellDisplayTimeInterval = now + delay
     }
+    
+    func hideCells() {
+        if let cells = tableView.visibleCells as? [ProfileCell],
+            let selectedCell = selectedProfileCell,
+            let selectedCellIndex = tableView.indexPath(for: selectedCell) {
+            let totalRowCount = tableView.visibleCells.count
+            
+            cells.forEach({ (cell) in
+                let cellIndex = self.tableView.indexPath(for: cell)!
+                let rowDistance = abs(selectedCellIndex.row - cellIndex.row)
+                if cellIndex.row > selectedCellIndex.row {
+                    cell.animateVertical(direction: .down, rowDistance: rowDistance, totalRowCount: totalRowCount)
+                } else if cellIndex.row < selectedCellIndex.row {
+                    cell.animateVertical(direction: .up, rowDistance: rowDistance, totalRowCount: totalRowCount)
+                }
+            })
+            
+        }
+    }
+    
+    func restoreCells() {
+        if let cells = tableView.visibleCells as? [ProfileCell] {
+            cells.forEach({ (cell) in
+                cell.positionDefault()
+            })
+        }
+        
+        if let selectedRow = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedRow, animated: false)
+        }
+        
+    }
+    
+    func positionProfilePictureIn(profileCell: ProfileCell) {
+        profileCell.profilePictureView.positionIn(profileBox: profileCell.profileBoxView)
+    }
 }
 
 
@@ -91,13 +138,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 class ProfileCell: UITableViewCell {
     
-    var profilePictureView: UIView!
+    enum Direction {
+        case up, down
+    }
+    
+    var profileBoxView: UIView!
+    var profilePictureView: ProfilePicture!
     private var inConstraint: NSLayoutConstraint!
     private var outConstraint: NSLayoutConstraint!
-    private var profileBoxView: UIButton!
+    private var topConstraint: NSLayoutConstraint!
     private var textContainerView: UIView!
     private var animations = [anim]()
-    private var profilePictureConstraints = [NSLayoutConstraint]()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         
@@ -120,7 +171,7 @@ class ProfileCell: UITableViewCell {
         profileBoxView.backgroundColor = Color.lightGray
         containerView.addSubview(profileBoxView)
         
-        UIView.alignMultiple(view: profileBoxView, to: containerView, attributes: [.width, .height, .top])
+        UIView.alignMultiple(view: profileBoxView, to: containerView, attributes: [.width, .height])
         inConstraint = NSLayoutConstraint(item: profileBoxView, attribute: .left,
                                           relatedBy: .equal,
                                           toItem: containerView, attribute: .left,
@@ -132,16 +183,13 @@ class ProfileCell: UITableViewCell {
                                            multiplier: 1, constant: 0)
         outConstraint.priority = 999
         contentView.addConstraint(outConstraint)
+        topConstraint = NSLayoutConstraint(item: profileBoxView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: 0)
+        containerView.addConstraint(topConstraint)
         
         // profile picture
-        profilePictureView = UIView()
-        profilePictureView.backgroundColor = Color.midGray
-        profilePictureView.isUserInteractionEnabled = false
+        profilePictureView = ProfilePicture.create()
         profileBoxView.addSubview(profilePictureView)
-        profilePictureView.layer.cornerRadius = 44
-        profilePictureView.size(width: 87, height: 87)
-        profilePictureConstraints.append( UIView.align(view: profilePictureView, to: profileBoxView, attribute: .left, constant: 28) )
-        profilePictureConstraints.append( UIView.align(view: profilePictureView, to: profileBoxView, attribute: .centerY) )
+        profilePictureView.positionIn(profileBox: profileBoxView)
         
         
         // text container
@@ -151,7 +199,7 @@ class ProfileCell: UITableViewCell {
         profileBoxView.addSubview(textContainerView)
         
         profileBoxView.addConstraints([
-            NSLayoutConstraint(item: textContainerView, attribute: .left, relatedBy: .equal, toItem: profilePictureView, attribute: .right, multiplier: 1, constant: 27),
+            NSLayoutConstraint(item: textContainerView, attribute: .left, relatedBy: .equal, toItem: profileBoxView, attribute: .left, multiplier: 1, constant: 142),
             NSLayoutConstraint(item: textContainerView, attribute: .right, relatedBy: .equal, toItem: profileBoxView, attribute: .right, multiplier: 1, constant: -27),
             NSLayoutConstraint(item: textContainerView, attribute: .top, relatedBy: .equal, toItem: profileBoxView, attribute: .top, multiplier: 1, constant: 27),
             NSLayoutConstraint(item: textContainerView, attribute: .bottom, relatedBy: .equal, toItem: profileBoxView, attribute: .bottom, multiplier: 1, constant: -27)
@@ -189,6 +237,31 @@ class ProfileCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if selected {
+            anim { (settings) -> (animClosure) in
+                settings.duration = 0.1
+                settings.ease = .easeInOutQuint
+                return {
+                    self.profileBoxView.backgroundColor = Color.midGray
+                }
+            }
+            .then({ (settings) -> animClosure in
+                settings.duration = 0.3
+                settings.delay = 0.1
+                settings.ease = .easeInQuad
+                return {
+                    self.alpha = 0
+                    self.profileBoxView.backgroundColor = Color.lightGray
+                    self.transform = CGAffineTransform.identity.scaledBy(x: 0.6, y: 0.6)
+                }
+            })
+        } else {
+            self.alpha = 1
+            self.profileBoxView.backgroundColor = Color.lightGray
+            self.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+        }
+    }
     
     // MARK: Position
     
@@ -227,14 +300,13 @@ class ProfileCell: UITableViewCell {
         animations.append(a)
         
         // profile picture fade
-        profilePictureView.alpha = 0
-        profilePictureView.transform = CGAffineTransform.identity.scaledBy(x: 0.7, y: 0.7)
+        profilePictureView.transform = CGAffineTransform.identity.scaledBy(x: 0.6, y: 0.6)
         a = anim { (settings) -> (animClosure) in
             settings.delay = 0.2
             settings.duration = 0.8
             settings.ease = .easeOutBack
             return {
-                self.profilePictureView.alpha = 1
+                self.profilePictureView.adjustViewForProfileList()
                 self.profilePictureView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
             }
         }
@@ -261,5 +333,143 @@ class ProfileCell: UITableViewCell {
         
         inConstraint.isActive = false
         contentView.layoutIfNeeded()
+    }
+    
+    func animateVertical(direction: ProfileCell.Direction, rowDistance: Int, totalRowCount: Int) {
+        let delay: TimeInterval = Double(totalRowCount - rowDistance - 1) * 0.09
+            
+        anim(constraintParent: contentView) { (settings) -> animClosure in
+            settings.ease = .easeInSine
+            settings.duration = 0.4
+            settings.delay = delay
+            return {
+                switch direction {
+                case .up:
+                    self.topConstraint.constant = -600
+                case .down:
+                    self.topConstraint.constant = 600
+                }
+            }
+        }
+        
+        self.profileBoxView.alpha = 1
+        anim { (settings) -> (animClosure) in
+            settings.ease = .easeInSine
+            settings.duration = 0.4
+            settings.delay = delay
+            return {
+                self.profileBoxView.alpha = 0
+            }
+        }
+    }
+    
+    func positionDefault() {
+        topConstraint.constant = 0
+        profileBoxView.alpha = 1
+        contentView.layoutIfNeeded()
+    }
+}
+
+
+// MARK: - Profile Picture
+
+extension ProfileCell {
+    
+    class ProfilePicture: UIView {
+        
+        var profilePictureForCell: UIImageView!
+        var profilePictureForHeader: UIImageView!
+        
+        private var positionConstraints: [NSLayoutConstraint]?
+        private var sizeConstaints: [NSLayoutConstraint]!
+        
+        class func create() -> ProfilePicture {
+            let view = ProfilePicture()
+            
+            view.isUserInteractionEnabled = false
+            view.sizeConstaints = view.size(width: 87, height: 87) //132
+            
+            view.profilePictureForCell = UIImageView(image: #imageLiteral(resourceName: "profile_picture_profile"))
+            view.addSubview(view.profilePictureForCell)
+            view.profilePictureForCell.snapEdges(to: view)
+            view.profilePictureForHeader = UIImageView(image: #imageLiteral(resourceName: "profile_picture_header"))
+            view.addSubview(view.profilePictureForHeader)
+            view.profilePictureForHeader.snapEdges(to: view)
+            
+            view.adjustViewForProfileList()
+            
+            return view
+        }
+        
+        func positionIn(profileBox: UIView) {
+            removePositionConstraints()
+            
+            profileBox.addSubview(self)
+            positionConstraints = [
+                UIView.align(view: self, to: profileBox, attribute: .left, constant: 28),
+                UIView.align(view: self, to: profileBox, attribute: .centerY)
+            ]
+            
+            sizeConstaints.forEach { (constraint) in
+                constraint.constant = 87
+            }
+        }
+        
+        func positionIn(header: UIView) {
+            removePositionConstraints()
+            
+            header.addSubview(self)
+            positionConstraints = [
+                NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: header, attribute: .centerX, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: header, attribute: .bottom, multiplier: 1, constant: -10)
+            ]
+            header.addConstraints(positionConstraints!)
+            
+            sizeConstaints.forEach { (constraint) in
+                constraint.constant = 132
+            }
+        }
+        
+        func positionIn(view: UIView, position: CGPoint) {
+            removePositionConstraints()
+            
+            view.addSubview(self)
+            positionConstraints = [
+                NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: position.x),
+                NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: position.y)
+            ]
+            view.addConstraints(positionConstraints!)
+        }
+        
+        func positionBackOnCellWhileOn(header: UIView, positionOnCell: CGPoint) {
+            removePositionConstraints()
+            
+            header.addSubview(self)
+            positionConstraints = [
+                NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: header, attribute: .left, multiplier: 1, constant: positionOnCell.x),
+                NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: header, attribute: .top, multiplier: 1, constant: positionOnCell.y)
+            ]
+            header.addConstraints(positionConstraints!)
+            
+            sizeConstaints.forEach { (constraint) in
+                constraint.constant = 87
+            }
+        }
+        
+        func adjustViewForProfileList() {
+            profilePictureForHeader.alpha = 0
+        }
+        
+        func adjustViewForHeader() {
+            profilePictureForHeader.alpha = 1
+        }
+        
+        private func removePositionConstraints() {
+            if let constraints = positionConstraints {
+                self.superview?.removeConstraints(constraints)
+            }
+            positionConstraints?.removeAll()
+        }
+        
     }
 }
