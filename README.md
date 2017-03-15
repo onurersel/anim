@@ -31,7 +31,7 @@ It supports a bunch of easing functions and chaining multiple animations. It's a
 It uses `NSAnimationContext` on macOS.
 
 ---
-<img src="img/installation.png" alt="Installation" width="274">
+<img src="img/installation.png" alt="Installation" width="293">
 
 #### Cocoapods
 
@@ -50,7 +50,7 @@ github "onurersel/anim"
 Or simply drag the swift files inside `src/` folder into your project.
 
 ---
-<img src="img/api.png" alt="API" width="116">
+<img src="img/api.png" alt="API" width="127">
 
 For complete documentation, visit [http://onurersel.github.io/anim/](http://onurersel.github.io/anim/).
 
@@ -169,7 +169,7 @@ anim.defaultSettings.ease = .easeInOutCubic
 `anim.Ease` exposes a bunch of easing options.
 
 ---
-<img src="img/roadmap.png" alt="Roadmap" width="238">
+<img src="img/roadmap.png" alt="Roadmap" width="286">
 
 - [x] Chaining animations
 - [x] Wait, callback functions
@@ -177,9 +177,13 @@ anim.defaultSettings.ease = .easeInOutCubic
 - [x] iOS 8 and 9 support
 - [x] macOS support
 - [x] tvOS support
+- [ ] Example projects
+- [ ] API for choreographing animations
+- [ ] Grouping animations
+- [ ] Easing with spring
 - [ ] Shape animations
 
 ---
-<img src="img/license.png" alt="License" width="152">
+<img src="img/license.png" alt="License" width="163">
 
 `anim` is released under the MIT license. See LICENSE for details.
