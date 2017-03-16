@@ -29,12 +29,7 @@ class ViewController: UINavigationController, UINavigationControllerDelegate {
         circleMenuController = CircleMenuController(parent: self.view)
 
         // initial view controller
-<<<<<<< HEAD
         self.pushViewController(MessageDialogueViewController(), animated: false)
-=======
-        //self.pushViewController(ProfileViewController(), animated: false)
-        self.pushViewController(MessageListViewController(), animated: false)
->>>>>>> d2aa03dfdad8a24dad3c4a75f3df2d04e1be0b96
     }
 
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -53,12 +48,8 @@ class NavigationBarController {
     static let shared = NavigationBarController()
     private static var navigationBar: UINavigationBar!
 
-<<<<<<< HEAD
     fileprivate let heightProfileDefault: CGFloat = 71
     fileprivate let heightMessageDefault: CGFloat = 89
-=======
-    fileprivate let heightDefault: CGFloat = 71
->>>>>>> d2aa03dfdad8a24dad3c4a75f3df2d04e1be0b96
     fileprivate var height: CGFloat = 71
 
     private var navigationBar: UINavigationBar {
@@ -67,7 +58,6 @@ class NavigationBarController {
 
     class func configure(navigationBar: UINavigationBar) {
         self.navigationBar = navigationBar
-<<<<<<< HEAD
         navigationBar.shadowImage = UIImage()
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         shared.showProfile()
@@ -87,43 +77,20 @@ class NavigationBarController {
 
     func hide() {
         height = 0
-=======
-        shared.configureForProfile()
-    }
-
-    func configureForProfile() {
-        height = heightDefault
-        navigationBar.backgroundColor = Color.lightGray
-        navigationBar.shadowImage = UIImage()
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-    }
-
-    func hide() {
-        height = 0
-        navigationBar.sizeToFit()
-    }
-
-    func show() {
-        height = heightDefault
->>>>>>> d2aa03dfdad8a24dad3c4a75f3df2d04e1be0b96
         navigationBar.sizeToFit()
     }
 }
 
 
 
-<<<<<<< HEAD
+
 class AppNavigationBar: UINavigationBar {
-=======
-extension UINavigationBar {
->>>>>>> d2aa03dfdad8a24dad3c4a75f3df2d04e1be0b96
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         var newSize = super.sizeThatFits(size)
         newSize.height = NavigationBarController.shared.height
 
         return newSize
     }
-<<<<<<< HEAD
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -148,6 +115,3 @@ protocol NavigationBarButton {}
 protocol LeftNavigationBarButton: NavigationBarButton {}
 protocol RightNavigationBarButton: NavigationBarButton {}
 
-=======
-}
->>>>>>> d2aa03dfdad8a24dad3c4a75f3df2d04e1be0b96
