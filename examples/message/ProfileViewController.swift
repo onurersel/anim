@@ -52,6 +52,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         selectedProfileCell?.setSelected(false, animated: false)
+        
+        NotificationCenter.default.post(name: Event.MenuShow, object: nil)
     }
     
     

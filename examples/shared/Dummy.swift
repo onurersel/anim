@@ -21,6 +21,10 @@ struct Dummy {
         return text(10)
     }
     
+    static var message: String {
+        return text(DoubleRange(min: 1, max: 8).random.int)
+    }
+    
     static func text(_ length: Int) -> String {
         var str = ""
         for _ in 0..<length {

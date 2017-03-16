@@ -25,8 +25,6 @@ class ProfileDetailShowAnimator: NSObject, UIViewControllerAnimatedTransitioning
         detailViewController.prepareForDetailBodyIn()
         profileViewController.hideCells()
         
-        NotificationCenter.default.post(name: Event.MenuHide, object: nil)
-        
         if let profilePicture = profileViewController.selectedProfileCell?.profilePictureView,
             let position = profileViewController.profilePicturePositionInViewController() {
             
@@ -62,12 +60,10 @@ class ProfileDetailHideAnimator: NSObject, UIViewControllerAnimatedTransitioning
         
         detailViewController.animateProfileDetailBodyOut()
         detailViewController.animateHeaderOut { 
-            NavigationBarController.shared.show()
+            NavigationBarController.shared.showProfile()
             transitionContext.completeTransition(true)
         }
         
         profileViewController.restoreCells()
-        
-        NotificationCenter.default.post(name: Event.MenuShow, object: nil)
     }
 }

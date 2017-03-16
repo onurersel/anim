@@ -71,6 +71,8 @@
 		BACCCD441E71A21900547FAB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACCCD431E71A21900547FAB /* ProfileViewController.swift */; };
 		BACCCD461E71A4C500547FAB /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACCCD451E71A4C500547FAB /* ProfileDetailViewController.swift */; };
 		BACCCD481E71AAE400547FAB /* ProfileTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACCCD471E71AAE300547FAB /* ProfileTransition.swift */; };
+		BAD5C99E1E79452900C65715 /* MessageDialogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD5C99D1E79452900C65715 /* MessageDialogueViewController.swift */; };
+		BAE115AC1E7AB73600B16474 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE115AB1E7AB73600B16474 /* BackButton.swift */; };
 		BAE19D591E53313F000A41AB /* Animator-ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D581E53313F000A41AB /* Animator-ios.swift */; };
 		BAE19D5B1E5331A0000A41AB /* Ease.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5A1E5331A0000A41AB /* Ease.swift */; };
 		BAE19D5D1E53329B000A41AB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5C1E53329B000A41AB /* Settings.swift */; };
@@ -161,6 +163,8 @@
 		BACCCD431E71A21900547FAB /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BACCCD451E71A4C500547FAB /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		BACCCD471E71AAE300547FAB /* ProfileTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTransition.swift; sourceTree = "<group>"; };
+		BAD5C99D1E79452900C65715 /* MessageDialogueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDialogueViewController.swift; sourceTree = "<group>"; };
+		BAE115AB1E7AB73600B16474 /* BackButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		BAE19D581E53313F000A41AB /* Animator-ios.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Animator-ios.swift"; sourceTree = "<group>"; };
 		BAE19D5A1E5331A0000A41AB /* Ease.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ease.swift; sourceTree = "<group>"; };
 		BAE19D5C1E53329B000A41AB /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -336,12 +340,14 @@
 				BA7925F31E65B3B6002A57A9 /* Assets.xcassets */,
 				BA7925F81E65B3F2002A57A9 /* ViewController.swift */,
 				BA7925FA1E65BA51002A57A9 /* CircleMenu.swift */,
+				BAE115AB1E7AB73600B16474 /* BackButton.swift */,
 				BABCF2DB1E65F87700158464 /* Event.swift */,
 				BACCCD431E71A21900547FAB /* ProfileViewController.swift */,
 				BACCCD451E71A4C500547FAB /* ProfileDetailViewController.swift */,
 				BACCCD471E71AAE300547FAB /* ProfileTransition.swift */,
 				BA184E121E77EEB2001CAE47 /* MessageListViewController.swift */,
 				BA184E151E77FA31001CAE47 /* LayoutMessage.swift */,
+				BAD5C99D1E79452900C65715 /* MessageDialogueViewController.swift */,
 			);
 			path = message;
 			sourceTree = "<group>";
@@ -760,12 +766,14 @@
 				BACCCD461E71A4C500547FAB /* ProfileDetailViewController.swift in Sources */,
 				BA184E111E77EC16001CAE47 /* Foundation.swift in Sources */,
 				BA7925FB1E65BA51002A57A9 /* CircleMenu.swift in Sources */,
+				BAE115AC1E7AB73600B16474 /* BackButton.swift in Sources */,
 				BACCCD441E71A21900547FAB /* ProfileViewController.swift in Sources */,
 				BACCCD481E71AAE400547FAB /* ProfileTransition.swift in Sources */,
 				BA4590741E6861F400CAB89B /* Dummy.swift in Sources */,
 				BABCF2E71E67021E00158464 /* Style.swift in Sources */,
 				BA184E141E77EEB2001CAE47 /* MessageListViewController.swift in Sources */,
 				BA184E161E77FA31001CAE47 /* LayoutMessage.swift in Sources */,
+				BAD5C99E1E79452900C65715 /* MessageDialogueViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

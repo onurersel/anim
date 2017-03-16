@@ -13,4 +13,6 @@ struct Event {
     static let MenuHide = NSNotification.Name(rawValue: "menu_hide")
     static let MenuShow = NSNotification.Name(rawValue: "menu_show")
     static let ConversationScroll = NSNotification.Name(rawValue: "conversation_scroll")
+    static let AddMessage = NSNotification.Name(rawValue: "add_message")
+    static let UpdateConversationTable = NSNotification.Name(rawValue: "update_conversation_table")
 }
