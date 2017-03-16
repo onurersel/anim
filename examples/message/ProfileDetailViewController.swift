@@ -9,9 +9,9 @@ import UIKit
 import anim
 
 class ProfileDetailViewController: UIViewController {
-    
+
     var backButtonView: BackButton!
-    
+
     private var headerView: UIView!
     private var bodyContainerView: ContainerView!
     private var headerHeightConstraint: NSLayoutConstraint!
@@ -21,11 +21,11 @@ class ProfileDetailViewController: UIViewController {
     private var containerTopConstraint: NSLayoutConstraint!
     private var profilePicture: ProfileCell.ProfilePicture!
     private var profilePictureOriginalPosition: CGPoint!
-    
-    
+
+
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.clear
-        
+
         // header
         headerView = UIView()
         headerView.backgroundColor = Color.lightGray
@@ -33,7 +33,7 @@ class ProfileDetailViewController: UIViewController {
         UIView.alignMultiple(view: headerView, to: self.view, attributes: [.left, .top, .right])
         //UIView.align(view: headerView, to: nil, attribute: .height, constant: 173)
         headerHeightConstraint = UIView.align(view: headerView, to: nil, attribute: .height, constant: 71)
-        
+
         // back button
         backButtonView = BackButton.create()
         headerView.addSubview(backButtonView)
@@ -46,13 +46,13 @@ class ProfileDetailViewController: UIViewController {
         backButtonTopConstraint.priority = 999
         backButtonTopConstraint.isActive = false
         headerView.addConstraint(backButtonTopConstraint)
-        
+
         // body container
         bodyContainerView = ContainerView.create()
         self.view.addSubview(bodyContainerView)
         UIView.alignMultiple(view: bodyContainerView, to: self.view, attributes: [.left, .bottom, .right])
         bodyContainerView.alignTo(headerView: headerView, parent: self.view)
-        
+
         // text
         let textLabelView = UILabel()
         textLabelView.textColor = Color.lightGray
@@ -61,39 +61,39 @@ class ProfileDetailViewController: UIViewController {
         textLabelView.contentMode = .top
         textLabelView.translatesAutoresizingMaskIntoConstraints = false
         bodyContainerView.addSubview(textLabelView)
-        
+
         UIView.align(view: textLabelView, to: bodyContainerView, attribute: .top, constant: 0)
         UIView.align(view: textLabelView, to: self.view, attribute: .left, constant: 34)
         UIView.align(view: textLabelView, to: self.view, attribute: .right, constant: -34)
         UIView.align(view: textLabelView, to: nil, attribute: .height, constant: 363)
-        
+
         textLabelView.attributedText = Dummy.text(46).attributedBlock
-        
+
         // image
         let imageView = UIView()
         imageView.backgroundColor = Color.lightGray
         bodyContainerView.addSubview(imageView)
-        
+
         UIView.align(view: imageView, to: self.view, attribute: .left, constant: 34)
         UIView.align(view: imageView, to: self.view, attribute: .right, constant: -34)
         UIView.align(view: imageView, to: nil, attribute: .height, constant: 173)
-        
+
         bodyContainerView.addConstraints([
             NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: textLabelView, attribute: .bottom, multiplier: 1, constant: 27),
             NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: bodyContainerView, attribute: .bottom, multiplier: 1, constant: 0)
             ])
-        
+
         // move header on top of display list
         self.view.addSubview(headerView)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.setHidesBackButton(true, animated: false)
-        
+
         NotificationCenter.default.post(name: Event.MenuHide, object: nil)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         backButtonView.addTarget(self, action: #selector(self.backAction), for: .touchUpInside)
@@ -102,11 +102,11 @@ class ProfileDetailViewController: UIViewController {
         super.viewWillDisappear(animated)
         backButtonView.removeTarget(self, action: #selector(self.backAction), for: .touchUpInside)
     }
-    
+
     // MARK: Animations
-    
+
     func startHeaderInAnimation() {
-        
+
         // header
         anim(constraintParent: self.view) { (settings) -> animClosure in
             settings.ease = .easeInOutQuint
@@ -115,7 +115,7 @@ class ProfileDetailViewController: UIViewController {
                 self.headerHeightConstraint.constant = 173
             }
         }
-        
+
         anim { (settings) -> (animClosure) in
             settings.ease = .easeOutQuint
             settings.duration = 1
@@ -123,8 +123,8 @@ class ProfileDetailViewController: UIViewController {
                 self.headerView.backgroundColor = Color.all.random
             }
         }
-        
-        
+
+
         // back button
         anim(constraintParent: self.view) { (settings) -> animClosure in
             settings.ease = .easeInOutQuint
@@ -137,9 +137,9 @@ class ProfileDetailViewController: UIViewController {
             }
         }
 
-        
+
         backButtonView.layer.cornerRadius = 20
-        
+
         anim { (settings) -> (animClosure) in
             settings.ease = .easeInOutQuint
             settings.delay = 0.2
@@ -150,7 +150,7 @@ class ProfileDetailViewController: UIViewController {
         }
         backButtonView.animateArrowIn()
     }
-    
+
     func animateHeaderOut(_ completion: @escaping (()->Void)) {
         anim(constraintParent: self.view) { (settings) -> (animClosure) in
             settings.ease = .easeInOutQuint
@@ -160,7 +160,7 @@ class ProfileDetailViewController: UIViewController {
                 self.backButtonTopConstraint.constant = -200
             }
         }
-        
+
         anim{ (settings) -> (animClosure) in
             settings.ease = .easeInOutQuint
             settings.duration = 0.6
@@ -170,13 +170,13 @@ class ProfileDetailViewController: UIViewController {
             }
         }
     }
-    
+
     func position(profilePicture: ProfileCell.ProfilePicture, position: CGPoint) {
         self.profilePictureOriginalPosition = position
         self.profilePicture = profilePicture
-        
+
         profilePicture.positionIn(view: self.headerView, position: position)
-        
+
         anim(constraintParent: self.view) { (settings) -> animClosure in
             settings.ease = .easeInOutQuint
             settings.duration = 1.3
@@ -184,16 +184,16 @@ class ProfileDetailViewController: UIViewController {
                 profilePicture.positionIn(header: self.headerView)
             }
         }
-        
+
         anim{ (settings) -> animClosure in
             settings.ease = .easeOutQuint
             return {
                 profilePicture.adjustViewForHeader()
             }
         }
-        
+
     }
-    
+
     func positionBack(_ completion: @escaping (()->Void)) {
         anim(constraintParent: self.view) { (settings) -> animClosure in
             settings.ease = .easeInOutQuint
@@ -203,7 +203,7 @@ class ProfileDetailViewController: UIViewController {
                 self.profilePicture.positionBackOnCellWhileOn(header: self.headerView, positionOnCell: self.profilePictureOriginalPosition)
             }
         }
-        
+
         anim{ (settings) -> animClosure in
             settings.ease = .easeOutQuint
             settings.duration = 0.7
@@ -212,66 +212,66 @@ class ProfileDetailViewController: UIViewController {
             }
         }
     }
-    
+
     func prepareForDetailBodyIn() {
         bodyContainerView.prepareForAnimateIn()
     }
-    
+
     func animateProfileDetailBodyIn(_ completion: @escaping ()->Void) {
         bodyContainerView.animateIn(completion)
     }
-    
+
     func animateProfileDetailBodyOut() {
         bodyContainerView.animateOut()
     }
-    
+
     // MARK: Handlers
-    
+
     @objc
     func backAction() {
         _ = self.navigationController?.popViewController(animated: true)
     }
-    
-    
+
+
 }
 
 
 // MARK: - Container Scroll View
 
 extension ProfileDetailViewController {
-    
+
     class ContainerView: UIScrollView {
-        
+
         var outConstraint: NSLayoutConstraint!
         var inConstraint: NSLayoutConstraint!
         weak var parent: UIView!
-        
+
         class func create() -> ContainerView {
             let view = ContainerView()
             view.contentInset = UIEdgeInsetsMake(0, 0, 42, 0)
             view.backgroundColor = UIColor.white
-            
+
             return view
         }
-        
+
         func alignTo(headerView: UIView, parent: UIView) {
             self.parent = parent
-            
+
             inConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: headerView, attribute: .bottom, multiplier: 1, constant: 0)
             parent.addConstraint(inConstraint)
-            
+
             outConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: parent, attribute: .bottom, multiplier: 1, constant: 0)
             outConstraint.priority = 999
             outConstraint.isActive = false
             parent.addConstraint(outConstraint)
         }
-        
+
         func prepareForAnimateIn() {
             outConstraint.isActive = true
             inConstraint.isActive = false
             parent.layoutIfNeeded()
         }
-        
+
         func animateIn(_ completion: @escaping ()->Void) {
             self.alpha = 1
             outConstraint.isActive = true
@@ -287,7 +287,7 @@ extension ProfileDetailViewController {
                 }
             }
         }
-        
+
         func animateOut() {
             outConstraint.isActive = false
             inConstraint.isActive = true
@@ -299,7 +299,7 @@ extension ProfileDetailViewController {
                     self.inConstraint.isActive = false
                 }
             }
-            
+
             anim { (settings) -> (animClosure) in
                 settings.duration = 0.5
                 settings.ease = .easeInSine
@@ -308,7 +308,7 @@ extension ProfileDetailViewController {
                 }
             }
         }
-        
+
     }
-    
+
 }
