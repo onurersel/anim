@@ -32,6 +32,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     override func viewDidLoad() {
+        self.navigationItem.setHidesBackButton(true, animated: false)
         self.view.backgroundColor = UIColor.white
 
         self.automaticallyAdjustsScrollViewInsets = false
@@ -45,15 +46,31 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.contentInset = UIEdgeInsetsMake(91, 0, 0, 0)
         self.tableView.setContentOffset(CGPoint(x:0, y:-91), animated: false)
         tableView.snapEdges(to: self.view)
-
+        
         tableView.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        addListeners()
         selectedProfileCell?.setSelected(false, animated: false)
         
         NotificationCenter.default.post(name: Event.MenuShow, object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeListeners()
+    }
+    
+    
+    private func addListeners() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.navigateToMessagesHandler), name: Event.NavigateToMessages, object: nil)
+    }
+    
+    private func removeListeners() {
+        NotificationCenter.default.removeObserver(self)
     }
 
 
@@ -99,9 +116,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func hideCells() {
-        if let cells = tableView.visibleCells as? [ProfileCell],
-            let selectedCell = selectedProfileCell,
-            let selectedCellIndex = tableView.indexPath(for: selectedCell) {
+        if let cells = tableView.visibleCells as? [ProfileCell] {
+            var selectedCellIndex: IndexPath!
+            if let selectedProfileCell = selectedProfileCell {
+                selectedCellIndex = tableView.indexPath(for: selectedProfileCell)
+            } else {
+                selectedCellIndex = IndexPath(row: -1, section: 0)
+            }
+            
             let totalRowCount = tableView.visibleCells.count
 
             cells.forEach({ (cell) in
@@ -133,6 +155,58 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func positionProfilePictureIn(profileCell: ProfileCell) {
         profileCell.profilePictureView.positionIn(profileBox: profileCell.profileBoxView)
     }
+    
+    @objc
+    func navigateToMessagesHandler(notification: Notification) {
+        self.navigationController?.pushViewController(MessageListViewController(), animated: true)
+        self.navigationController?.viewControllers.remove(at: 0)
+    }
+}
+
+
+extension ProfileViewController: AnimatedViewController {
+    var estimatedInAnimationDuration: TimeInterval {
+        return 1
+    }
+    var estimatedOutAnimationDuration: TimeInterval {
+        return 1
+    }
+    
+    func animateIn(_ completion: @escaping ()->Void) {
+        anim { (settings) -> (animClosure) in
+            settings.ease = .easeOutQuint
+            settings.duration = 0.4
+            return {
+                NavigationBarController.shared.showProfile()
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1000)) {
+            completion()
+        }
+    }
+    func animateOut(_ completion: @escaping ()->Void) {
+        //NotificationCenter.default.post(name: Event.MenuHide, object: nil)
+        self.hideCells()
+        
+        anim { (settings) -> (animClosure) in
+            settings.ease = .easeInQuint
+            settings.duration = 0.4
+            return {
+                NavigationBarController.shared.hide()
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1000)) {
+            completion()
+        }
+    }
+    func prepareForAnimateIn() {
+        
+    }
+    func prepareForAnimateOut() {
+        
+    }
 }
 
 
@@ -157,6 +231,8 @@ class ProfileCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         self.selectionStyle = .none
+        self.backgroundColor = UIColor.clear
+        self.contentView.backgroundColor = UIColor.clear
 
         // container
         let containerView = UIView()
@@ -411,7 +487,8 @@ extension ProfileCell {
                 UIView.align(view: self, to: profileBox, attribute: .left, constant: 28),
                 UIView.align(view: self, to: profileBox, attribute: .centerY)
             ]
-
+            self.layoutIfNeeded()
+            
             sizeConstaints.forEach { (constraint) in
                 constraint.constant = 87
             }

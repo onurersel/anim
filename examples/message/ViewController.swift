@@ -23,13 +23,14 @@ class ViewController: UINavigationController, UINavigationControllerDelegate {
 
         // navigation bar
         NavigationBarController.configure(navigationBar: self.navigationBar)
+        NavigationBarController.shared.showProfile()
         self.delegate = self
-
+        
         // circle menu
         circleMenuController = CircleMenuController(parent: self.view)
 
         // initial view controller
-        self.pushViewController(MessageDialogueViewController(), animated: false)
+        self.pushViewController(ProfileViewController(), animated: false)
     }
 
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -38,9 +39,11 @@ class ViewController: UINavigationController, UINavigationControllerDelegate {
             return ProfileDetailShowAnimator()
         } else if fromVC is ProfileDetailViewController && toVC is ProfileViewController && operation == .pop {
             return ProfileDetailHideAnimator()
+        } else if fromVC is MessageListViewController && toVC is MessageDialogueViewController && operation == .push {
+            return MessageConversationShowAnimator()
         }
 
-        return nil
+        return DefaultAnimator()
     }
 }
 
@@ -62,16 +65,19 @@ class NavigationBarController {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         shared.showProfile()
     }
+    
+    func update(color: UIColor) {
+        navigationBar.backgroundColor = color
+    }
 
     func showProfile() {
+        update(color: Color.lightGray)
         height = heightProfileDefault
-        navigationBar.backgroundColor = Color.lightGray
         navigationBar.sizeToFit()
     }
 
-    func showMessage(color: UIColor) {
+    func showMessage() {
         height = heightMessageDefault
-        navigationBar.backgroundColor = color
         navigationBar.sizeToFit()
     }
 
@@ -99,13 +105,15 @@ class AppNavigationBar: UINavigationBar {
 
         for view in subviews {
             if view is NavigationBarButton {
-                view.center.y = self.center.y
+                view.center.y = (self.frame.size.height <= 0) ? -view.bounds.size.height * 0.5 : self.center.y
             }
+            
+            let centerXOffset = 26 + view.bounds.size.width * 0.5
 
             if view is LeftNavigationBarButton {
-                view.center.x = view.center.y
+                view.center.x = centerXOffset
             } else if view is RightNavigationBarButton {
-                view.center.x = frame.size.width - view.center.y
+                view.center.x = frame.size.width - centerXOffset
             }
         }
     }

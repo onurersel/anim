@@ -9,6 +9,9 @@ import UIKit
 import anim
 
 class BackBarButtonItem: UIBarButtonItem {
+    
+    weak var buttonView: BackButton?
+    
     class func create() -> BackBarButtonItem {
         let view = BackButton.create()
         view.size(width: 38, height: 38)
@@ -16,6 +19,7 @@ class BackBarButtonItem: UIBarButtonItem {
         view.layer.cornerRadius = 19
         
         let barButton = BackBarButtonItem(customView: view)
+        barButton.buttonView = view
         
         return barButton
     }
@@ -24,7 +28,8 @@ class BackBarButtonItem: UIBarButtonItem {
 class BackButton: UIButton, LeftNavigationBarButton {
     
     private var arrowImageView: UIImageView!
-    private var centerXConstraint: NSLayoutConstraint!
+    private var arrowCenterXConstraint: NSLayoutConstraint!
+    
     
     class func create() -> BackButton {
         let view = BackButton()
@@ -35,10 +40,22 @@ class BackButton: UIButton, LeftNavigationBarButton {
         // arrow
         view.arrowImageView = UIImageView(image: #imageLiteral(resourceName: "back_arrow"))
         view.addSubview(view.arrowImageView)
-        view.centerXConstraint = UIView.align(view: view.arrowImageView, to: view, attribute: .centerX)
+        view.arrowCenterXConstraint = UIView.align(view: view.arrowImageView, to: view, attribute: .centerX)
         UIView.align(view: view.arrowImageView, to: view, attribute: .centerY)
         
+        view.addTarget(view, action: #selector(view.downAction), for: .touchDown)
+        view.addTarget(view, action: #selector(view.upAction), for: .touchUpInside)
+        view.addTarget(view, action: #selector(view.upAction), for: .touchCancel)
+        view.addTarget(view, action: #selector(view.upAction), for: .touchUpOutside)
+        
         return view
+    }
+    
+    deinit {
+        removeTarget(self, action: #selector(self.downAction), for: .touchDown)
+        removeTarget(self, action: #selector(self.upAction), for: .touchUpInside)
+        removeTarget(self, action: #selector(self.upAction), for: .touchCancel)
+        removeTarget(self, action: #selector(self.upAction), for: .touchUpOutside)
     }
     
     func animateArrowIn() {
@@ -51,13 +68,13 @@ class BackButton: UIButton, LeftNavigationBarButton {
             }
         }
         
-        centerXConstraint.constant = 8
+        arrowCenterXConstraint.constant = 8
         anim(constraintParent: self) { (settings) -> animClosure in
             settings.ease = .easeOutQuint
             settings.delay = 0.5
             settings.duration = 0.7
             return {
-                self.centerXConstraint.constant = 0
+                self.arrowCenterXConstraint.constant = 0
             }
         }
     }
@@ -68,6 +85,28 @@ class BackButton: UIButton, LeftNavigationBarButton {
             settings.ease = .easeInSine
             return {
                 self.arrowImageView.alpha = 0
+            }
+        }
+    }
+    
+    @objc
+    func downAction() {
+        anim { (settings) -> (animClosure) in
+            settings.ease = .easeOutBack
+            settings.duration = 0.1
+            return {
+                self.transform = CGAffineTransform.identity.scaledBy(x: 1.4, y: 1.4)
+            }
+        }
+    }
+    
+    @objc
+    func upAction() {
+        anim { (settings) -> (animClosure) in
+            settings.ease = .easeOutBack
+            settings.duration = 0.16
+            return {
+                self.transform = CGAffineTransform.identity
             }
         }
     }

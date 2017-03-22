@@ -8,6 +8,7 @@
 import Foundation
 
 struct Event {
+    // TODO: start with lowercase
     static let MenuToggle = NSNotification.Name(rawValue: "menu_toggle")
     static let MenuStateChange = NSNotification.Name(rawValue: "menu_state_change")
     static let MenuHide = NSNotification.Name(rawValue: "menu_hide")
@@ -15,4 +16,7 @@ struct Event {
     static let ConversationScroll = NSNotification.Name(rawValue: "conversation_scroll")
     static let AddMessage = NSNotification.Name(rawValue: "add_message")
     static let UpdateConversationTable = NSNotification.Name(rawValue: "update_conversation_table")
+    static let NavigateToConversation = NSNotification.Name(rawValue: "navigate_to_conversation")
+    static let NavigateToProfile = NSNotification.Name(rawValue: "navigate_to_profile")
+    static let NavigateToMessages = NSNotification.Name(rawValue: "navigate_to_messages")
 }

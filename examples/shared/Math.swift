@@ -11,6 +11,16 @@ struct DoubleRange {
     var min: Double
     var max: Double
     
+    init(min: Double, max: Double) {
+        self.min = min
+        self.max = max
+    }
+    
+    init(cgFloatMin: CGFloat, cgFloatMax: CGFloat) {
+        self.min = Double(cgFloatMin)
+        self.max = Double(cgFloatMax)
+    }
+    
     static var random01: Double {
         let max: UInt32 = 10000
         return Double(arc4random_uniform(max)) / Double(max)
@@ -72,4 +82,18 @@ extension CGPoint {
     static func lerp(current: CGPoint, target: CGPoint, t: CGFloat) -> CGPoint {
         return current + ((target - current) * t)
     }
+}
+
+extension CGRect {
+    
+    var randomPointOnRect: CGPoint {
+        return CGPoint(
+            x: DoubleRange(cgFloatMin: self.origin.x, cgFloatMax: self.origin.x+self.size.width).random,
+            y: DoubleRange(cgFloatMin: self.origin.y, cgFloatMax: self.origin.y+self.size.height).random)
+    }
+    
+    var center: CGPoint {
+        return CGPoint(x: origin.x + size.width * 0.5, y: origin.y + size.height * 0.5)
+    }
+    
 }

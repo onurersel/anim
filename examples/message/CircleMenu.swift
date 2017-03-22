@@ -409,7 +409,14 @@ class MenuButton: UIButton {
     
     @objc
     func tapAction() {
+        
         if icon == .menu {
+            NotificationCenter.default.post(name: Event.MenuToggle, object: nil)
+        } else if icon == .profile {
+            NotificationCenter.default.post(name: Event.NavigateToProfile, object: nil)
+            NotificationCenter.default.post(name: Event.MenuToggle, object: nil)
+        } else if icon == .message {
+            NotificationCenter.default.post(name: Event.NavigateToMessages, object: nil)
             NotificationCenter.default.post(name: Event.MenuToggle, object: nil)
         }
         

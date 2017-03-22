@@ -24,8 +24,9 @@ class ProfileDetailViewController: UIViewController {
 
 
     override func viewDidLoad() {
+        self.navigationItem.setHidesBackButton(true, animated: false)
         self.view.backgroundColor = UIColor.clear
-
+        
         // header
         headerView = UIView()
         headerView.backgroundColor = Color.lightGray
@@ -89,7 +90,6 @@ class ProfileDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.setHidesBackButton(true, animated: false)
 
         NotificationCenter.default.post(name: Event.MenuHide, object: nil)
     }

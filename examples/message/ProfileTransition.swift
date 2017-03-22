@@ -15,28 +15,27 @@ class ProfileDetailShowAnimator: NSObject, UIViewControllerAnimatedTransitioning
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        NavigationBarController.shared.hide()
-
         let profileViewController = transitionContext.viewController(forKey: .from) as! ProfileViewController
         let detailViewController = transitionContext.viewController(forKey: .to) as! ProfileDetailViewController
 
         transitionContext.containerView.addSubview(detailViewController.view)
 
         detailViewController.prepareForDetailBodyIn()
-        profileViewController.hideCells()
+        profileViewController.animateOut {}
 
         if let profilePicture = profileViewController.selectedProfileCell?.profilePictureView,
             let position = profileViewController.profilePicturePositionInViewController() {
 
             detailViewController.position(profilePicture: profilePicture, position: position)
             detailViewController.startHeaderInAnimation()
-            detailViewController.animateProfileDetailBodyIn {
+            detailViewController.animateProfileDetailBodyIn {}
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1800)) {
                 transitionContext.completeTransition(true)
             }
         }
 
     }
-
 }
 
 
@@ -55,15 +54,16 @@ class ProfileDetailHideAnimator: NSObject, UIViewControllerAnimatedTransitioning
         if let selectedCell = profileViewController.selectedProfileCell {
             detailViewController.positionBack {
                 profileViewController.positionProfilePictureIn(profileCell: selectedCell)
+                transitionContext.completeTransition(true)
             }
         }
 
         detailViewController.animateProfileDetailBodyOut()
+        NavigationBarController.shared.update(color: Color.lightGray)
         detailViewController.animateHeaderOut {
             NavigationBarController.shared.showProfile()
-            transitionContext.completeTransition(true)
         }
-
+        
         profileViewController.restoreCells()
     }
 }
