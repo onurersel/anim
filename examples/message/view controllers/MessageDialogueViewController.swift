@@ -8,6 +8,9 @@
 import UIKit
 import anim
 
+
+// MARK: View Controller
+
 class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     fileprivate var messageTable: MessageTable!
@@ -56,10 +59,13 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
         let profilePicture = ProfilePicture.createBarItem()
         self.navigationItem.rightBarButtonItem = profilePicture
         
+        // emitter
         emitter = DialogueBubbleTableCell.Emitter()
     }
     
 
+    // MARK: View Controller Overrides
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addListeners()
@@ -71,6 +77,9 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
         conversation.isClosed = true
     }
     
+    
+    // MARK: Table View Delegates
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =
             tableView.dequeueReusableCell(withIdentifier: DialogueBubbleTableCell.cellName) as? DialogueBubbleTableCell
@@ -81,7 +90,6 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
         
         return cell
     }
-    
 
     private func showMessage(cell: DialogueBubbleTableCell, message: inout Message) {
         cell.prepareCell(message: message)
@@ -96,11 +104,14 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
         return conversation.messages.count
     }
     
+    
+    // MARK: Listeners / Actions
+    
     private func addListeners() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShowHandler), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHideHandler), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.addMessageHandler), name: Event.AddMessage, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateConversationTableHandler), name: Event.UpdateConversationTable, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.addMessageHandler), name: Event.addMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateConversationTableHandler), name: Event.updateConversationTable, object: nil)
         
         backBarButton.buttonView?.addTarget(self, action: #selector(self.backAction), for: .touchUpInside)
     }
@@ -109,10 +120,6 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
         NotificationCenter.default.removeObserver(self)
         
         backBarButton.buttonView?.removeTarget(self, action: #selector(self.backAction), for: .touchUpInside)
-    }
-    
-    fileprivate func scrollTableToLastCell(animated: Bool = true) {
-        messageTable.tableView.setContentOffset(CGPoint(x: 0, y: messageTable.tableView.contentSize.height - messageTable.tableView.bounds.size.height + messageTable.tableView.contentInset.bottom), animated: animated)
     }
     
     @objc
@@ -163,18 +170,29 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
     func backAction() {
         _ = self.navigationController?.popViewController(animated: true)
     }
+    
+    
+    // MARK: Scroll To Row
+    
+    fileprivate func scrollTableToLastCell(animated: Bool = true) {
+        messageTable.tableView.setContentOffset(CGPoint(x: 0, y: messageTable.tableView.contentSize.height - messageTable.tableView.bounds.size.height + messageTable.tableView.contentInset.bottom), animated: animated)
+    }
 }
+
+
+// MARK: - View Controller Transition Animations
 
 extension MessageDialogueViewController: AnimatedViewController {
     var estimatedInAnimationDuration: TimeInterval {
         return 0.9
     }
+    
     var estimatedOutAnimationDuration: TimeInterval {
-        return 0.5
+        return 0.4
     }
     
     func animateIn(_ completion: @escaping ()->Void) {
-        NotificationCenter.default.post(name: Event.MenuHide, object: nil)
+        NotificationCenter.default.post(name: Event.menuHide, object: nil)
         NavigationBarController.shared.update(color: self.userColor)
         
         anim(constraintParent: messageTable) { (settings) -> animClosure in
@@ -201,6 +219,7 @@ extension MessageDialogueViewController: AnimatedViewController {
         inputContainer.positionForIn()
         inputContainer.showKeyboard()
     }
+    
     func animateOut(_ completion: @escaping ()->Void) {
         inputContainer.positionForOut()
         inputContainer.hideKeyboard()
@@ -224,11 +243,13 @@ extension MessageDialogueViewController: AnimatedViewController {
             }
         }
     }
+    
     func prepareForAnimateIn() {
         NavigationBarController.shared.hide()
         messageTable.positionForOut()
         inputContainer.positionForOut()
     }
+    
     func prepareForAnimateOut() {
         NavigationBarController.shared.update(color: self.userColor)
         NavigationBarController.shared.showMessage()
@@ -238,7 +259,7 @@ extension MessageDialogueViewController: AnimatedViewController {
 }
 
 
-// MARK: - Table
+// MARK: - Table View
 
 extension MessageDialogueViewController {
     
@@ -277,6 +298,8 @@ extension MessageDialogueViewController {
         }
         
         
+        // MARK: Position
+        
         func positionForOut() {
             tableView.clipsToBounds = false
             topOutConstraint.isActive = true
@@ -293,7 +316,7 @@ extension MessageDialogueViewController {
 }
 
 
-// MARK: - Cell
+// MARK: - Table View Cell
 
 class DialogueBubbleTableCell: UITableViewCell {
     
@@ -363,6 +386,9 @@ class DialogueBubbleTableCell: UITableViewCell {
         return view
     }
     
+    
+    // MARK: Prepare Cell
+    
     func prepareCell(message: MessageDialogueViewController.Message) {
         label.attributedText = message.body.attributedBlock
         switch message.side {
@@ -372,46 +398,6 @@ class DialogueBubbleTableCell: UITableViewCell {
             alignRight()
         }
         bubble.backgroundColor = message.color
-    }
-    
-    func animateIn(withEmitter emitter: Emitter) {
-        
-        bubble.alpha = 0
-        bubble.transform = CGAffineTransform.identity.scaledBy(x: 0.4, y: 0.4)
-        
-        animation?.stop()
-        
-        animation = anim { (settings) -> (animClosure) in
-            settings.delay = 0.1
-            settings.duration = 0
-            return {}
-        }
-        .callback {
-            emitter.fire(view: self.particleContainer, position:CGPoint(x:0, y:0), bubbleSize: self.bubble.bounds.size, color: self.bubble.backgroundColor!)
-        }
-        .then { (settings) -> (animClosure) in
-            settings.duration = 0.35
-            settings.ease = .easeOutQuint
-            return {
-                self.bubble.alpha = 1
-                self.bubble.transform = CGAffineTransform.identity.scaledBy(x: 1.04, y: 1.04)
-            }
-        }
-        .then { (settings) -> animClosure in
-            settings.duration = 0.2
-            settings.ease = .easeInOutQuad
-            return {
-                self.bubble.transform = CGAffineTransform.identity.scaledBy(x: 0.99, y: 0.99)
-            }
-        }
-        .then { (settings) -> animClosure in
-            settings.duration = 0.1
-            settings.ease = .easeInOutSine
-            settings.delay = 0.1
-            return {
-                self.bubble.transform = CGAffineTransform.identity
-            }
-        }
     }
     
     private func alignLeft() {
@@ -424,10 +410,53 @@ class DialogueBubbleTableCell: UITableViewCell {
         contentView.removeConstraint(leftConstraint)
     }
     
+    
+    // MARK: Animate
+    
+    func animateIn(withEmitter emitter: Emitter) {
+        
+        bubble.alpha = 0
+        bubble.transform = CGAffineTransform.identity.scaledBy(x: 0.4, y: 0.4)
+        
+        animation?.stop()
+        
+        animation = anim { (settings) -> (animClosure) in
+            settings.delay = 0.1
+            settings.duration = 0
+            return {}
+            }
+            .callback {
+                emitter.fire(view: self.particleContainer, position:CGPoint(x:0, y:0), bubbleSize: self.bubble.bounds.size, color: self.bubble.backgroundColor!)
+            }
+            .then { (settings) -> (animClosure) in
+                settings.duration = 0.35
+                settings.ease = .easeOutQuint
+                return {
+                    self.bubble.alpha = 1
+                    self.bubble.transform = CGAffineTransform.identity.scaledBy(x: 1.04, y: 1.04)
+                }
+            }
+            .then { (settings) -> animClosure in
+                settings.duration = 0.2
+                settings.ease = .easeInOutQuad
+                return {
+                    self.bubble.transform = CGAffineTransform.identity.scaledBy(x: 0.99, y: 0.99)
+                }
+            }
+            .then { (settings) -> animClosure in
+                settings.duration = 0.1
+                settings.ease = .easeInOutSine
+                settings.delay = 0.1
+                return {
+                    self.bubble.transform = CGAffineTransform.identity
+                }
+        }
+    }
+    
 }
 
 
-// MARK: - Conversation
+// MARK: - Message
 
 extension MessageDialogueViewController {
     
@@ -458,11 +487,21 @@ extension MessageDialogueViewController {
         var didCreatedInitially: Bool = false
     }
     
+}
+
+
+// MARK: - Conversation
+
+extension MessageDialogueViewController {
+    
     class Conversation {
         
         var messages = [Message]()
         var isClosed: Bool = false
         private var userColor: UIColor!
+        
+        
+        // MARK: Create Initial Conversation
         
         func createConversation(userColor: UIColor) {
             self.userColor = userColor
@@ -508,14 +547,17 @@ extension MessageDialogueViewController {
             }
         }
         
+        
+        // MARK: Add Message
+        
         func addMessageFromUser(_ message: String) {
             messages.append( Message(side: .right, color: userColor, body: message) )
-            NotificationCenter.default.post(name: Event.UpdateConversationTable, object: nil)
+            NotificationCenter.default.post(name: Event.updateConversationTable, object: nil)
         }
         
         func addMessageFromOther() {
             messages.append( Message(side: .left, color: Color.lightGray, body: Dummy.message) )
-            NotificationCenter.default.post(name: Event.UpdateConversationTable, object: nil)
+            NotificationCenter.default.post(name: Event.updateConversationTable, object: nil)
         }
         
         func addMessageFromOtherAfterDelay() {
@@ -565,7 +607,7 @@ extension MessageDialogueViewController {
 }
 
 
-// MARK: - Input Field
+// MARK: - Input Container
 
 extension MessageDialogueViewController {
     
@@ -595,6 +637,9 @@ extension MessageDialogueViewController {
             return view
         }
         
+        
+        // MARK: Position
+        
         func position(on parent: UIView) {
             self.parent = parent
             parent.addSubview(self)
@@ -618,29 +663,12 @@ extension MessageDialogueViewController {
             )
         }
         
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            guard let textEntered = textField.text, !textEntered.isEmpty else {
-                return false
-            }
-            
-            textField.text = ""
-            NotificationCenter.default.post(name: Event.AddMessage, object: nil, userInfo: ["message": textEntered])
-            
-            return true
-        }
-        
-        func showKeyboard() {
-            textField.becomeFirstResponder()
-        }
-        
-        func hideKeyboard() {
-            textField.resignFirstResponder()
-        }
         
         func moveInputField(bottom: CGFloat, duration: TimeInterval, curve: UInt) {
             parent.layoutIfNeeded()
             
-            UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: { 
+            // don't support raw curves yet 😔
+            UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: {
                 self.bottomInConstraint.constant = bottom
                 self.bottomOutConstraint.constant = bottom
                 self.parent.layoutIfNeeded()
@@ -656,8 +684,39 @@ extension MessageDialogueViewController {
             bottomOutConstraint.isActive = false
             bottomInConstraint.isActive = true
         }
+        
+        
+        // MARK: Text Field Delegate
+        
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            guard let textEntered = textField.text, !textEntered.isEmpty else {
+                return false
+            }
+            
+            textField.text = ""
+            NotificationCenter.default.post(name: Event.addMessage, object: nil, userInfo: ["message": textEntered])
+            
+            return true
+        }
+        
+        
+        // MARK: Show / Hide Keyboard
+        
+        func showKeyboard() {
+            textField.becomeFirstResponder()
+        }
+        
+        func hideKeyboard() {
+            textField.resignFirstResponder()
+        }
+        
     }
-    
+}
+
+
+// MARK: Input Field
+
+extension MessageDialogueViewController {
     
     class InputField: UITextField {
         
@@ -680,6 +739,6 @@ extension MessageDialogueViewController {
             return self.bounds.insetBy(dx: 20, dy: 0)
         }
         
-        
     }
+    
 }

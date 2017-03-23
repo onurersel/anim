@@ -51,10 +51,10 @@ class CircleMenuController {
         buttonProfile.isHidden = true
         
         // event listeners
-        NotificationCenter.default.addObserver(self, selector: #selector(self.menuToggleHandler), name: Event.MenuToggle, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.menuStateChangeHandler), name: Event.MenuStateChange, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.hideHandler), name: Event.MenuHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.showHandler), name: Event.MenuShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.menuToggleHandler), name: Event.menuToggle, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.menuStateChangeHandler), name: Event.menuStateChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.hideHandler), name: Event.menuHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.showHandler), name: Event.menuShow, object: nil)
     }
     
     
@@ -198,7 +198,7 @@ class CircleMenuController {
     @objc
     func menuToggleHandler() {
         let newState: State = (state == .closed) ? .opened : .closed
-        NotificationCenter.default.post(name: Event.MenuStateChange, object: nil, userInfo: ["state": newState])
+        NotificationCenter.default.post(name: Event.menuStateChange, object: nil, userInfo: ["state": newState])
     }
     
     @objc
@@ -216,6 +216,10 @@ class CircleMenuController {
     
     @objc
     func hideHandler() {
+        if state == .opened {
+            NotificationCenter.default.post(name: Event.menuToggle, object: nil)
+        }
+        
         anim(constraintParent: parent) { (settings) -> animClosure in
             settings.ease = .easeInSine
             settings.duration = 0.4
@@ -296,8 +300,6 @@ class MenuButton: UIButton {
         }
     }
     
-    // MARK: Prepare
-    
     class func create(hierarchy: Hierarchy, icon: Icon) -> MenuButton {
         
         let view = MenuButton()
@@ -351,6 +353,9 @@ class MenuButton: UIButton {
         return view
     }
     
+    
+    // MARK: Position
+    
     fileprivate func anchorTo(button: MenuButton, parent: UIView, direction: Direction) {
         let xConstraint = UIView.align(view: self, to: button, attribute: .centerX, constant: 0, parent: parent)
         let yConstraint = UIView.align(view: self, to: button, attribute: .centerY, constant: 0, parent: parent)
@@ -389,7 +394,7 @@ class MenuButton: UIButton {
         self.addTarget(self, action: #selector(self.cancelAction), for: .touchUpOutside)
         
         if icon == .menu {
-            NotificationCenter.default.addObserver(self, selector: #selector(self.menuStateChangeHandler), name: Event.MenuStateChange, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.menuStateChangeHandler), name: Event.menuStateChange, object: nil)
         }
     }
     
@@ -405,19 +410,19 @@ class MenuButton: UIButton {
     }
     
     
-    // MARK: Handlers
+    // MARK: Handlers / Actions
     
     @objc
     func tapAction() {
         
         if icon == .menu {
-            NotificationCenter.default.post(name: Event.MenuToggle, object: nil)
+            NotificationCenter.default.post(name: Event.menuToggle, object: nil)
         } else if icon == .profile {
-            NotificationCenter.default.post(name: Event.NavigateToProfile, object: nil)
-            NotificationCenter.default.post(name: Event.MenuToggle, object: nil)
+            NotificationCenter.default.post(name: Event.navigateToProfile, object: nil)
+            NotificationCenter.default.post(name: Event.menuToggle, object: nil)
         } else if icon == .message {
-            NotificationCenter.default.post(name: Event.NavigateToMessages, object: nil)
-            NotificationCenter.default.post(name: Event.MenuToggle, object: nil)
+            NotificationCenter.default.post(name: Event.navigateToMessages, object: nil)
+            NotificationCenter.default.post(name: Event.menuToggle, object: nil)
         }
         
         cancelAction()
@@ -466,7 +471,7 @@ class MenuButton: UIButton {
 }
 
 
-// MARK: - Icons
+// MARK: - Hamburger Icon Single Line
 
 extension MenuButton {
     
@@ -480,6 +485,12 @@ extension MenuButton {
         }
         
     }
+}
+
+
+// MARK: - Hamburger Icon
+
+extension MenuButton {
     
     class HamburgerIcon: UIView {
         
@@ -504,6 +515,9 @@ extension MenuButton {
             
             return view
         }
+        
+        
+        // MARK: Hamburger State
         
         func updateIconToHamburger() {
             
@@ -538,7 +552,7 @@ extension MenuButton {
                     self.line3View.center = CGPoint(x: 0, y: 10)
                 }
             }
-
+            
             // middle bar
             anim { (settings) -> (animClosure) in
                 settings.delay = 0.1
@@ -552,6 +566,9 @@ extension MenuButton {
             }
             
         }
+        
+        
+        // MARK: Close State
         
         func updateIconToClose() {
             
@@ -604,6 +621,12 @@ extension MenuButton {
         }
         
     }
+}
+
+
+// MARK: - Message Icon
+
+extension MenuButton {
     
     class MessageIcon: UIImageView {
         class func create() -> MessageIcon {
@@ -612,6 +635,13 @@ extension MenuButton {
             return view
         }
     }
+    
+}
+
+
+// MARK: - Profile Icon
+
+extension MenuButton {
     
     class ProfileIcon: UIImageView {
         class func create() -> ProfileIcon {

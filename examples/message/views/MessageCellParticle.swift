@@ -8,6 +8,9 @@
 import UIKit
 import anim
 
+
+// MARK: - Particle
+
 extension DialogueBubbleTableCell {
     
     class Particle: UIView {
@@ -50,6 +53,13 @@ extension DialogueBubbleTableCell {
         
     }
     
+}
+
+
+// MARK: - Emitter
+
+extension DialogueBubbleTableCell {
+    
     class Emitter {
         
         private var availableParticles = [Particle]()
@@ -78,7 +88,6 @@ extension DialogueBubbleTableCell {
             particle.removeFromSuperview()
             availableParticles.append(particle)
         }
-        
     }
     
 }

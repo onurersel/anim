@@ -8,6 +8,9 @@
 import UIKit
 import anim
 
+
+// MARK: - Back Bar Button Item
+
 class BackBarButtonItem: UIBarButtonItem {
     
     weak var buttonView: BackButton?
@@ -24,6 +27,9 @@ class BackBarButtonItem: UIBarButtonItem {
         return barButton
     }
 }
+
+
+// MARK: - Back Button
 
 class BackButton: UIButton, LeftNavigationBarButton {
     
@@ -51,12 +57,8 @@ class BackButton: UIButton, LeftNavigationBarButton {
         return view
     }
     
-    deinit {
-        removeTarget(self, action: #selector(self.downAction), for: .touchDown)
-        removeTarget(self, action: #selector(self.upAction), for: .touchUpInside)
-        removeTarget(self, action: #selector(self.upAction), for: .touchCancel)
-        removeTarget(self, action: #selector(self.upAction), for: .touchUpOutside)
-    }
+    
+    // MARK: Animations
     
     func animateArrowIn() {
         arrowImageView.alpha = 0
@@ -89,6 +91,9 @@ class BackButton: UIButton, LeftNavigationBarButton {
         }
     }
     
+    
+    // MARK: Actions / Handlers
+    
     @objc
     func downAction() {
         anim { (settings) -> (animClosure) in
@@ -109,5 +114,12 @@ class BackButton: UIButton, LeftNavigationBarButton {
                 self.transform = CGAffineTransform.identity
             }
         }
+    }
+    
+    deinit {
+        removeTarget(self, action: #selector(self.downAction), for: .touchDown)
+        removeTarget(self, action: #selector(self.upAction), for: .touchUpInside)
+        removeTarget(self, action: #selector(self.upAction), for: .touchCancel)
+        removeTarget(self, action: #selector(self.upAction), for: .touchUpOutside)
     }
 }

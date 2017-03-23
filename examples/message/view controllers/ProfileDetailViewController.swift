@@ -8,6 +8,9 @@
 import UIKit
 import anim
 
+
+// MARK: View Controller
+
 class ProfileDetailViewController: UIViewController {
 
     var backButtonView: BackButton!
@@ -22,10 +25,11 @@ class ProfileDetailViewController: UIViewController {
     private var profilePicture: ProfileCell.ProfilePicture!
     private var profilePictureOriginalPosition: CGPoint!
 
+    
+    // MARK: View Controller Overrides
 
     override func viewDidLoad() {
         self.navigationItem.setHidesBackButton(true, animated: false)
-        self.view.backgroundColor = UIColor.clear
         
         // header
         headerView = UIView()
@@ -91,7 +95,7 @@ class ProfileDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        NotificationCenter.default.post(name: Event.MenuHide, object: nil)
+        NotificationCenter.default.post(name: Event.menuHide, object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -103,7 +107,8 @@ class ProfileDetailViewController: UIViewController {
         backButtonView.removeTarget(self, action: #selector(self.backAction), for: .touchUpInside)
     }
 
-    // MARK: Animations
+    
+    // MARK: Position / Animate
 
     func startHeaderInAnimation() {
 
@@ -225,6 +230,7 @@ class ProfileDetailViewController: UIViewController {
         bodyContainerView.animateOut()
     }
 
+    
     // MARK: Handlers
 
     @objc
@@ -253,6 +259,9 @@ extension ProfileDetailViewController {
 
             return view
         }
+        
+        
+        // MARK: Position / Animate
 
         func alignTo(headerView: UIView, parent: UIView) {
             self.parent = parent

@@ -8,11 +8,17 @@
 import UIKit
 import anim
 
+
+// MARK: - View Controller
+
 class MessageListViewController: UIViewController {
     
     fileprivate var scrollView: BubbleScrollView!
     private(set) var bubbleTransitionFrame: CGRect?
     private var animatingBubble: ConversationBubble?
+    
+    
+    // MARK: View Controller Overrides
     
     override func viewDidLoad() {
         self.navigationItem.setHidesBackButton(true, animated: false)
@@ -46,10 +52,12 @@ class MessageListViewController: UIViewController {
     }
     
     
+    // MARK: Listeners
+    
     private func addListeners() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.navigateToConversationHandler), name: Event.NavigateToConversation, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.navigateToConversationHandler), name: Event.navigateToConversation, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.navigateToProfileHandler), name: Event.NavigateToProfile, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.navigateToProfileHandler), name: Event.navigateToProfile, object: nil)
     }
     
     private func removeListeners() {
@@ -75,22 +83,24 @@ class MessageListViewController: UIViewController {
     
     @objc
     func navigateToProfileHandler(notification: Notification) {
-        self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+        self.navigationController?.pushViewController(ProfileListViewController(), animated: true)
         self.navigationController?.viewControllers.remove(at: 0)
     }
 }
 
+
+// MARK: - View Controller Transition Animations
+
 extension MessageListViewController: AnimatedViewController {
     var estimatedInAnimationDuration: TimeInterval {
-        return Double(BubbleScrollView.bubbleCount) * BubbleScrollView.inAnimationDelayBetweenBubbles + ConversationBubble.inAnimationDuration
+        return 0.5
     }
     var estimatedOutAnimationDuration: TimeInterval {
-        let bubbleCount = self.scrollView.bubblesInScreen.count
-        return Double(bubbleCount) * BubbleScrollView.outAnimationDelayBetweenBubbles + ConversationBubble.outAnimationDuration
+        return 0.6
     }
     
     func animateIn(_ completion: @escaping ()->Void) {
-        NotificationCenter.default.post(name: Event.MenuShow, object: nil)
+        NotificationCenter.default.post(name: Event.menuShow, object: nil)
         
         anim { (settings) -> (animClosure) in
             settings.duration = 0.6
@@ -102,26 +112,28 @@ extension MessageListViewController: AnimatedViewController {
         
         self.scrollView.animateIn()
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1000)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(Int(estimatedInAnimationDuration*1000))) {
             completion()
         }
     }
+    
     func animateOut(_ completion: @escaping ()->Void) {
         self.scrollView.animateOut()
         
-        let duration = Int(estimatedOutAnimationDuration*1000)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(duration)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(Int(estimatedOutAnimationDuration*1000))) {
             completion()
         }
     }
+    
     func prepareForAnimateIn() {
         self.scrollView.prepareAnimateIn()
     }
-    func prepareForAnimateOut() {
-        
-    }
+    
+    func prepareForAnimateOut() {}
 }
 
+
+// MARK: - Bubble Scroll View
 
 class BubbleScrollView: UIScrollView, UIScrollViewDelegate {
     
@@ -191,6 +203,8 @@ class BubbleScrollView: UIScrollView, UIScrollViewDelegate {
             ])
     }
     
+    // MARK: View Overrides
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -200,6 +214,9 @@ class BubbleScrollView: UIScrollView, UIScrollViewDelegate {
         
         contentSize = containerFrame.size
     }
+    
+    
+    // MARK: Scroll View Delegates
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         defer {
@@ -211,12 +228,15 @@ class BubbleScrollView: UIScrollView, UIScrollViewDelegate {
         }
         
         if contentOffset.y <= 0 || contentOffset.y + scrollView.frame.size.height - contentInset.bottom >= contentSize.height  {
-            NotificationCenter.default.post(name: Event.ConversationScroll, object: nil, userInfo: ["velocity": velocity])
+            NotificationCenter.default.post(name: Event.conversationScroll, object: nil, userInfo: ["velocity": velocity])
         }
         
         let currentVelocity = contentOffset - previousOffset
         velocity = CGPoint.lerp(current: velocity, target: currentVelocity, t: 0.5)
     }
+    
+    
+    // MARK: Position / Animate
     
     func prepareAnimateIn() {
         bubbles?.forEach { (bubble) in
@@ -242,6 +262,9 @@ class BubbleScrollView: UIScrollView, UIScrollViewDelegate {
     }
 }
 
+
+// MARK: - Conversation Bubble
+
 class ConversationBubble: UIButton {
     
     static fileprivate let outAnimationDuration: TimeInterval = 0.35
@@ -263,7 +286,7 @@ class ConversationBubble: UIButton {
         view.backgroundColor = UIColor.clear
         
         view.addTarget(view, action: #selector(self.tapAction), for: .touchUpInside)
-        NotificationCenter.default.addObserver(view, selector: #selector(self.scrollHandler), name: Event.ConversationScroll, object: nil)
+        NotificationCenter.default.addObserver(view, selector: #selector(self.scrollHandler), name: Event.conversationScroll, object: nil)
         
         return view
     }
@@ -272,10 +295,16 @@ class ConversationBubble: UIButton {
         positionConstraints.place(at: parent, under: under)
     }
     
+    
+    // MARK: View Overrides
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         positionConstraints.updateCornerRadius()
     }
+    
+    
+    // MARK: Floating Animation
     
     func animateFloating() {
         self.floatToNewPosition()
@@ -303,6 +332,17 @@ class ConversationBubble: UIButton {
         }
         
     }
+    
+    
+    // MARK: Position / Animate (Shared)
+    
+    func stopAnimation() {
+        animation?.stop()
+        animation = nil
+    }
+    
+    
+    // MARK: Bounce On Edge Animation
     
     private func bounceOnEndScroll(withVelocity velocity: CGFloat) {
         guard let parent = positionConstraints.parent else {
@@ -344,10 +384,8 @@ class ConversationBubble: UIButton {
         }
     }
     
-    func stopAnimation() {
-        animation?.stop()
-        animation = nil
-    }
+    
+    // MARK: In Animation
     
     func prepareAnimateIn() {
         stopAnimation()
@@ -390,6 +428,9 @@ class ConversationBubble: UIButton {
         
     }
     
+    
+    // MARK: Out Animation
+    
     func animateOut(delay: TimeInterval) {
         guard let parent = positionConstraints.parent else {
             return
@@ -416,6 +457,9 @@ class ConversationBubble: UIButton {
         }
     }
     
+    
+    // MARK: Down Animation
+    
     func animateDown(_ completion: @escaping ()->Void) {
         
         
@@ -438,9 +482,11 @@ class ConversationBubble: UIButton {
     }
     
     
+    // MARK: Actions / Handlers
+    
     @objc
     func tapAction() {
-        NotificationCenter.default.post(name: Event.NavigateToConversation, object: self)
+        NotificationCenter.default.post(name: Event.navigateToConversation, object: self)
     }
     
     @objc

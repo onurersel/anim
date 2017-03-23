@@ -7,13 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BA0496251E7FF13E0077BE67 /* MessageCellParticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0496241E7FF13E0077BE67 /* MessageCellParticle.swift */; };
 		BA150FA91E53B870009A14E3 /* animTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA150F961E53B838009A14E3 /* animTests.swift */; };
 		BA150FAA1E53D2EB009A14E3 /* anim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3FCA091E4B262F0095BE41 /* anim.framework */; };
 		BA184E101E77EC16001CAE47 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA184E0F1E77EC16001CAE47 /* Foundation.swift */; };
 		BA184E111E77EC16001CAE47 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA184E0F1E77EC16001CAE47 /* Foundation.swift */; };
-		BA184E141E77EEB2001CAE47 /* MessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA184E121E77EEB2001CAE47 /* MessageListViewController.swift */; };
-		BA184E161E77FA31001CAE47 /* LayoutMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA184E151E77FA31001CAE47 /* LayoutMessage.swift */; };
 		BA20432F1E5C81AD00E8FDCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20432D1E5C81AD00E8FDCA /* AppDelegate.swift */; };
 		BA2043301E5C81AD00E8FDCA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20432E1E5C81AD00E8FDCA /* ViewController.swift */; };
 		BA2043311E5C81C000E8FDCA /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2043141E5C7BDC00E8FDCA /* Layout.swift */; };
@@ -59,22 +56,24 @@
 		BA7925F11E65B3A4002A57A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA82DC031E5F0DDA00FCEE49 /* Assets.xcassets */; };
 		BA7925F21E65B3A4002A57A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA20430C1E5C571100E8FDCA /* LaunchScreen.storyboard */; };
 		BA7925F41E65B3B6002A57A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA7925F31E65B3B6002A57A9 /* Assets.xcassets */; };
-		BA7925F91E65B3F2002A57A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7925F81E65B3F2002A57A9 /* ViewController.swift */; };
-		BA7925FB1E65BA51002A57A9 /* CircleMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7925FA1E65BA51002A57A9 /* CircleMenu.swift */; };
 		BA82DC041E5F0DDA00FCEE49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA82DC031E5F0DDA00FCEE49 /* Assets.xcassets */; };
+		BA8F064A1E83C61B00C96363 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F063C1E83C61B00C96363 /* Event.swift */; };
+		BA8F064B1E83C61B00C96363 /* Transitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F063E1E83C61B00C96363 /* Transitions.swift */; };
+		BA8F064C1E83C61B00C96363 /* MessageDialogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F06401E83C61B00C96363 /* MessageDialogueViewController.swift */; };
+		BA8F064D1E83C61B00C96363 /* MessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F06411E83C61B00C96363 /* MessageListViewController.swift */; };
+		BA8F064E1E83C61B00C96363 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F06421E83C61B00C96363 /* ProfileDetailViewController.swift */; };
+		BA8F064F1E83C61B00C96363 /* ProfileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F06431E83C61B00C96363 /* ProfileListViewController.swift */; };
+		BA8F06501E83C61B00C96363 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F06441E83C61B00C96363 /* ViewController.swift */; };
+		BA8F06511E83C61B00C96363 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F06461E83C61B00C96363 /* BackButton.swift */; };
+		BA8F06521E83C61B00C96363 /* CircleMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F06471E83C61B00C96363 /* CircleMenu.swift */; };
+		BA8F06531E83C61B00C96363 /* LayoutMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F06481E83C61B00C96363 /* LayoutMessage.swift */; };
+		BA8F06541E83C61B00C96363 /* MessageCellParticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F06491E83C61B00C96363 /* MessageCellParticle.swift */; };
 		BAB0E5251E5F434600E11EA8 /* anim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3FCA091E4B262F0095BE41 /* anim.framework */; };
 		BAB0E5261E5F434600E11EA8 /* anim.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA3FCA091E4B262F0095BE41 /* anim.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BAB161561E816D750040BFA4 /* MessageTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB161551E816D750040BFA4 /* MessageTransition.swift */; };
-		BABCF2DD1E65F88300158464 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABCF2DB1E65F87700158464 /* Event.swift */; };
 		BABCF2DE1E66EF0400158464 /* anim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3FCA091E4B262F0095BE41 /* anim.framework */; };
 		BABCF2DF1E66EF0400158464 /* anim.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA3FCA091E4B262F0095BE41 /* anim.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BABCF2E61E67021E00158464 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABCF2E51E67021E00158464 /* Style.swift */; };
 		BABCF2E71E67021E00158464 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABCF2E51E67021E00158464 /* Style.swift */; };
-		BACCCD441E71A21900547FAB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACCCD431E71A21900547FAB /* ProfileViewController.swift */; };
-		BACCCD461E71A4C500547FAB /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACCCD451E71A4C500547FAB /* ProfileDetailViewController.swift */; };
-		BACCCD481E71AAE400547FAB /* ProfileTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACCCD471E71AAE300547FAB /* ProfileTransition.swift */; };
-		BAD5C99E1E79452900C65715 /* MessageDialogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD5C99D1E79452900C65715 /* MessageDialogueViewController.swift */; };
-		BAE115AC1E7AB73600B16474 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE115AB1E7AB73600B16474 /* BackButton.swift */; };
 		BAE19D591E53313F000A41AB /* Animator-ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D581E53313F000A41AB /* Animator-ios.swift */; };
 		BAE19D5B1E5331A0000A41AB /* Ease.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5A1E5331A0000A41AB /* Ease.swift */; };
 		BAE19D5D1E53329B000A41AB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE19D5C1E53329B000A41AB /* Settings.swift */; };
@@ -123,13 +122,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BA0496241E7FF13E0077BE67 /* MessageCellParticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCellParticle.swift; sourceTree = "<group>"; };
 		BA150F961E53B838009A14E3 /* animTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = animTests.swift; sourceTree = "<group>"; };
 		BA150F971E53B838009A14E3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA150F9E1E53B85C009A14E3 /* animTests-ios.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "animTests-ios.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA184E0F1E77EC16001CAE47 /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
-		BA184E121E77EEB2001CAE47 /* MessageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListViewController.swift; sourceTree = "<group>"; };
-		BA184E151E77FA31001CAE47 /* LayoutMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutMessage.swift; sourceTree = "<group>"; };
 		BA20430B1E5C571100E8FDCA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA20430C1E5C571100E8FDCA /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA2043141E5C7BDC00E8FDCA /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
@@ -158,17 +154,19 @@
 		BA75D68A1E5B40E500755E5D /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		BA7925DA1E65B335002A57A9 /* animMessage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = animMessage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA7925F31E65B3B6002A57A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BA7925F81E65B3F2002A57A9 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BA7925FA1E65BA51002A57A9 /* CircleMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMenu.swift; sourceTree = "<group>"; };
 		BA82DC031E5F0DDA00FCEE49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BAB161551E816D750040BFA4 /* MessageTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTransition.swift; sourceTree = "<group>"; };
-		BABCF2DB1E65F87700158464 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		BA8F063C1E83C61B00C96363 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		BA8F063E1E83C61B00C96363 /* Transitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transitions.swift; sourceTree = "<group>"; };
+		BA8F06401E83C61B00C96363 /* MessageDialogueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDialogueViewController.swift; sourceTree = "<group>"; };
+		BA8F06411E83C61B00C96363 /* MessageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListViewController.swift; sourceTree = "<group>"; };
+		BA8F06421E83C61B00C96363 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
+		BA8F06431E83C61B00C96363 /* ProfileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileListViewController.swift; sourceTree = "<group>"; };
+		BA8F06441E83C61B00C96363 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BA8F06461E83C61B00C96363 /* BackButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		BA8F06471E83C61B00C96363 /* CircleMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMenu.swift; sourceTree = "<group>"; };
+		BA8F06481E83C61B00C96363 /* LayoutMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutMessage.swift; sourceTree = "<group>"; };
+		BA8F06491E83C61B00C96363 /* MessageCellParticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCellParticle.swift; sourceTree = "<group>"; };
 		BABCF2E51E67021E00158464 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
-		BACCCD431E71A21900547FAB /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		BACCCD451E71A4C500547FAB /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
-		BACCCD471E71AAE300547FAB /* ProfileTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTransition.swift; sourceTree = "<group>"; };
-		BAD5C99D1E79452900C65715 /* MessageDialogueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDialogueViewController.swift; sourceTree = "<group>"; };
-		BAE115AB1E7AB73600B16474 /* BackButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		BAE19D581E53313F000A41AB /* Animator-ios.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Animator-ios.swift"; sourceTree = "<group>"; };
 		BAE19D5A1E5331A0000A41AB /* Ease.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ease.swift; sourceTree = "<group>"; };
 		BAE19D5C1E53329B000A41AB /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -342,20 +340,51 @@
 			isa = PBXGroup;
 			children = (
 				BA7925F31E65B3B6002A57A9 /* Assets.xcassets */,
-				BA7925F81E65B3F2002A57A9 /* ViewController.swift */,
-				BA7925FA1E65BA51002A57A9 /* CircleMenu.swift */,
-				BAE115AB1E7AB73600B16474 /* BackButton.swift */,
-				BABCF2DB1E65F87700158464 /* Event.swift */,
-				BACCCD431E71A21900547FAB /* ProfileViewController.swift */,
-				BACCCD451E71A4C500547FAB /* ProfileDetailViewController.swift */,
-				BACCCD471E71AAE300547FAB /* ProfileTransition.swift */,
-				BA184E121E77EEB2001CAE47 /* MessageListViewController.swift */,
-				BAD5C99D1E79452900C65715 /* MessageDialogueViewController.swift */,
-				BA184E151E77FA31001CAE47 /* LayoutMessage.swift */,
-				BA0496241E7FF13E0077BE67 /* MessageCellParticle.swift */,
-				BAB161551E816D750040BFA4 /* MessageTransition.swift */,
+				BA8F063F1E83C61B00C96363 /* view controllers */,
+				BA8F06451E83C61B00C96363 /* views */,
+				BA8F063B1E83C61B00C96363 /* events */,
+				BA8F063D1E83C61B00C96363 /* transitions */,
 			);
 			path = message;
+			sourceTree = "<group>";
+		};
+		BA8F063B1E83C61B00C96363 /* events */ = {
+			isa = PBXGroup;
+			children = (
+				BA8F063C1E83C61B00C96363 /* Event.swift */,
+			);
+			path = events;
+			sourceTree = "<group>";
+		};
+		BA8F063D1E83C61B00C96363 /* transitions */ = {
+			isa = PBXGroup;
+			children = (
+				BA8F063E1E83C61B00C96363 /* Transitions.swift */,
+			);
+			path = transitions;
+			sourceTree = "<group>";
+		};
+		BA8F063F1E83C61B00C96363 /* view controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BA8F06441E83C61B00C96363 /* ViewController.swift */,
+				BA8F06431E83C61B00C96363 /* ProfileListViewController.swift */,
+				BA8F06421E83C61B00C96363 /* ProfileDetailViewController.swift */,
+				BA8F06411E83C61B00C96363 /* MessageListViewController.swift */,
+				BA8F06401E83C61B00C96363 /* MessageDialogueViewController.swift */,
+			);
+			path = "view controllers";
+			sourceTree = "<group>";
+		};
+		BA8F06451E83C61B00C96363 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				BA8F06461E83C61B00C96363 /* BackButton.swift */,
+				BA8F06471E83C61B00C96363 /* CircleMenu.swift */,
+				BA8F06481E83C61B00C96363 /* LayoutMessage.swift */,
+				BA8F06491E83C61B00C96363 /* MessageCellParticle.swift */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -764,24 +793,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAB161561E816D750040BFA4 /* MessageTransition.swift in Sources */,
 				BA7925ED1E65B389002A57A9 /* AppDelegate.swift in Sources */,
+				BA8F06531E83C61B00C96363 /* LayoutMessage.swift in Sources */,
 				BA7925EE1E65B38D002A57A9 /* Layout.swift in Sources */,
-				BA7925F91E65B3F2002A57A9 /* ViewController.swift in Sources */,
+				BA8F064B1E83C61B00C96363 /* Transitions.swift in Sources */,
+				BA8F064E1E83C61B00C96363 /* ProfileDetailViewController.swift in Sources */,
 				BA7925EF1E65B38D002A57A9 /* Math.swift in Sources */,
-				BABCF2DD1E65F88300158464 /* Event.swift in Sources */,
-				BACCCD461E71A4C500547FAB /* ProfileDetailViewController.swift in Sources */,
 				BA184E111E77EC16001CAE47 /* Foundation.swift in Sources */,
-				BA7925FB1E65BA51002A57A9 /* CircleMenu.swift in Sources */,
-				BAE115AC1E7AB73600B16474 /* BackButton.swift in Sources */,
-				BACCCD441E71A21900547FAB /* ProfileViewController.swift in Sources */,
-				BACCCD481E71AAE400547FAB /* ProfileTransition.swift in Sources */,
+				BA8F064F1E83C61B00C96363 /* ProfileListViewController.swift in Sources */,
 				BA4590741E6861F400CAB89B /* Dummy.swift in Sources */,
+				BA8F06501E83C61B00C96363 /* ViewController.swift in Sources */,
+				BA8F06521E83C61B00C96363 /* CircleMenu.swift in Sources */,
+				BA8F064D1E83C61B00C96363 /* MessageListViewController.swift in Sources */,
+				BA8F064A1E83C61B00C96363 /* Event.swift in Sources */,
+				BA8F06541E83C61B00C96363 /* MessageCellParticle.swift in Sources */,
 				BABCF2E71E67021E00158464 /* Style.swift in Sources */,
-				BA0496251E7FF13E0077BE67 /* MessageCellParticle.swift in Sources */,
-				BA184E141E77EEB2001CAE47 /* MessageListViewController.swift in Sources */,
-				BA184E161E77FA31001CAE47 /* LayoutMessage.swift in Sources */,
-				BAD5C99E1E79452900C65715 /* MessageDialogueViewController.swift in Sources */,
+				BA8F06511E83C61B00C96363 /* BackButton.swift in Sources */,
+				BA8F064C1E83C61B00C96363 /* MessageDialogueViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

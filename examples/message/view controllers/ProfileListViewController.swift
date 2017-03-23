@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  ProfileListViewController.swift
 //  anim
 //
 //  Created by Onur Ersel on 2017-03-09.
@@ -8,9 +8,10 @@
 import UIKit
 import anim
 
-// MARK: - ViewController
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+// MARK: - View Controller
+
+class ProfileListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     private var tableView: UITableView!
     private var lastCellDisplayTimeInterval: TimeInterval = Date.timeIntervalSinceReferenceDate
@@ -31,12 +32,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return nil
     }
 
+    
+    // MARK: View Controller overrides
+    
     override func viewDidLoad() {
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.view.backgroundColor = UIColor.white
-
         self.automaticallyAdjustsScrollViewInsets = false
 
+        // table view
         tableView = UITableView()
         self.view.addSubview(tableView)
         tableView.delegate = self
@@ -56,7 +60,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         addListeners()
         selectedProfileCell?.setSelected(false, animated: false)
         
-        NotificationCenter.default.post(name: Event.MenuShow, object: nil)
+        NotificationCenter.default.post(name: Event.menuShow, object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -64,15 +68,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         removeListeners()
     }
     
-    
-    private func addListeners() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.navigateToMessagesHandler), name: Event.NavigateToMessages, object: nil)
-    }
-    
-    private func removeListeners() {
-        NotificationCenter.default.removeObserver(self)
-    }
-
 
     // MARK: TableView Delegate
 
@@ -97,7 +92,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController?.pushViewController(ProfileDetailViewController(), animated: true)
     }
 
-    // MARK: Cell Animation
+    
+    // MARK: Cell Related Animations, Positioning
+    
     private func display(cell profileCell: ProfileCell) {
 
         let now = Date.timeIntervalSinceReferenceDate
@@ -156,6 +153,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileCell.profilePictureView.positionIn(profileBox: profileCell.profileBoxView)
     }
     
+    
+    // MARK: Listeners / Handlers
+    
+    private func addListeners() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.navigateToMessagesHandler), name: Event.navigateToMessages, object: nil)
+    }
+    
+    private func removeListeners() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @objc
     func navigateToMessagesHandler(notification: Notification) {
         self.navigationController?.pushViewController(MessageListViewController(), animated: true)
@@ -164,10 +172,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 }
 
 
-extension ProfileViewController: AnimatedViewController {
+// MARK: - View Controller Transition Animations
+
+extension ProfileListViewController: AnimatedViewController {
+    
     var estimatedInAnimationDuration: TimeInterval {
         return 1
     }
+    
     var estimatedOutAnimationDuration: TimeInterval {
         return 1
     }
@@ -181,12 +193,12 @@ extension ProfileViewController: AnimatedViewController {
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1000)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(600)) {
             completion()
         }
     }
+    
     func animateOut(_ completion: @escaping ()->Void) {
-        //NotificationCenter.default.post(name: Event.MenuHide, object: nil)
         self.hideCells()
         
         anim { (settings) -> (animClosure) in
@@ -201,12 +213,10 @@ extension ProfileViewController: AnimatedViewController {
             completion()
         }
     }
-    func prepareForAnimateIn() {
-        
-    }
-    func prepareForAnimateOut() {
-        
-    }
+    
+    func prepareForAnimateIn() {}
+    
+    func prepareForAnimateOut() {}
 }
 
 
@@ -341,7 +351,8 @@ class ProfileCell: UITableViewCell {
         }
     }
 
-    // MARK: Position
+    
+    // MARK: Position / Animate
 
     func positionInStateWithAnimation() {
         var a: anim!
@@ -478,6 +489,8 @@ extension ProfileCell {
 
             return view
         }
+        
+        // MARK: Position
 
         func positionIn(profileBox: UIView) {
             removePositionConstraints()

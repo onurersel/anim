@@ -9,8 +9,11 @@ import UIKit
 import anim
 
 
+// MARK: - View Controller
+
 class ViewController: UINavigationController, UINavigationControllerDelegate {
 
+    // init with custom navigation bar
     convenience init() {
         self.init(navigationBarClass: AppNavigationBar.classForCoder(), toolbarClass: nil)
     }
@@ -18,10 +21,14 @@ class ViewController: UINavigationController, UINavigationControllerDelegate {
     // retaining circle menu
     private var circleMenuController: CircleMenuController!
 
+    // MARK: View Controller Overrides
     override func viewDidLoad() {
+        self.view.backgroundColor = UIColor.white
+        
+        // user interactions enabled while animating by default
         anim.defaultSettings.isUserInteractionsEnabled = true
-
-        // navigation bar
+        
+        // configure navigation bar
         NavigationBarController.configure(navigationBar: self.navigationBar)
         NavigationBarController.shared.showProfile()
         self.delegate = self
@@ -30,22 +37,27 @@ class ViewController: UINavigationController, UINavigationControllerDelegate {
         circleMenuController = CircleMenuController(parent: self.view)
 
         // initial view controller
-        self.pushViewController(ProfileViewController(), animated: false)
+        self.pushViewController(ProfileListViewController(), animated: false)
     }
 
+    // route transitions between view controllers
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
-        if fromVC is ProfileViewController && toVC is ProfileDetailViewController && operation == .push {
+        if fromVC is ProfileListViewController && toVC is ProfileDetailViewController && operation == .push {           // profile list -> profile detail
             return ProfileDetailShowAnimator()
-        } else if fromVC is ProfileDetailViewController && toVC is ProfileViewController && operation == .pop {
+        } else if fromVC is ProfileDetailViewController && toVC is ProfileListViewController && operation == .pop {     // profile list <- profile detail
             return ProfileDetailHideAnimator()
-        } else if fromVC is MessageListViewController && toVC is MessageDialogueViewController && operation == .push {
+        } else if fromVC is MessageListViewController && toVC is MessageDialogueViewController && operation == .push {  // message list -> chat
             return MessageConversationShowAnimator()
         }
 
+        // default animator
         return DefaultAnimator()
     }
 }
+
+
+// MARK: - Navigation Bar Controller
 
 class NavigationBarController {
     static let shared = NavigationBarController()
@@ -59,6 +71,7 @@ class NavigationBarController {
         return NavigationBarController.navigationBar
     }
 
+    // initial configuration, called once
     class func configure(navigationBar: UINavigationBar) {
         self.navigationBar = navigationBar
         navigationBar.shadowImage = UIImage()
@@ -66,21 +79,30 @@ class NavigationBarController {
         shared.showProfile()
     }
     
+    // updates color of navbar
     func update(color: UIColor) {
         navigationBar.backgroundColor = color
     }
-
+    
+    
+    
+    // Formatting functions below doesn't contain any animation.
+    // You gotta do it while calling these, or they will change the look instantly.
+    
+    // formats navbar for profile list screen
     func showProfile() {
         update(color: Color.lightGray)
         height = heightProfileDefault
         navigationBar.sizeToFit()
     }
 
+    // formats navbar for chat screen
     func showMessage() {
         height = heightMessageDefault
         navigationBar.sizeToFit()
     }
 
+    // hides navbar
     func hide() {
         height = 0
         navigationBar.sizeToFit()
@@ -88,9 +110,11 @@ class NavigationBarController {
 }
 
 
-
+// MARK: - Navigation Bar
 
 class AppNavigationBar: UINavigationBar {
+    
+    // resizing navbar
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         var newSize = super.sizeThatFits(size)
         newSize.height = NavigationBarController.shared.height
@@ -98,10 +122,9 @@ class AppNavigationBar: UINavigationBar {
         return newSize
     }
 
+    // aligning navbar items
     override func layoutSubviews() {
         super.layoutSubviews()
-
-
 
         for view in subviews {
             if view is NavigationBarButton {
@@ -118,6 +141,9 @@ class AppNavigationBar: UINavigationBar {
         }
     }
 }
+
+
+// navbar uses these protocols to position navbar items.
 
 protocol NavigationBarButton {}
 protocol LeftNavigationBarButton: NavigationBarButton {}
