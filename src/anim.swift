@@ -172,5 +172,4 @@ final public class anim: NSObject {
         currentAnim?.promise.state = .cancelled
         currentAnim?.animator?.stopAnimation()
     }
-
 }

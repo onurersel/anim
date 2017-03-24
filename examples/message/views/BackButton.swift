@@ -13,13 +13,10 @@ import anim
 
 class BackBarButtonItem: UIBarButtonItem {
     
-    weak var buttonView: BackButton?
+    weak var buttonView: BackButton!
     
     class func create() -> BackBarButtonItem {
         let view = BackButton.create()
-        view.size(width: 38, height: 38)
-        view.backgroundColor = UIColor.white
-        view.layer.cornerRadius = 19
         
         let barButton = BackBarButtonItem(customView: view)
         barButton.buttonView = view
@@ -34,20 +31,19 @@ class BackBarButtonItem: UIBarButtonItem {
 class BackButton: UIButton, LeftNavigationBarButton {
     
     private var arrowImageView: UIImageView!
-    private var arrowCenterXConstraint: NSLayoutConstraint!
-    
     
     class func create() -> BackButton {
         let view = BackButton()
+        view.frame = CGRect(x: 0, y: 0, width: 38, height: 38)
+        view.layer.cornerRadius = 19
         
         // background
-        view.backgroundColor = Color.lightGray
+        view.backgroundColor = UIColor.white
         
         // arrow
         view.arrowImageView = UIImageView(image: #imageLiteral(resourceName: "back_arrow"))
         view.addSubview(view.arrowImageView)
-        view.arrowCenterXConstraint = UIView.align(view: view.arrowImageView, to: view, attribute: .centerX)
-        UIView.align(view: view.arrowImageView, to: view, attribute: .centerY)
+        view.arrowImageView.center = view.center
         
         view.addTarget(view, action: #selector(view.downAction), for: .touchDown)
         view.addTarget(view, action: #selector(view.upAction), for: .touchUpInside)
@@ -70,13 +66,13 @@ class BackButton: UIButton, LeftNavigationBarButton {
             }
         }
         
-        arrowCenterXConstraint.constant = 8
-        anim(constraintParent: self) { (settings) -> animClosure in
+        arrowImageView.center.x = self.center.x + 8
+        anim{ (settings) -> animClosure in
             settings.ease = .easeOutQuint
             settings.delay = 0.5
             settings.duration = 0.7
             return {
-                self.arrowCenterXConstraint.constant = 0
+                self.arrowImageView.center.x = 19
             }
         }
     }

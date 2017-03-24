@@ -47,9 +47,11 @@ class ProfileListViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.dataSource = self
         tableView.rowHeight = 179
         tableView.separatorColor = UIColor.clear
-        tableView.contentInset = UIEdgeInsetsMake(91, 0, 0, 0)
+        tableView.contentInset = UIEdgeInsetsMake(NavigationBarController.heightProfile.heightForOrientation + 20, 0, 0, 0)
         self.tableView.setContentOffset(CGPoint(x:0, y:-91), animated: false)
         tableView.snapEdges(to: self.view)
+        
+        tableView.register(ProfileCell.classForCoder(), forCellReuseIdentifier: ProfileCell.cellName)
         
         tableView.reloadData()
     }
@@ -76,9 +78,7 @@ class ProfileListViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellName = "profile_cell"
-        let cell = (tableView.dequeueReusableCell(withIdentifier: cellName) ?? ProfileCell(style: .default, reuseIdentifier: cellName))
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: ProfileCell.cellName, for: indexPath)
         return cell
     }
 
@@ -158,6 +158,7 @@ class ProfileListViewController: UIViewController, UITableViewDelegate, UITableV
     
     private func addListeners() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.navigateToMessagesHandler), name: Event.navigateToMessages, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.orientationChangeHandler), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
     private func removeListeners() {
@@ -168,6 +169,12 @@ class ProfileListViewController: UIViewController, UITableViewDelegate, UITableV
     func navigateToMessagesHandler(notification: Notification) {
         self.navigationController?.pushViewController(MessageListViewController(), animated: true)
         self.navigationController?.viewControllers.remove(at: 0)
+    }
+    
+    @objc
+    func orientationChangeHandler(notification: Notification) {
+        print(tableView.contentOffset)
+        tableView.contentInset = UIEdgeInsetsMake(NavigationBarController.heightProfile.heightForOrientation + 20, 0, 0, 0)
     }
 }
 
@@ -223,6 +230,8 @@ extension ProfileListViewController: AnimatedViewController {
 // MARK: - Cell
 
 class ProfileCell: UITableViewCell {
+    
+    static let cellName = "profile_cell"
 
     enum Direction {
         case up, down
@@ -350,7 +359,6 @@ class ProfileCell: UITableViewCell {
             self.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
         }
     }
-
     
     // MARK: Position / Animate
 
@@ -366,13 +374,13 @@ class ProfileCell: UITableViewCell {
                 self.inConstraint.constant = 10
                 self.inConstraint.isActive = true
             }
+        }
+        .then(constraintParent: contentView) { (settings) -> animClosure in
+            settings.duration = 0.5
+            settings.ease = .easeInOutSine
+            return {
+                self.inConstraint.constant = 0
             }
-            .then(constraintParent: contentView) { (settings) -> animClosure in
-                settings.duration = 0.5
-                settings.ease = .easeInOutSine
-                return {
-                    self.inConstraint.constant = 0
-                }
         }
         animations.append(a)
 

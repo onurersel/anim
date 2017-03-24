@@ -15,10 +15,12 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
     
     fileprivate var messageTable: MessageTable!
     fileprivate var inputContainer: InputContainer!
+    fileprivate var profilePictureBarButton: ProfilePictureBarButtonItem!
+    fileprivate var backBarButton: BackBarButtonItem!
     private var conversation: Conversation!
     private(set) var userColor: UIColor!
     private var emitter: DialogueBubbleTableCell.Emitter!
-    private var backBarButton: BackBarButtonItem!
+    
     
     var lastRowIndexPath: IndexPath {
         return IndexPath(row: conversation.messages.count-1, section: 0)
@@ -56,8 +58,8 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
         self.navigationItem.leftBarButtonItem = backBarButton
         
         // profile picture
-        let profilePicture = ProfilePicture.createBarItem()
-        self.navigationItem.rightBarButtonItem = profilePicture
+        profilePictureBarButton = ProfilePictureBarButtonItem.create()
+        self.navigationItem.rightBarButtonItem = profilePictureBarButton
         
         // emitter
         emitter = DialogueBubbleTableCell.Emitter()
@@ -113,13 +115,13 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
         NotificationCenter.default.addObserver(self, selector: #selector(self.addMessageHandler), name: Event.addMessage, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateConversationTableHandler), name: Event.updateConversationTable, object: nil)
         
-        backBarButton.buttonView?.addTarget(self, action: #selector(self.backAction), for: .touchUpInside)
+        backBarButton.buttonView.addTarget(self, action: #selector(self.backAction), for: .touchUpInside)
     }
     
     private func removeListeners() {
         NotificationCenter.default.removeObserver(self)
         
-        backBarButton.buttonView?.removeTarget(self, action: #selector(self.backAction), for: .touchUpInside)
+        backBarButton.buttonView.removeTarget(self, action: #selector(self.backAction), for: .touchUpInside)
     }
     
     @objc
@@ -203,12 +205,16 @@ extension MessageDialogueViewController: AnimatedViewController {
             }
         }
         
+        
+        
         anim { (settings) -> (animClosure) in
             settings.duration = 0.8
             settings.delay = 0.1
             settings.ease = .easeOutQuint
             return {
                 NavigationBarController.shared.showMessage()
+                self.profilePictureBarButton.pictureView.alpha = 1
+                self.backBarButton.buttonView.alpha = 1
             }
         }
         .callback {
@@ -248,6 +254,8 @@ extension MessageDialogueViewController: AnimatedViewController {
         NavigationBarController.shared.hide()
         messageTable.positionForOut()
         inputContainer.positionForOut()
+        profilePictureBarButton.pictureView.alpha = 0
+        backBarButton.buttonView.alpha = 0
     }
     
     func prepareForAnimateOut() {
@@ -585,23 +593,35 @@ extension MessageDialogueViewController {
 // MARK: - Profile Picture
 
 extension MessageDialogueViewController {
+    
+    class ProfilePictureBarButtonItem: UIBarButtonItem {
+        
+        var pictureView: ProfilePicture!
+        
+        class func create() -> ProfilePictureBarButtonItem {
+            let view = ProfilePicture.create()
+            let barItem = ProfilePictureBarButtonItem(customView: view)
+            barItem.pictureView = view
+            return barItem
+        }
+        
+    }
+    
+}
+
+extension MessageDialogueViewController {
 
     class ProfilePicture: UIView, RightNavigationBarButton {
         
         class func create() -> ProfilePicture {
             let view = ProfilePicture()
-            view.size(width: 52, height: 52)
+            view.frame = CGRect(x: 0, y: 0, width: 52, height: 52)
             view.backgroundColor = Color.darkGray
             view.layer.cornerRadius = 26
             
             return view
         }
         
-        class func createBarItem() -> UIBarButtonItem {
-            let view = ProfilePicture.create()
-            let barItem = UIBarButtonItem(customView: view)
-            return barItem
-        }
     }
     
 }

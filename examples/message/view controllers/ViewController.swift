@@ -61,11 +61,32 @@ class ViewController: UINavigationController, UINavigationControllerDelegate {
 
 class NavigationBarController {
     static let shared = NavigationBarController()
+    
     private static var navigationBar: UINavigationBar!
+    
+    struct Height {
+        var portrait: CGFloat
+        var landscape: CGFloat
+        
+        var heightForOrientation: CGFloat {
+            switch UIDevice.current.orientation {
+            case .landscapeLeft, .landscapeRight:
+                return self.landscape
+            default:
+                return self.portrait
+            }
+        }
+    }
 
-    fileprivate let heightProfileDefault: CGFloat = 71
-    fileprivate let heightMessageDefault: CGFloat = 89
-    fileprivate var height: CGFloat = 71
+    static let heightProfile   = Height(portrait: 71, landscape: 51)
+    static let heightMessage   = Height(portrait: 89, landscape: 61)
+    static let heightHidden    = Height(portrait: 0, landscape: 0)
+    
+    fileprivate(set) var height: Height
+    
+    init() {
+        height = NavigationBarController.heightProfile
+    }
 
     private var navigationBar: UINavigationBar {
         return NavigationBarController.navigationBar
@@ -92,19 +113,19 @@ class NavigationBarController {
     // formats navbar for profile list screen
     func showProfile() {
         update(color: Color.lightGray)
-        height = heightProfileDefault
+        height = NavigationBarController.heightProfile
         navigationBar.sizeToFit()
     }
 
     // formats navbar for chat screen
     func showMessage() {
-        height = heightMessageDefault
+        height = NavigationBarController.heightMessage
         navigationBar.sizeToFit()
     }
 
     // hides navbar
     func hide() {
-        height = 0
+        height = NavigationBarController.heightHidden
         navigationBar.sizeToFit()
     }
 }
@@ -117,7 +138,7 @@ class AppNavigationBar: UINavigationBar {
     // resizing navbar
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         var newSize = super.sizeThatFits(size)
-        newSize.height = NavigationBarController.shared.height
+        newSize.height = NavigationBarController.shared.height.heightForOrientation
 
         return newSize
     }

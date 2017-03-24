@@ -13,6 +13,8 @@ import anim
 
 class ProfileDetailViewController: UIViewController {
 
+    private let headerHeight = NavigationBarController.Height(portrait: 173, landscape:110)
+    
     var backButtonView: BackButton!
 
     private var headerView: UIView!
@@ -30,14 +32,14 @@ class ProfileDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         self.navigationItem.setHidesBackButton(true, animated: false)
+        self.automaticallyAdjustsScrollViewInsets = false
         
         // header
         headerView = UIView()
         headerView.backgroundColor = Color.lightGray
         self.view.addSubview(headerView)
         UIView.alignMultiple(view: headerView, to: self.view, attributes: [.left, .top, .right])
-        //UIView.align(view: headerView, to: nil, attribute: .height, constant: 173)
-        headerHeightConstraint = UIView.align(view: headerView, to: nil, attribute: .height, constant: 71)
+        headerHeightConstraint = UIView.align(view: headerView, to: nil, attribute: .height, constant: NavigationBarController.heightProfile.heightForOrientation)
 
         // back button
         backButtonView = BackButton.create()
@@ -72,7 +74,7 @@ class ProfileDetailViewController: UIViewController {
         UIView.align(view: textLabelView, to: self.view, attribute: .right, constant: -34)
         UIView.align(view: textLabelView, to: nil, attribute: .height, constant: 363)
 
-        textLabelView.attributedText = Dummy.text(46).attributedBlock
+        textLabelView.attributedText = Dummy.text(82).attributedBlock
 
         // image
         let imageView = UIView()
@@ -100,11 +102,24 @@ class ProfileDetailViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        backButtonView.addTarget(self, action: #selector(self.backAction), for: .touchUpInside)
+        addListeners()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        removeListeners()
+    }
+    
+    
+    // MARK: Listeners
+    
+    private func addListeners() {
+        backButtonView.addTarget(self, action: #selector(self.backAction), for: .touchUpInside)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.deviceOrientationChangeHandler), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    private func removeListeners() {
         backButtonView.removeTarget(self, action: #selector(self.backAction), for: .touchUpInside)
+        NotificationCenter.default.removeObserver(self)
     }
 
     
@@ -117,7 +132,7 @@ class ProfileDetailViewController: UIViewController {
             settings.ease = .easeInOutQuint
             settings.duration = 1.3
             return {
-                self.headerHeightConstraint.constant = 173
+                self.headerHeightConstraint.constant = self.headerHeight.heightForOrientation
             }
         }
 
@@ -144,7 +159,7 @@ class ProfileDetailViewController: UIViewController {
 
 
         backButtonView.layer.cornerRadius = 20
-
+        backButtonView.backgroundColor = Color.lightGray
         anim { (settings) -> (animClosure) in
             settings.ease = .easeInOutQuint
             settings.delay = 0.2
@@ -161,7 +176,7 @@ class ProfileDetailViewController: UIViewController {
             settings.ease = .easeInOutQuint
             settings.duration = 0.6
             return {
-                self.headerHeightConstraint.constant = 71
+                self.headerHeightConstraint.constant = NavigationBarController.heightProfile.heightForOrientation
                 self.backButtonTopConstraint.constant = -200
             }
         }
@@ -231,8 +246,14 @@ class ProfileDetailViewController: UIViewController {
     }
 
     
-    // MARK: Handlers
+    // MARK: Handlers / Actions
 
+    @objc
+    func deviceOrientationChangeHandler() {
+        headerHeightConstraint.constant = headerHeight.heightForOrientation
+        headerView.layoutIfNeeded()
+    }
+    
     @objc
     func backAction() {
         _ = self.navigationController?.popViewController(animated: true)
@@ -254,7 +275,8 @@ extension ProfileDetailViewController {
 
         class func create() -> ContainerView {
             let view = ContainerView()
-            view.contentInset = UIEdgeInsetsMake(0, 0, 42, 0)
+            view.contentInset = UIEdgeInsetsMake(71, 0, 42, 0)
+            view.contentOffset = CGPoint(x: 0, y: -71)
             view.backgroundColor = UIColor.white
 
             return view

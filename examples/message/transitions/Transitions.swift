@@ -214,7 +214,7 @@ extension MessageConversationShowAnimator {
         // MARK: Animation
         
         func animateIn(at frame: CGRect) {
-            let scale = (UIScreen.main.bounds.height / frame.size.height) * 2
+            let scale = (UIScreen.main.bounds.height / frame.size.height) * 3.6
             let frameCenter = frame.center
             let screenFrame = UIScreen.main.bounds
             self.center = frameCenter
@@ -222,7 +222,7 @@ extension MessageConversationShowAnimator {
             colorCircleView.center = CGPoint.zero
             
             anim { (settings) -> (animClosure) in
-                settings.duration = 1.4
+                settings.duration = 2.1
                 settings.delay = 0.3
                 settings.ease = .easeOutExpo
                 return {
@@ -237,13 +237,13 @@ extension MessageConversationShowAnimator {
                 return {
                     self.colorCircleView.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
                 }
+            }
+            .then { (settings) -> animClosure in
+                settings.duration = 2.1
+                settings.ease = .easeOutExpo
+                return {
+                    self.colorCircleView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
                 }
-                .then { (settings) -> animClosure in
-                    settings.duration = 1.4
-                    settings.ease = .easeOutExpo
-                    return {
-                        self.colorCircleView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
-                    }
             }
             
             anim { (settings) -> (animClosure) in

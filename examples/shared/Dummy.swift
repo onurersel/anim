@@ -18,7 +18,7 @@ struct Dummy {
     }
 
     static var text: String {
-        return text(10)
+        return text(20)
     }
 
     static var message: String {
