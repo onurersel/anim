@@ -26,7 +26,6 @@ class ViewController: UIViewController {
         
         let backgroundPatternView = UIView()
         backgroundPatternView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background_pattern"))
-        backgroundPatternView.layer.cornerRadius = 23
         backgroundView.addSubview(backgroundPatternView)
         backgroundPatternView.snapEdges(to: backgroundView)
         
@@ -38,7 +37,7 @@ class ViewController: UIViewController {
         // wood
         let woodView = UIImageView(image: #imageLiteral(resourceName: "wood"))
         mainContainer.addSubview(woodView)
-        woodView.center(to: mainContainer, verticalAdjustment: -100)
+        woodView.center(to: mainContainer, verticalAdjustment: 80)
         
         // emitters
         createEdgeFireEmitters(x: -16)
@@ -49,11 +48,6 @@ class ViewController: UIViewController {
         createBaseFireEmitter(image: #imageLiteral(resourceName: "rect_orange"), scale: 0.6, ascent: 50, frequency: 0.1, duration: 2.6, wobble: 13, emitSize: 20, y: -18)
         createBaseFireEmitter(image: #imageLiteral(resourceName: "rect_yellow"), scale: 0.2, ascent: 20, frequency: 0.3, duration: 1.3, wobble: 10, emitSize: 10, y: -12)
         createParticleEmitter(image: #imageLiteral(resourceName: "particle_yellow"), ascend: 120, frequency: DoubleRange(min: 0.2, max:0.4), y: 20)
-        
-        // logo
-        let logoView = UIImageView(image: #imageLiteral(resourceName: "anim"))
-        self.view.addSubview(logoView)
-        logoView.bottom(to: self.view, verticalAdjustment: 34)
     }
     
     // MARK: - Create emitter helpers

@@ -24,7 +24,7 @@ public extension anim {
         /// Reference to next promise chained to this instance.
         internal var next: anim?
         /// Reference to previous promise this instance is chained.
-        internal var prev: anim?
+        weak internal var prev: anim?
         /// State of promise.
         internal var state: State = .created
 

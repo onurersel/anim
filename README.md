@@ -30,8 +30,14 @@ anim {
 It supports a bunch of easing functions and chaining multiple animations. It's a wrapper on Apple's `UIViewPropertyAnimator` on its core, and falls back to `UIView.animate` on versions before iOS and tvOS 10.
 It uses `NSAnimationContext` on macOS.
 
+#### Examples
+
+An example project is available at `examples/` folder and as targets on XCode project.
+
+![Bonfire](img/bonfire-optimized.gif)
+
 ---
-<img src="img/installation.png" alt="Installation" width="280">
+<img src="img/installation.png" alt="Installation" width="293">
 
 #### Cocoapods
 

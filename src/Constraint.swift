@@ -25,6 +25,7 @@ internal struct Constraint {
 }
 
 // MARK: - Initializers
+
 extension anim {
 
     /// Creates initial animation promise for `NSLayoutConstraint` animations, with settings.
