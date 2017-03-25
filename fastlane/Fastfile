@@ -73,7 +73,7 @@ platform :ios do
     jazzy
 
     # Push to repository
-    updated_files = ["./anim.podspec", "./anim/Info.plist", "./test/Info.plist", "./docs/"]
+    updated_files = ["./anim.podspec", "./anim/Info.plist", "./test/Info.plist", "./examples/Info.plist", "./docs/"]
     git_add(path: updated_files)
     git_commit(path: updated_files, message: "Pushing changes to Cocoapods")
     add_git_tag(tag: version)
