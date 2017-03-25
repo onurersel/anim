@@ -32,9 +32,12 @@ It uses `NSAnimationContext` on macOS.
 
 #### Examples
 
-An example project is available at `examples/` folder and as targets on XCode project.
+Example projects are available at `examples/` folder and as targets on XCode project.
 
-![Bonfire](img/bonfire-optimized.gif)
+<img src="img/example-bonfire.gif"  align="left" alt="Bonfire" width="135">
+<img src="img/example-profile.gif"  align="left" alt="Profile" width="135">
+<img src="img/example-menu.gif"  align="left" alt="Menu" width="135">
+<img src="img/example-message.gif"  alt="Message" width="135">
 
 ---
 <img src="img/installation.png" alt="Installation" width="293">
