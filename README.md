@@ -1,4 +1,4 @@
-<img src="img/logo.png" alt="anim: Swift animation library for iOS, tvOS and macOS." width="446">
+<img src="https://github.com/onurersel/anim/raw/master/img/logo.png" alt="anim: Swift animation library for iOS, tvOS and macOS." width="446">
 
 -----
 [![CocoaPods](https://img.shields.io/cocoapods/v/anim.svg)](https://cocoapods.org/pods/anim)
@@ -34,13 +34,13 @@ It uses `NSAnimationContext` on macOS.
 
 Example projects are available at `examples/` folder and as targets on XCode project.
 
-<img src="img/example-bonfire.gif"  align="left" alt="Bonfire" width="135">
-<img src="img/example-profile.gif"  align="left" alt="Profile" width="135">
-<img src="img/example-menu.gif"  align="left" alt="Menu" width="135">
-<img src="img/example-message.gif"  alt="Message" width="135">
+<img src="https://github.com/onurersel/anim/raw/master/img/example-bonfire.gif"  align="left" alt="Bonfire" width="135">
+<img src="https://github.com/onurersel/anim/raw/master/img/example-profile.gif"  align="left" alt="Profile" width="135">
+<img src="https://github.com/onurersel/anim/raw/master/img/example-menu.gif"  align="left" alt="Menu" width="135">
+<img src="https://github.com/onurersel/anim/raw/master/img/example-message.gif"  alt="Message" width="135">
 
 ---
-<img src="img/installation.png" alt="Installation" width="293">
+<img src="https://github.com/onurersel/anim/raw/master/img/installation.png" alt="Installation" width="293">
 
 #### Cocoapods
 
@@ -59,7 +59,7 @@ github "onurersel/anim"
 Or simply drag the swift files inside `src/` folder into your project.
 
 ---
-<img src="img/api.png" alt="API" width="127">
+<img src="https://github.com/onurersel/anim/raw/master/img/api.png" alt="API" width="127">
 
 For complete documentation, visit [http://onurersel.github.io/anim/](http://onurersel.github.io/anim/).
 
@@ -178,7 +178,7 @@ anim.defaultSettings.ease = .easeInOutCubic
 `anim.Ease` exposes a bunch of easing options.
 
 ---
-<img src="img/roadmap.png" alt="Roadmap" width="286">
+<img src="https://github.com/onurersel/anim/raw/master/img/roadmap.png" alt="Roadmap" width="286">
 
 - [x] Chaining animations
 - [x] Wait, callback functions
@@ -186,13 +186,13 @@ anim.defaultSettings.ease = .easeInOutCubic
 - [x] iOS 8 and 9 support
 - [x] macOS support
 - [x] tvOS support
-- [ ] Example projects
+- [x] Example projects
 - [ ] API for choreographing animations
 - [ ] Grouping animations
 - [ ] Easing with spring
 - [ ] Shape animations
 
 ---
-<img src="img/license.png" alt="License" width="163">
+<img src="https://github.com/onurersel/anim/raw/master/img/license.png" alt="License" width="163">
 
 `anim` is released under the MIT license. See LICENSE for details.
