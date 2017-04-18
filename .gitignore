@@ -67,5 +67,8 @@ fastlane/screenshots
 fastlane/test_output
 fastlane/cov_output
 
+# .DS_Store files
 .DS_Store
+
+# Playgrounds
 *.playground

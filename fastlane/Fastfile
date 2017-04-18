@@ -20,6 +20,7 @@ platform :ios do
     scan(
       project: "anim.xcodeproj",
       scheme: "anim-macos",
+      code_coverage: true,
       clean: true
     )
 
@@ -27,6 +28,7 @@ platform :ios do
     scan(
       project: "anim.xcodeproj",
       scheme: "anim-tvos",
+      code_coverage: true,
       clean: true
     )
 

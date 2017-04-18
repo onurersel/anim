@@ -120,7 +120,8 @@ final public class anim: NSObject {
             return self.run()
         }
 
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(Int(animationSettings.delay*1000))) {
+        let delayMilliseconds: Int = Int(animationSettings.delay*1000)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(delayMilliseconds)) {
             self.run()
         }
     }
@@ -143,7 +144,9 @@ final public class anim: NSObject {
         }
 
         animator = animationSettings.preferredAnimator.instance
-        animator?.startAnimation(animationClosure: animationClosure!, completion: completion, settings: animationSettings)
+        animator?.startAnimation(animationClosure: animationClosure!,
+                                 completion: completion,
+                                 settings: animationSettings)
     }
 
     /// Animation block completion.

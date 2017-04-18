@@ -34,7 +34,9 @@ extension anim {
     ///   - constraintParent: Top parent where constraints reside.
     ///   - closureWithSettings: Exposes settings values to block, and expects returning animation block.
     @discardableResult
-    public convenience init(constraintParent: View, _ closureWithSettings: @escaping (inout animSettings) -> animClosure) {
+    public convenience init(constraintParent: View,
+                            _ closureWithSettings: @escaping (inout animSettings) -> animClosure) {
+
         self.init(constraintParent: constraintParent, closureWithoutProcess: closureWithSettings)
         process()
     }
@@ -85,7 +87,9 @@ extension anim {
     ///   - closureWithSettings: Exposes settings values to block, and expects returning animation block.
     /// - Returns: Newly created promise.
     @discardableResult
-    public func then(constraintParent: View, _ closureWithSettings: @escaping (inout animSettings) -> animClosure) -> anim {
+    public func then(constraintParent: View,
+                     _ closureWithSettings: @escaping (inout animSettings) -> animClosure) -> anim {
+
         let nextAnim = anim(constraintParent: constraintParent, closureWithoutProcess: closureWithSettings)
         chain(to: nextAnim)
         return nextAnim

@@ -52,7 +52,9 @@ internal class MacAnimator: Animator {
 
         // Since there's no completion callback to be used with `NSAnimationContext`, it's
         // using `DispatchQueue` to call completion after animation duration.
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(Int(settings.duration*1000)), execute: completion)
+        let delayMilliseconds: Int = Int(settings.duration*1000)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(delayMilliseconds),
+                                      execute: completion)
     }
 
     internal func stopAnimation() {
