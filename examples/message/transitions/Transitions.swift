@@ -197,7 +197,7 @@ extension MessageConversationShowAnimator {
         private class func createCircleView(withColor color: UIColor, radius: CGFloat) -> UIView {
             let view = UIView()
             
-            let circlePath = UIBezierPath(arcCenter: CGPoint(x:radius, y:radius), radius: radius, startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
+            let circlePath = UIBezierPath(arcCenter: CGPoint(x:radius, y:radius), radius: radius, startAngle: CGFloat(0), endAngle:.pi * 2, clockwise: true)
             let shapeLayer = CAShapeLayer()
             shapeLayer.path = circlePath.cgPath
             
