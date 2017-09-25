@@ -17,6 +17,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         anim.defaultSettings.delay = 0
+
+        #if os(tvOS)
+            self.view.transform = CGAffineTransform.init(scaleX: 3, y: 3)
+        #endif
         
         // background
         let backgroundView = UIView()

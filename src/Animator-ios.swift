@@ -101,7 +101,7 @@ internal class ViewAnimator: Animator {
         }
 
         // Starting to swizzle.
-        method_exchangeImplementations(ViewAnimator.methodOriginal, ViewAnimator.methodSwizzled)
+        method_exchangeImplementations(ViewAnimator.methodOriginal!, ViewAnimator.methodSwizzled!)
 
         // Storing this instance so `CALayer.anim_add` can use it.
         ViewAnimator.activeInstance = self
@@ -123,7 +123,7 @@ internal class ViewAnimator: Animator {
         ViewAnimator.timingFunction = nil
 
         // Swizzling back.
-        method_exchangeImplementations(ViewAnimator.methodSwizzled, ViewAnimator.methodOriginal)
+        method_exchangeImplementations(ViewAnimator.methodSwizzled!, ViewAnimator.methodOriginal!)
     }
 
     /// Stops animation. Refer to protocol description for more information.

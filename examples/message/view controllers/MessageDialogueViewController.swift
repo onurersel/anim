@@ -15,8 +15,8 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
     
     fileprivate var messageTable: MessageTable!
     fileprivate var inputContainer: InputContainer!
-    fileprivate var profilePictureBarButton: ProfilePictureBarButtonItem!
-    fileprivate var backBarButton: BackBarButtonItem!
+    fileprivate var profilePicture: ProfilePicture!
+    fileprivate var backBarButton: BackButton!
     private var conversation: Conversation!
     private(set) var userColor: UIColor!
     private var emitter: DialogueBubbleTableCell.Emitter!
@@ -27,7 +27,6 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     override func viewDidLoad() {
-        self.navigationItem.setHidesBackButton(true, animated: false)
         self.view.backgroundColor = UIColor.white
         
         // color scheme
@@ -51,16 +50,13 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
         
         messageTable.tableView.delegate = self
         messageTable.tableView.dataSource = self
-        
-        
+
         // back button
-        backBarButton = BackBarButtonItem.create()
-        self.navigationItem.leftBarButtonItem = backBarButton
-        
+        backBarButton = BackButton.create()
+
         // profile picture
-        profilePictureBarButton = ProfilePictureBarButtonItem.create()
-        self.navigationItem.rightBarButtonItem = profilePictureBarButton
-        
+        profilePicture = ProfilePicture.create()
+
         // emitter
         emitter = DialogueBubbleTableCell.Emitter()
     }
@@ -70,6 +66,7 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NavigationBarController.shared.addItems(left: backBarButton, right: profilePicture)
         addListeners()
     }
     
@@ -77,6 +74,7 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
         super.viewDidDisappear(animated)
         removeListeners()
         conversation.isClosed = true
+        NavigationBarController.shared.addItems(left: nil, right: nil)
     }
     
     
@@ -115,13 +113,13 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
         NotificationCenter.default.addObserver(self, selector: #selector(self.addMessageHandler), name: Event.addMessage, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateConversationTableHandler), name: Event.updateConversationTable, object: nil)
         
-        backBarButton.buttonView.addTarget(self, action: #selector(self.backAction), for: .touchUpInside)
+        backBarButton.addTarget(self, action: #selector(self.backAction), for: .touchUpInside)
     }
     
     private func removeListeners() {
         NotificationCenter.default.removeObserver(self)
         
-        backBarButton.buttonView.removeTarget(self, action: #selector(self.backAction), for: .touchUpInside)
+        backBarButton.removeTarget(self, action: #selector(self.backAction), for: .touchUpInside)
     }
     
     @objc
@@ -213,8 +211,8 @@ extension MessageDialogueViewController: AnimatedViewController {
             settings.ease = .easeOutQuint
             return {
                 NavigationBarController.shared.showMessage()
-                self.profilePictureBarButton.pictureView.alpha = 1
-                self.backBarButton.buttonView.alpha = 1
+                self.profilePicture.alpha = 1
+                self.backBarButton.alpha = 1
             }
         }
         .callback {
@@ -229,12 +227,13 @@ extension MessageDialogueViewController: AnimatedViewController {
     func animateOut(_ completion: @escaping ()->Void) {
         inputContainer.positionForOut()
         inputContainer.hideKeyboard()
-        
+
         anim { (settings) -> (animClosure) in
             settings.duration = 0.4
             settings.ease = .easeInQuint
             return {
-                NavigationBarController.shared.hide()
+                self.profilePicture.alpha = 0
+                self.backBarButton.alpha = 0
             }
         }
         .callback {
@@ -248,14 +247,17 @@ extension MessageDialogueViewController: AnimatedViewController {
                 self.messageTable.positionForOut()
             }
         }
+        .callback {
+            NavigationBarController.shared.hide()
+        }
     }
     
     func prepareForAnimateIn() {
         NavigationBarController.shared.hide()
         messageTable.positionForOut()
         inputContainer.positionForOut()
-        profilePictureBarButton.pictureView.alpha = 0
-        backBarButton.buttonView.alpha = 0
+        profilePicture.alpha = 0
+        backBarButton.alpha = 0
     }
     
     func prepareForAnimateOut() {
@@ -295,7 +297,7 @@ extension MessageDialogueViewController {
             UIView.alignMultiple(view: view.tableView, to: view, attributes: [.width, .height])
             
             view.topOutConstraint = NSLayoutConstraint(item: view.tableView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
-            view.topOutConstraint.priority = 999
+            view.topOutConstraint.priority = UILayoutPriority(rawValue: 999)
             view.topOutConstraint.isActive = false
             
             view.topInConstraint = NSLayoutConstraint(item: view.tableView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
@@ -361,7 +363,7 @@ class DialogueBubbleTableCell: UITableViewCell {
         
         view.leftConstraint = NSLayoutConstraint(item: view.bubble, attribute: .left, relatedBy: .equal, toItem: view.contentView, attribute: .left, multiplier: 1, constant: 26)
         view.rightConstraint = NSLayoutConstraint(item: view.bubble, attribute: .right, relatedBy: .equal, toItem: view.contentView, attribute: .right, multiplier: 1, constant: -26)
-        view.rightConstraint.priority = 999
+        view.rightConstraint.priority = UILayoutPriority(rawValue: 999)
         
         view.contentView.addConstraints([
             NSLayoutConstraint(item: view.bubble, attribute: .width, relatedBy: .equal, toItem: view.contentView, attribute: .width, multiplier: 0.652, constant: 0),
@@ -611,11 +613,11 @@ extension MessageDialogueViewController {
 
 extension MessageDialogueViewController {
 
-    class ProfilePicture: UIView, RightNavigationBarButton {
+    class ProfilePicture: UIView {
         
         class func create() -> ProfilePicture {
             let view = ProfilePicture()
-            view.frame = CGRect(x: 0, y: 0, width: 52, height: 52)
+            view.size(width: 52, height: 52)
             view.backgroundColor = Color.darkGray
             view.layer.cornerRadius = 26
             
@@ -669,7 +671,7 @@ extension MessageDialogueViewController {
             
             bottomInConstraint = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: parent, attribute: .bottom, multiplier: 1, constant: 0)
             bottomOutConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: parent, attribute: .bottom, multiplier: 1, constant: 0)
-            bottomOutConstraint.priority = 999
+            bottomOutConstraint.priority = UILayoutPriority(rawValue: 999)
             bottomOutConstraint.isActive = false
             parent.addConstraints([
                 NSLayoutConstraint(item: self, attribute: .left, relatedBy: .equal, toItem: parent, attribute: .left, multiplier: 1, constant: 0),

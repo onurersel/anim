@@ -31,7 +31,7 @@ extension AnimatorType: AnimatorTypeProtocol {
     }
 
     internal var instance: Animator {
-        if #available(iOS 10.0, *), #available(tvOS 10.0, *), self == .propertyAnimator {
+        if #available(iOS 10, *), #available(tvOS 10.0, *), self == .propertyAnimator {
             return PropertyAnimator()
         }
 

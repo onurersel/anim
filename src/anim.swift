@@ -38,8 +38,6 @@ public typealias animClosure = () -> Void
 ///
 /// It supports a bunch of easing functions and chaining multiple animations.
 /// It's a wrapper on Apple's `UIViewPropertyAnimator` on its core.
-///
-/// It only supports iOS 10 at the moment.
 final public class anim: NSObject {
 
     // MARK: - Properties

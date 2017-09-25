@@ -21,8 +21,6 @@ class MessageListViewController: UIViewController {
     // MARK: View Controller Overrides
     
     override func viewDidLoad() {
-        self.navigationItem.setHidesBackButton(true, animated: false)
-        
         self.view.backgroundColor = UIColor.white
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -101,7 +99,7 @@ extension MessageListViewController: AnimatedViewController {
     
     func animateIn(_ completion: @escaping ()->Void) {
         NotificationCenter.default.post(name: Event.menuShow, object: nil)
-        
+
         anim { (settings) -> (animClosure) in
             settings.duration = 0.6
             settings.ease = .easeInQuint

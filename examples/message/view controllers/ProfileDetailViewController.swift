@@ -31,7 +31,6 @@ class ProfileDetailViewController: UIViewController {
     // MARK: View Controller Overrides
 
     override func viewDidLoad() {
-        self.navigationItem.setHidesBackButton(true, animated: false)
         self.automaticallyAdjustsScrollViewInsets = false
         
         // header
@@ -46,11 +45,11 @@ class ProfileDetailViewController: UIViewController {
         headerView.addSubview(backButtonView)
         backButtonConstraints = backButtonView.snapEdges(to: headerView)
         backButtonLeftConstraint = NSLayoutConstraint(item: backButtonView, attribute: .left, relatedBy: .equal, toItem: headerView, attribute: .left, multiplier: 1, constant: 26)
-        backButtonLeftConstraint.priority = 999
+        backButtonLeftConstraint.priority = UILayoutPriority(rawValue: 999)
         backButtonLeftConstraint.isActive = false
         headerView.addConstraint(backButtonLeftConstraint)
         backButtonTopConstraint = NSLayoutConstraint(item: backButtonView, attribute: .top, relatedBy: .equal, toItem: headerView, attribute: .top, multiplier: 1, constant: 26)
-        backButtonTopConstraint.priority = 999
+        backButtonTopConstraint.priority = UILayoutPriority(rawValue: 999)
         backButtonTopConstraint.isActive = false
         headerView.addConstraint(backButtonTopConstraint)
 
@@ -292,7 +291,7 @@ extension ProfileDetailViewController {
             parent.addConstraint(inConstraint)
 
             outConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: parent, attribute: .bottom, multiplier: 1, constant: 0)
-            outConstraint.priority = 999
+            outConstraint.priority = UILayoutPriority(rawValue: 999)
             outConstraint.isActive = false
             parent.addConstraint(outConstraint)
         }

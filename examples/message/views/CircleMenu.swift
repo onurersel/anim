@@ -479,6 +479,7 @@ extension MenuButton {
         
         class func create() -> HamburgerLine {
             let view = HamburgerLine(frame: CGRect(x: 0, y: 0, width: 27, height: 4))
+            view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = UIColor.white
             
             return view
@@ -500,6 +501,8 @@ extension MenuButton {
         
         class func create() -> HamburgerIcon {
             let view = HamburgerIcon()
+
+            view.translatesAutoresizingMaskIntoConstraints = false
             
             view.line1View = HamburgerLine.create()
             view.line1View.center = CGPoint(x: 0, y: -10)

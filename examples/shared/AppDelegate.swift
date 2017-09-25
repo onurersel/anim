@@ -32,8 +32,13 @@ class RoundCornerWindow: UIWindow {
     class func create() -> RoundCornerWindow {
         let window = RoundCornerWindow(frame: UIScreen.main.bounds)
         window.rootViewController = UIViewController()
-        
-        window.windowLevel = UIWindowLevelStatusBar + 1
+
+        #if os(iOS)
+            window.windowLevel = UIWindowLevelStatusBar + 1
+        #else
+            window.windowLevel = 2
+        #endif
+
         window.isUserInteractionEnabled = false
         window.backgroundColor = UIColor.clear
         window.isHidden = false
@@ -48,4 +53,3 @@ class RoundCornerWindow: UIWindow {
     }
     
 }
-

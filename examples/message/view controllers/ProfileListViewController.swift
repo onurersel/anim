@@ -36,7 +36,6 @@ class ProfileListViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: View Controller overrides
     
     override func viewDidLoad() {
-        self.navigationItem.setHidesBackButton(true, animated: false)
         self.view.backgroundColor = UIColor.white
         self.automaticallyAdjustsScrollViewInsets = false
 
@@ -173,7 +172,6 @@ class ProfileListViewController: UIViewController, UITableViewDelegate, UITableV
     
     @objc
     func orientationChangeHandler(notification: Notification) {
-        print(tableView.contentOffset)
         tableView.contentInset = UIEdgeInsetsMake(NavigationBarController.heightProfile.heightForOrientation + 20, 0, 0, 0)
     }
 }
@@ -207,7 +205,7 @@ extension ProfileListViewController: AnimatedViewController {
     
     func animateOut(_ completion: @escaping ()->Void) {
         self.hideCells()
-        
+
         anim { (settings) -> (animClosure) in
             settings.ease = .easeInQuint
             settings.duration = 0.4
@@ -278,7 +276,7 @@ class ProfileCell: UITableViewCell {
                                            relatedBy: .equal,
                                            toItem: contentView, attribute: .left,
                                            multiplier: 1, constant: 0)
-        outConstraint.priority = 999
+        outConstraint.priority = UILayoutPriority(rawValue: 999)
         contentView.addConstraint(outConstraint)
         topConstraint = NSLayoutConstraint(item: profileBoxView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: 0)
         containerView.addConstraint(topConstraint)

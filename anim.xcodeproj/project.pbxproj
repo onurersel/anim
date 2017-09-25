@@ -22,7 +22,20 @@
 		BA4590711E6855CF00CAB89B /* BLOKKNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA4590701E6855CF00CAB89B /* BLOKKNeue-Regular.ttf */; };
 		BA4590731E6861F400CAB89B /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4590721E6861F400CAB89B /* Dummy.swift */; };
 		BA4590741E6861F400CAB89B /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4590721E6861F400CAB89B /* Dummy.swift */; };
-		BA5A67F31E602AF400CD560F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA5A67F21E602AF400CD560F /* Assets.xcassets */; };
+		BA5A67F31E602AF400CD560F /* Assets-bonfire.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA5A67F21E602AF400CD560F /* Assets-bonfire.xcassets */; };
+		BA5DE41C1F79448E001A1BAE /* anim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA656D701E5726EF006A8221 /* anim.framework */; };
+		BA5DE41D1F79448E001A1BAE /* anim.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BA656D701E5726EF006A8221 /* anim.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BA5DE41F1F7944BC001A1BAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20432D1E5C81AD00E8FDCA /* AppDelegate.swift */; };
+		BA5DE4201F7944BC001A1BAE /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2043141E5C7BDC00E8FDCA /* Layout.swift */; };
+		BA5DE4211F7944BC001A1BAE /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20433D1E5C8A7000E8FDCA /* Math.swift */; };
+		BA5DE4221F7944BC001A1BAE /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABCF2E51E67021E00158464 /* Style.swift */; };
+		BA5DE4231F7944BC001A1BAE /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4590721E6861F400CAB89B /* Dummy.swift */; };
+		BA5DE4241F7944BC001A1BAE /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA184E0F1E77EC16001CAE47 /* Foundation.swift */; };
+		BA5DE4251F7944BC001A1BAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20432E1E5C81AD00E8FDCA /* ViewController.swift */; };
+		BA5DE4261F7944BC001A1BAE /* Particle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2043371E5C840600E8FDCA /* Particle.swift */; };
+		BA5DE4271F7944BC001A1BAE /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20433B1E5C86CF00E8FDCA /* Emitter.swift */; };
+		BA5DE4281F79465E001A1BAE /* Assets-bonfire.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA5A67F21E602AF400CD560F /* Assets-bonfire.xcassets */; };
+		BA5DE4291F794688001A1BAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA82DC031E5F0DDA00FCEE49 /* Assets.xcassets */; };
 		BA656D931E574E35006A8221 /* anim.h in Headers */ = {isa = PBXBuildFile; fileRef = BA656D921E574E35006A8221 /* anim.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA656D951E574E35006A8221 /* anim.h in Headers */ = {isa = PBXBuildFile; fileRef = BA656D921E574E35006A8221 /* anim.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA656D971E575728006A8221 /* animosx.h in Headers */ = {isa = PBXBuildFile; fileRef = BA656D961E575728006A8221 /* animosx.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -87,6 +100,13 @@
 			remoteGlobalIDString = BA3FCA081E4B262F0095BE41;
 			remoteInfo = "anim-ios";
 		};
+		BA5DE41A1F794485001A1BAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA3FCA001E4B262F0095BE41 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA656D6F1E5726EF006A8221;
+			remoteInfo = "anim-tvos";
+		};
 		BA7925F51E65B3BF002A57A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BA3FCA001E4B262F0095BE41 /* Project object */;
@@ -97,6 +117,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		BA5DE41E1F79448E001A1BAE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BA5DE41D1F79448E001A1BAE /* anim.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BAB0E5271E5F434600E11EA8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -125,6 +156,11 @@
 		BA150F961E53B838009A14E3 /* animTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = animTests.swift; sourceTree = "<group>"; };
 		BA150F971E53B838009A14E3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA150F9E1E53B85C009A14E3 /* animTests-ios.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "animTests-ios.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA16C8791F79564100D1721B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BA16C87B1F79564100D1721B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BA16C87E1F79564100D1721B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		BA16C8801F79564100D1721B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA16C8811F79564100D1721B /* example_bonfire_macos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = example_bonfire_macos.entitlements; sourceTree = "<group>"; };
 		BA184E0F1E77EC16001CAE47 /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
 		BA20430B1E5C571100E8FDCA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA20430C1E5C571100E8FDCA /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -140,7 +176,8 @@
 		BA3FCA241E4B26430095BE41 /* anim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = anim.swift; sourceTree = "<group>"; };
 		BA4590701E6855CF00CAB89B /* BLOKKNeue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BLOKKNeue-Regular.ttf"; sourceTree = "<group>"; };
 		BA4590721E6861F400CAB89B /* Dummy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
-		BA5A67F21E602AF400CD560F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BA5A67F21E602AF400CD560F /* Assets-bonfire.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-bonfire.xcassets"; sourceTree = "<group>"; };
+		BA5DE40A1F7942C4001A1BAE /* animBonfire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = animBonfire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA656D701E5726EF006A8221 /* anim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = anim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA656D921E574E35006A8221 /* anim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anim.h; sourceTree = "<group>"; };
 		BA656D961E575728006A8221 /* animosx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = animosx.h; sourceTree = "<group>"; };
@@ -196,6 +233,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA5DE4071F7942C4001A1BAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA5DE41C1F79448E001A1BAE /* anim.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BA656D6C1E5726EF006A8221 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -237,6 +282,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA16C8781F79564100D1721B /* example-bonfire-macos */ = {
+			isa = PBXGroup;
+			children = (
+				BA16C8791F79564100D1721B /* AppDelegate.swift */,
+				BA16C87B1F79564100D1721B /* Assets.xcassets */,
+				BA16C87D1F79564100D1721B /* MainMenu.xib */,
+				BA16C8801F79564100D1721B /* Info.plist */,
+				BA16C8811F79564100D1721B /* example_bonfire_macos.entitlements */,
+			);
+			path = "example-bonfire-macos";
+			sourceTree = "<group>";
+		};
 		BA2043071E5C56E400E8FDCA /* examples */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,7 +324,7 @@
 		BA20432C1E5C81AD00E8FDCA /* bonfire */ = {
 			isa = PBXGroup;
 			children = (
-				BA5A67F21E602AF400CD560F /* Assets.xcassets */,
+				BA5A67F21E602AF400CD560F /* Assets-bonfire.xcassets */,
 				BA20432E1E5C81AD00E8FDCA /* ViewController.swift */,
 				BA2043371E5C840600E8FDCA /* Particle.swift */,
 				BA20433B1E5C86CF00E8FDCA /* Emitter.swift */,
@@ -291,6 +348,7 @@
 				BA3FCA0B1E4B262F0095BE41 /* anim */,
 				BA2043071E5C56E400E8FDCA /* examples */,
 				BA3F894F1E5341FD00FBAB7D /* test */,
+				BA16C8781F79564100D1721B /* example-bonfire-macos */,
 				BA3FCA0A1E4B262F0095BE41 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -306,6 +364,7 @@
 				BA656D9C1E57576F006A8221 /* animTests-tvos.xctest */,
 				BA20431A1E5C80EB00E8FDCA /* animBonfire.app */,
 				BA7925DA1E65B335002A57A9 /* animMessage.app */,
+				BA5DE40A1F7942C4001A1BAE /* animBonfire.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -434,9 +493,9 @@
 			productReference = BA150F9E1E53B85C009A14E3 /* animTests-ios.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		BA2043191E5C80EB00E8FDCA /* example-bonfire */ = {
+		BA2043191E5C80EB00E8FDCA /* example-bonfire-ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BA2043291E5C80EB00E8FDCA /* Build configuration list for PBXNativeTarget "example-bonfire" */;
+			buildConfigurationList = BA2043291E5C80EB00E8FDCA /* Build configuration list for PBXNativeTarget "example-bonfire-ios" */;
 			buildPhases = (
 				BA2043161E5C80EB00E8FDCA /* Sources */,
 				BA2043171E5C80EB00E8FDCA /* Frameworks */,
@@ -448,7 +507,7 @@
 			dependencies = (
 				BA20433A1E5C84E800E8FDCA /* PBXTargetDependency */,
 			);
-			name = "example-bonfire";
+			name = "example-bonfire-ios";
 			productName = "example-bonfire";
 			productReference = BA20431A1E5C80EB00E8FDCA /* animBonfire.app */;
 			productType = "com.apple.product-type.application";
@@ -470,6 +529,25 @@
 			productName = anim;
 			productReference = BA3FCA091E4B262F0095BE41 /* anim.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		BA5DE4091F7942C4001A1BAE /* example-bonfire-tvos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA5DE4161F7942C4001A1BAE /* Build configuration list for PBXNativeTarget "example-bonfire-tvos" */;
+			buildPhases = (
+				BA5DE4061F7942C4001A1BAE /* Sources */,
+				BA5DE4071F7942C4001A1BAE /* Frameworks */,
+				BA5DE4081F7942C4001A1BAE /* Resources */,
+				BA5DE41E1F79448E001A1BAE /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA5DE41B1F794485001A1BAE /* PBXTargetDependency */,
+			);
+			name = "example-bonfire-tvos";
+			productName = "example-bonfire-tvos";
+			productReference = BA5DE40A1F7942C4001A1BAE /* animBonfire.app */;
+			productType = "com.apple.product-type.application";
 		};
 		BA656D6F1E5726EF006A8221 /* anim-tvos */ = {
 			isa = PBXNativeTarget;
@@ -566,13 +644,14 @@
 		BA3FCA001E4B262F0095BE41 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Onur Ersel";
 				TargetAttributes = {
 					BA150F9D1E53B85C009A14E3 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = SC8T7A8Q3S;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					BA2043191E5C80EB00E8FDCA = {
@@ -583,26 +662,36 @@
 					BA3FCA081E4B262F0095BE41 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = SC8T7A8Q3S;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+					BA5DE4091F7942C4001A1BAE = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = SC8T7A8Q3S;
 						ProvisioningStyle = Automatic;
 					};
 					BA656D6F1E5726EF006A8221 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = SC8T7A8Q3S;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					BA656D9B1E57576F006A8221 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = SC8T7A8Q3S;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					BA7057571E549F7300565309 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = SC8T7A8Q3S;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					BA70579D1E54EC7600565309 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = SC8T7A8Q3S;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					BA7925D91E65B335002A57A9 = {
@@ -631,8 +720,9 @@
 				BA150F9D1E53B85C009A14E3 /* animTests-ios */,
 				BA70579D1E54EC7600565309 /* animTests-macos */,
 				BA656D9B1E57576F006A8221 /* animTests-tvos */,
-				BA2043191E5C80EB00E8FDCA /* example-bonfire */,
+				BA2043191E5C80EB00E8FDCA /* example-bonfire-ios */,
 				BA7925D91E65B335002A57A9 /* example-message */,
+				BA5DE4091F7942C4001A1BAE /* example-bonfire-tvos */,
 			);
 		};
 /* End PBXProject section */
@@ -650,7 +740,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA82DC041E5F0DDA00FCEE49 /* Assets.xcassets in Resources */,
-				BA5A67F31E602AF400CD560F /* Assets.xcassets in Resources */,
+				BA5A67F31E602AF400CD560F /* Assets-bonfire.xcassets in Resources */,
 				BA2043341E5C829700E8FDCA /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -659,6 +749,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA5DE4081F7942C4001A1BAE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA5DE4281F79465E001A1BAE /* Assets-bonfire.xcassets in Resources */,
+				BA5DE4291F794688001A1BAE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,6 +842,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA5DE4061F7942C4001A1BAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA5DE41F1F7944BC001A1BAE /* AppDelegate.swift in Sources */,
+				BA5DE4201F7944BC001A1BAE /* Layout.swift in Sources */,
+				BA5DE4211F7944BC001A1BAE /* Math.swift in Sources */,
+				BA5DE4221F7944BC001A1BAE /* Style.swift in Sources */,
+				BA5DE4231F7944BC001A1BAE /* Dummy.swift in Sources */,
+				BA5DE4241F7944BC001A1BAE /* Foundation.swift in Sources */,
+				BA5DE4251F7944BC001A1BAE /* ViewController.swift in Sources */,
+				BA5DE4261F7944BC001A1BAE /* Particle.swift in Sources */,
+				BA5DE4271F7944BC001A1BAE /* Emitter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BA656D6B1E5726EF006A8221 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -821,12 +936,28 @@
 			target = BA3FCA081E4B262F0095BE41 /* anim-ios */;
 			targetProxy = BA2043391E5C84E800E8FDCA /* PBXContainerItemProxy */;
 		};
+		BA5DE41B1F794485001A1BAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA656D6F1E5726EF006A8221 /* anim-tvos */;
+			targetProxy = BA5DE41A1F794485001A1BAE /* PBXContainerItemProxy */;
+		};
 		BA7925F61E65B3BF002A57A9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BA3FCA081E4B262F0095BE41 /* anim-ios */;
 			targetProxy = BA7925F51E65B3BF002A57A9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BA16C87D1F79564100D1721B /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA16C87E1F79564100D1721B /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		BA150FA71E53B85C009A14E3 /* Debug */ = {
@@ -839,7 +970,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.onurersel.animTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -853,7 +983,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.onurersel.animTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -868,7 +997,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-bonfire";
 				PRODUCT_NAME = animBonfire;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -883,7 +1011,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-bonfire";
 				PRODUCT_NAME = animBonfire;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -896,7 +1023,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -904,7 +1033,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -934,6 +1067,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -949,7 +1083,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -957,7 +1093,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -979,6 +1119,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1001,7 +1142,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.anim-ios";
 				PRODUCT_NAME = anim;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1021,8 +1161,53 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.anim-ios";
 				PRODUCT_NAME = anim;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BA5DE4171F7942C4001A1BAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Brand Assets";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SC8T7A8Q3S;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = examples/shared/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-bonfire-tvos";
+				PRODUCT_NAME = animBonfire;
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		BA5DE4181F7942C4001A1BAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Brand Assets";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SC8T7A8Q3S;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = examples/shared/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-bonfire-tvos";
+				PRODUCT_NAME = animBonfire;
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Release;
 		};
@@ -1042,7 +1227,6 @@
 				PRODUCT_NAME = anim;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
@@ -1064,7 +1248,6 @@
 				PRODUCT_NAME = anim;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
@@ -1079,7 +1262,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.animTests-tvos";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
@@ -1093,7 +1275,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.animTests-tvos";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -1116,7 +1297,6 @@
 				PRODUCT_NAME = anim;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1138,7 +1318,6 @@
 				PRODUCT_NAME = anim;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1150,11 +1329,9 @@
 				DEVELOPMENT_TEAM = SC8T7A8Q3S;
 				INFOPLIST_FILE = test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.animTests-macosx";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1166,11 +1343,9 @@
 				DEVELOPMENT_TEAM = SC8T7A8Q3S;
 				INFOPLIST_FILE = test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.animTests-macosx";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1185,7 +1360,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-message";
 				PRODUCT_NAME = animMessage;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1200,7 +1374,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-message";
 				PRODUCT_NAME = animMessage;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1216,7 +1389,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BA2043291E5C80EB00E8FDCA /* Build configuration list for PBXNativeTarget "example-bonfire" */ = {
+		BA2043291E5C80EB00E8FDCA /* Build configuration list for PBXNativeTarget "example-bonfire-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BA20432A1E5C80EB00E8FDCA /* Debug */,
@@ -1239,6 +1412,15 @@
 			buildConfigurations = (
 				BA3FCA1E1E4B262F0095BE41 /* Debug */,
 				BA3FCA1F1E4B262F0095BE41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA5DE4161F7942C4001A1BAE /* Build configuration list for PBXNativeTarget "example-bonfire-tvos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA5DE4171F7942C4001A1BAE /* Debug */,
+				BA5DE4181F7942C4001A1BAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -35,20 +35,20 @@ internal class MacAnimator: Animator {
                                  completion: @escaping animClosure,
                                  settings: animSettings) {
 
-        method_exchangeImplementations(MacAnimator.methodOriginal, MacAnimator.methodSwizzled)
+        method_exchangeImplementations(MacAnimator.methodOriginal!, MacAnimator.methodSwizzled!)
 
         MacAnimator.activeInstance = self
         MacAnimator.timingFunction = settings.ease.caMediaTimingFunction
 
         NSAnimationContext.beginGrouping()
-        NSAnimationContext.current().duration = settings.duration
+        NSAnimationContext.current.duration = settings.duration
         animationClosure()
         NSAnimationContext.endGrouping()
 
         MacAnimator.activeInstance = nil
         MacAnimator.timingFunction = nil
 
-        method_exchangeImplementations(MacAnimator.methodSwizzled, MacAnimator.methodOriginal)
+        method_exchangeImplementations(MacAnimator.methodSwizzled!, MacAnimator.methodOriginal!)
 
         // Since there's no completion callback to be used with `NSAnimationContext`, it's
         // using `DispatchQueue` to call completion after animation duration.

@@ -517,7 +517,7 @@ class animTests: XCTestCase {
                 XCTAssertEqual(expectedEvent.key, loggedEvent.key)
 
                 let expectedDelayDiff: TimeInterval = (i == 0) ? expectedEvent.delay : expectedEvent.delay-events[i-1].delay
-                XCTAssertEqualWithAccuracy(expectedDelayDiff, loggedEvent.delay, accuracy: 0.28*animTests.delayMultiplier)
+                XCTAssertEqual(expectedDelayDiff, loggedEvent.delay, accuracy: 0.28*animTests.delayMultiplier)
             }
 
             exp.fulfill()

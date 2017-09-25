@@ -28,13 +28,13 @@ class BackBarButtonItem: UIBarButtonItem {
 
 // MARK: - Back Button
 
-class BackButton: UIButton, LeftNavigationBarButton {
+class BackButton: UIButton {
     
     private var arrowImageView: UIImageView!
     
     class func create() -> BackButton {
         let view = BackButton()
-        view.frame = CGRect(x: 0, y: 0, width: 38, height: 38)
+        view.size(width: 38, height: 38)
         view.layer.cornerRadius = 19
         
         // background
@@ -43,7 +43,7 @@ class BackButton: UIButton, LeftNavigationBarButton {
         // arrow
         view.arrowImageView = UIImageView(image: #imageLiteral(resourceName: "back_arrow"))
         view.addSubview(view.arrowImageView)
-        view.arrowImageView.center = view.center
+        view.arrowImageView.center(to: view)
         
         view.addTarget(view, action: #selector(view.downAction), for: .touchDown)
         view.addTarget(view, action: #selector(view.upAction), for: .touchUpInside)

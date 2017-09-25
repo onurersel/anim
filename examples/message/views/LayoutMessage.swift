@@ -61,7 +61,7 @@ class BubbleConstraints {
         let xPercent: CGFloat = (side == .left) ? 0.297 : 0.703
         
         widthConstraint = NSLayoutConstraint(item: child, attribute: .width, relatedBy: .equal, toItem: parent, attribute: .width, multiplier: 0.47, constant: 0)
-        widthConstraint!.priority = 999
+        widthConstraint!.priority = UILayoutPriority(rawValue: 999)
         heightConstraint = NSLayoutConstraint(item: child, attribute: .height, relatedBy: .equal, toItem: child, attribute: .width, multiplier: 1, constant: 0)
         xConstraint = NSLayoutConstraint(item: child, attribute: .centerX, relatedBy: .equal, toItem: parent, attribute: .right, multiplier: xPercent, constant: 0)
         yConstraint = NSLayoutConstraint(item: child, attribute: .centerY, relatedBy: .equal, toItem: (under ?? parent), attribute: (under == nil ? .top : .centerY), multiplier: 1, constant: defaultDistanceBetweenTwoBubbles)
