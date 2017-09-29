@@ -20,9 +20,18 @@ class Emitter: UIView {
         var scale: CGFloat
         var duration: TimeInterval
         var initialAlpha: CGFloat
+
+        mutating func applyPlatformMultiplier() {
+            emitSize = emitSize.platform
+            ascend = ascend.platform
+        }
     }
     
-    var settings: Settings!
+    var settings: Settings! {
+        didSet {
+            settings.applyPlatformMultiplier()
+        }
+    }
     private var availableParticles = [Particle]()
     
     

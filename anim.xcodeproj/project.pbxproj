@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA0BAF381F7E35B1001CBC01 /* DistanceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0BAF371F7E35B1001CBC01 /* DistanceExtension.swift */; };
+		BA0BAF391F7E35B1001CBC01 /* DistanceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0BAF371F7E35B1001CBC01 /* DistanceExtension.swift */; };
 		BA150FA91E53B870009A14E3 /* animTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA150F961E53B838009A14E3 /* animTests.swift */; };
 		BA150FAA1E53D2EB009A14E3 /* anim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3FCA091E4B262F0095BE41 /* anim.framework */; };
 		BA184E101E77EC16001CAE47 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA184E0F1E77EC16001CAE47 /* Foundation.swift */; };
@@ -153,14 +155,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BA0BAF371F7E35B1001CBC01 /* DistanceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceExtension.swift; sourceTree = "<group>"; };
 		BA150F961E53B838009A14E3 /* animTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = animTests.swift; sourceTree = "<group>"; };
 		BA150F971E53B838009A14E3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA150F9E1E53B85C009A14E3 /* animTests-ios.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "animTests-ios.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA16C8791F79564100D1721B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BA16C87B1F79564100D1721B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BA16C87E1F79564100D1721B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		BA16C8801F79564100D1721B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BA16C8811F79564100D1721B /* example_bonfire_macos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = example_bonfire_macos.entitlements; sourceTree = "<group>"; };
 		BA184E0F1E77EC16001CAE47 /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
 		BA20430B1E5C571100E8FDCA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA20430C1E5C571100E8FDCA /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -282,18 +280,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BA16C8781F79564100D1721B /* example-bonfire-macos */ = {
-			isa = PBXGroup;
-			children = (
-				BA16C8791F79564100D1721B /* AppDelegate.swift */,
-				BA16C87B1F79564100D1721B /* Assets.xcassets */,
-				BA16C87D1F79564100D1721B /* MainMenu.xib */,
-				BA16C8801F79564100D1721B /* Info.plist */,
-				BA16C8811F79564100D1721B /* example_bonfire_macos.entitlements */,
-			);
-			path = "example-bonfire-macos";
-			sourceTree = "<group>";
-		};
 		BA2043071E5C56E400E8FDCA /* examples */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +314,7 @@
 				BA20432E1E5C81AD00E8FDCA /* ViewController.swift */,
 				BA2043371E5C840600E8FDCA /* Particle.swift */,
 				BA20433B1E5C86CF00E8FDCA /* Emitter.swift */,
+				BA0BAF371F7E35B1001CBC01 /* DistanceExtension.swift */,
 			);
 			path = bonfire;
 			sourceTree = "<group>";
@@ -348,7 +335,6 @@
 				BA3FCA0B1E4B262F0095BE41 /* anim */,
 				BA2043071E5C56E400E8FDCA /* examples */,
 				BA3F894F1E5341FD00FBAB7D /* test */,
-				BA16C8781F79564100D1721B /* example-bonfire-macos */,
 				BA3FCA0A1E4B262F0095BE41 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -820,6 +806,7 @@
 				BA2043381E5C840600E8FDCA /* Particle.swift in Sources */,
 				BA4590731E6861F400CAB89B /* Dummy.swift in Sources */,
 				BA20432F1E5C81AD00E8FDCA /* AppDelegate.swift in Sources */,
+				BA0BAF381F7E35B1001CBC01 /* DistanceExtension.swift in Sources */,
 				BA20433C1E5C86CF00E8FDCA /* Emitter.swift in Sources */,
 				BA2043311E5C81C000E8FDCA /* Layout.swift in Sources */,
 				BABCF2E61E67021E00158464 /* Style.swift in Sources */,
@@ -851,6 +838,7 @@
 				BA5DE4211F7944BC001A1BAE /* Math.swift in Sources */,
 				BA5DE4221F7944BC001A1BAE /* Style.swift in Sources */,
 				BA5DE4231F7944BC001A1BAE /* Dummy.swift in Sources */,
+				BA0BAF391F7E35B1001CBC01 /* DistanceExtension.swift in Sources */,
 				BA5DE4241F7944BC001A1BAE /* Foundation.swift in Sources */,
 				BA5DE4251F7944BC001A1BAE /* ViewController.swift in Sources */,
 				BA5DE4261F7944BC001A1BAE /* Particle.swift in Sources */,
@@ -947,17 +935,6 @@
 			targetProxy = BA7925F51E65B3BF002A57A9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		BA16C87D1F79564100D1721B /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BA16C87E1F79564100D1721B /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		BA150FA71E53B85C009A14E3 /* Debug */ = {

@@ -18,9 +18,11 @@ class ViewController: UIViewController {
         
         anim.defaultSettings.delay = 0
 
+        /*
         #if os(tvOS)
             self.view.transform = CGAffineTransform.init(scaleX: 3, y: 3)
         #endif
+         */
         
         // background
         let backgroundView = UIView()
@@ -36,12 +38,12 @@ class ViewController: UIViewController {
         // container
         mainContainer = UIView()
         self.view.addSubview(mainContainer)
-        mainContainer.center(to: self.view, verticalAdjustment: 20)
+        mainContainer.center(to: self.view, verticalAdjustment: 20.platform)
         
         // wood
         let woodView = UIImageView(image: #imageLiteral(resourceName: "wood"))
         mainContainer.addSubview(woodView)
-        woodView.center(to: mainContainer, verticalAdjustment: 80)
+        woodView.center(to: mainContainer, verticalAdjustment: 80.platform)
         
         // emitters
         createEdgeFireEmitters(x: -16)
@@ -98,7 +100,7 @@ class ViewController: UIViewController {
     private func createEmitter(x: CGFloat = 0, y: CGFloat = 0, withSettings settings: Emitter.Settings) {
         let emitter = Emitter()
         mainContainer.addSubview(emitter)
-        emitter.center(to: mainContainer, horizontalAdjustment: x, verticalAdjustment: y)
+        emitter.center(to: mainContainer, horizontalAdjustment: x.platform, verticalAdjustment: y.platform)
         let settings = settings
         emitter.start(settings)
     }
