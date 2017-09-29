@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'anim'
-  s.version = '1.2.2'
+  s.version = '1.2.3'
   s.license = { :type => "MIT", :file => "LICENSE" }
   s.summary = 'Swift animation library for iOS, tvOS and macOS'
   s.homepage = 'https://github.com/onurersel/anim'
