@@ -63,7 +63,7 @@ final public class anim: NSObject {
     /// - Parameter closure: Exposes settings values to block, and expects returning animation block.
     @discardableResult
     public convenience init(_ closureWithSettings: @escaping (inout animSettings) -> (animClosure)) {
-        self.init(closureWithoutProcess:closureWithSettings)
+        self.init(closureWithoutProcess: closureWithSettings)
         process()
     }
 
@@ -72,7 +72,7 @@ final public class anim: NSObject {
     /// - Parameter closure: Animation block.
     @discardableResult
     public convenience init(_ closure: @escaping animClosure) {
-        self.init(closureWithoutProcess:closure)
+        self.init(closureWithoutProcess: closure)
         process()
     }
 
@@ -82,14 +82,14 @@ final public class anim: NSObject {
     internal convenience init(closureWithoutProcess closure: @escaping (inout animSettings) -> (animClosure)) {
         var _settings = anim.defaultSettings
         let _closure = closure(&_settings)
-        self.init(settings:_settings, closure:_closure)
+        self.init(settings: _settings, closure: _closure)
     }
 
     /// Creates animation promise. To be used while chaining promises.
     ///
     /// - Parameter closure: Animation block.
     internal convenience init(closureWithoutProcess closure: @escaping animClosure) {
-        self.init(settings: anim.defaultSettings, closure:closure)
+        self.init(settings: anim.defaultSettings, closure: closure)
     }
 
     /// Main initializer.

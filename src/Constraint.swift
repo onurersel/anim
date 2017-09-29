@@ -61,7 +61,7 @@ extension anim {
                                  closureWithoutProcess closure: @escaping (inout animSettings) -> animClosure) {
         var _settings = anim.defaultSettings
         let _closure = closure(&_settings)
-        self.init(settings: _settings, closure:nil)
+        self.init(settings: _settings, closure: nil)
         self.animationConstraintLayout = Constraint(closure: _closure, parent: constraintParent)
     }
 
@@ -71,7 +71,7 @@ extension anim {
     ///   - constraintParent: Top parent where constraints reside.
     ///   - closure: Animation block.
     fileprivate convenience init(constraintParent: View, closureWithoutProcess closure: @escaping animClosure) {
-        self.init(settings: anim.defaultSettings, closure:nil)
+        self.init(settings: anim.defaultSettings, closure: nil)
         self.animationConstraintLayout = Constraint(closure: closure, parent: constraintParent)
     }
 

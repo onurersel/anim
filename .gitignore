@@ -66,9 +66,12 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/cov_output
+!fastlane/cov_output/README.md
 
 # .DS_Store files
 .DS_Store
 
 # Playgrounds
 *.playground
+
+.bundle

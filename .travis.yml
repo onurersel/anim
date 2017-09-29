@@ -1,8 +1,13 @@
 language: swift
-osx_image: xcode8.2
+osx_image: xcode9.1
 before_install:
   - brew update
   - brew outdated swiftlint || brew upgrade swiftlint
+  - rvm install 2.3.0
+  - rvm use 2.3.0
+  - sudo gem install json -v '1.8.3' -n /usr/local/bin
+install: 
+  - bundle install --jobs=3 --retry=3 --path=/usr/local/bin
 script:
   - ./fastlane/travis.sh
 after_success:

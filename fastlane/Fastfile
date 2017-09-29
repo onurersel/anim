@@ -36,7 +36,6 @@ platform :ios do
     scan(
       project: "anim.xcodeproj",
       scheme: "anim-ios",
-      devices: ["iPhone 5s (8.4)", "iPhone 5s (9.3)", "iPhone 5s (10.0)", "iPhone 5s (11.0)"],
       derived_data_path: "./build/",
       code_coverage: true,
       clean: true
