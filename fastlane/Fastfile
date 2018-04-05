@@ -42,17 +42,6 @@ platform :ios do
     )
 
     set_info_plist_value(path: "./test/Info.plist", key: "delayMultiplier", value: 1)
-
-    # Generates code coverage report
-    slather(
-      proj: "anim.xcodeproj",
-      scheme: "anim-ios",
-      build_directory: "./build/",
-      output_directory: "./fastlane/cov_output/",
-      source_directory: "./src/",
-      html: true,
-      travis: true
-    )
   end
 
   desc "Pushes changes to git repository"
@@ -70,6 +59,14 @@ platform :ios do
       version_number: version
     )
 
+    # Create docs and commit repository
+    git()
+    # Push to cocoapods
+    pushpod()
+  end
+
+  desc "Create docs and commit repository"
+  lane :git do
     # Generate docs
     jazzy
 
@@ -80,9 +77,12 @@ platform :ios do
     add_git_tag(tag: version)
     ensure_git_status_clean
     push_to_git_remote
+  end
 
+  desc "Push to cocoapods"
+  lane :pushpod do
     # Push to Cocoapods
     sh "./cocoapods.sh"
-  end
+  end  
 
 end
