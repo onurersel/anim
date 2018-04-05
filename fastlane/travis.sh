@@ -1,3 +1,5 @@
 #!/bin/sh
 
-bundle exec fastlane test
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+fastlane test

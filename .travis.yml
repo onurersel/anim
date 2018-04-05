@@ -6,8 +6,7 @@ before_install:
   - brew outdated swiftlint || brew upgrade swiftlint
 install: 
   - sudo gem install fastlane -n /usr/local/bin
-  - sudo gem install slather -n /usr/local/bin
 script:
   - ./fastlane/travis.sh
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -J 'anim'
