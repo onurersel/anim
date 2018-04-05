@@ -6,6 +6,7 @@ disabled_rules:
   - nesting
   - number_separator
   - file_header
+  - identifier_name
 opt_in_rules:
   - attributes
   - closure_end_indentation

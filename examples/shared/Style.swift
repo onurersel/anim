@@ -32,7 +32,7 @@ extension String {
         let attributedString = NSMutableAttributedString(string: self)
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 12
-        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: style, range: NSRange(location: 0, length: self.characters.count))
+        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: style, range: NSRange(location: 0, length: self.count))
         
         return attributedString
     }
