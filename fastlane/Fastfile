@@ -60,13 +60,6 @@ platform :ios do
     )
 
     # Create docs and commit repository
-    git()
-    # Push to cocoapods
-    pushpod()
-  end
-
-  desc "Create docs and commit repository"
-  lane :git do
     # Generate docs
     jazzy
 
@@ -77,12 +70,8 @@ platform :ios do
     add_git_tag(tag: version)
     ensure_git_status_clean
     push_to_git_remote
-  end
 
-  desc "Push to cocoapods"
-  lane :pushpod do
-    # Push to Cocoapods
+    # Push to cocoapods
     sh "./cocoapods.sh"
-  end  
-
+  end
 end

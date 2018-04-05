@@ -26,6 +26,16 @@ Runs all the tests
 fastlane ios pods
 ```
 Pushes changes to git repository
+### ios git
+```
+fastlane ios git
+```
+Create docs and commit repository
+### ios pushpod
+```
+fastlane ios pushpod
+```
+Push to cocoapods
 
 ----
 

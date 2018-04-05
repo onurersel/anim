@@ -13,7 +13,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">anim Docs</a> (100% documented)</p>
+        <p><a href="index.html">anim Docs</a> (98% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -35,7 +35,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Enums.html">Enums</a>
+            <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Enums/AnimatorType.html">AnimatorType</a>
@@ -51,7 +51,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Structs.html">Structs</a>
+            <a href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Structs/animEase.html">animEase</a>
@@ -62,8 +62,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Typealiases.html">Typealiases</a>
+            <a href="Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/View">View</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:4anim4Viewa">View</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Typealiases.html#/s:4anim0A7Closurea">animClosure</a>
               </li>
@@ -96,20 +102,20 @@
                       <div class="abstract">
                         <p><code>anim</code> is an animation library written in Swift with a simple,
 declarative API in mind.</p>
-<pre class="highlight plaintext"><code>// moves box to 100,100 with default settings
-anim {
-    self.box.frame.origin = CGPoint(x:100, y:100)
-    }
-    // after that, waits 100 ms
-    .wait(100)
-    // moves box to 0,0 after waiting
-    .then {
-        self.box.frame.origin = CGPoint(x:0, y:0)
-    }
-    // displays message after all animations are done
-    .callback {
-        print("Just finished moving 📦 around.")
-}
+<pre class="highlight swift"><code><span class="c1">// moves box to 100,100 with default settings</span>
+<span class="n">anim</span> <span class="p">{</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">box</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span><span class="mi">100</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="c1">// after that, waits 100 ms</span>
+    <span class="o">.</span><span class="nf">wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="c1">// moves box to 0,0 after waiting</span>
+    <span class="o">.</span><span class="n">then</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">box</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="c1">// displays message after all animations are done</span>
+    <span class="o">.</span><span class="n">callback</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Just finished moving 📦 around."</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre>
 
 <p>It supports a bunch of easing functions and chaining multiple animations.
@@ -121,7 +127,7 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nv">anim</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nv">anim</span><span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                         </div>
                       </div>
@@ -133,8 +139,8 @@ It&rsquo;s a wrapper on Apple&rsquo;s <code>UIViewPropertyAnimator</code> on its
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://github.com/onurersel/anim" target="_blank" rel="external">Onur Ersel</a>. All rights reserved. (Last updated: 2017-09-29)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/onurersel/anim" target="_blank" rel="external">Onur Ersel</a>. All rights reserved. (Last updated: 2018-04-05)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
