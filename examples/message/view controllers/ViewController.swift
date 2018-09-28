@@ -47,7 +47,7 @@ class ViewController: UINavigationController, UINavigationControllerDelegate {
     }
 
     // route transitions between view controllers
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
         if fromVC is ProfileListViewController && toVC is ProfileDetailViewController && operation == .push {           // profile list -> profile detail
             return ProfileDetailShowAnimator()
@@ -122,7 +122,7 @@ class NavigationBarController {
         addItem(item: right, horizontalAttribute: .right)
     }
 
-    func addItem(item: UIView?, horizontalAttribute: NSLayoutAttribute) {
+    func addItem(item: UIView?, horizontalAttribute: NSLayoutConstraint.Attribute) {
         guard let item = item else {
             return
         }

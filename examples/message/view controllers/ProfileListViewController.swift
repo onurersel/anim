@@ -46,7 +46,7 @@ class ProfileListViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.dataSource = self
         tableView.rowHeight = 179
         tableView.separatorColor = UIColor.clear
-        tableView.contentInset = UIEdgeInsetsMake(NavigationBarController.heightProfile.heightForOrientation + 20, 0, 0, 0)
+        tableView.contentInset = UIEdgeInsets(top: NavigationBarController.heightProfile.heightForOrientation + 20, left: 0, bottom: 0, right: 0)
         self.tableView.setContentOffset(CGPoint(x:0, y:-91), animated: false)
         tableView.snapEdges(to: self.view)
         
@@ -61,7 +61,7 @@ class ProfileListViewController: UIViewController, UITableViewDelegate, UITableV
         addListeners()
         selectedProfileCell?.setSelected(false, animated: false)
         
-        NotificationCenter.default.post(name: Event.menuShow, object: nil)
+        NotificationCenter.default.post(name: AnimEvent.menuShow, object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -156,8 +156,8 @@ class ProfileListViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: Listeners / Handlers
     
     private func addListeners() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.navigateToMessagesHandler), name: Event.navigateToMessages, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.orientationChangeHandler), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.navigateToMessagesHandler), name: AnimEvent.navigateToMessages, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.orientationChangeHandler), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     private func removeListeners() {
@@ -172,7 +172,7 @@ class ProfileListViewController: UIViewController, UITableViewDelegate, UITableV
     
     @objc
     func orientationChangeHandler(notification: Notification) {
-        tableView.contentInset = UIEdgeInsetsMake(NavigationBarController.heightProfile.heightForOrientation + 20, 0, 0, 0)
+        tableView.contentInset = UIEdgeInsets(top: NavigationBarController.heightProfile.heightForOrientation + 20, left: 0, bottom: 0, right: 0)
     }
 }
 
@@ -243,7 +243,7 @@ class ProfileCell: UITableViewCell {
     private var textContainerView: UIView!
     private var animations = [anim]()
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 

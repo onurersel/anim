@@ -97,7 +97,7 @@ internal class ViewAnimator: Animator {
         // Creating raw value for `UIViewAnimationOptions`.
         var optionsRaw: UInt = 0
         if settings.isUserInteractionsEnabled {
-            optionsRaw += UIViewAnimationOptions.allowUserInteraction.rawValue
+            optionsRaw += UIView.AnimationOptions.allowUserInteraction.rawValue
         }
 
         // Starting to swizzle.
@@ -111,7 +111,7 @@ internal class ViewAnimator: Animator {
         // Animating...
         UIView.animate(withDuration: settings.duration,
                        delay: 0,
-                       options: UIViewAnimationOptions(rawValue: optionsRaw),
+                       options: UIView.AnimationOptions(rawValue: optionsRaw),
                        animations: animationClosure,
                        completion: { _ in
                         completion()

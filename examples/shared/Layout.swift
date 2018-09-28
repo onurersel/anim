@@ -42,7 +42,7 @@ extension UIView {
     }
     
     @discardableResult
-    class func alignMultiple(view: UIView, to: UIView?, attributes: [NSLayoutAttribute], constant: CGFloat = 0, parent: UIView? = nil) -> [NSLayoutConstraint] {
+    class func alignMultiple(view: UIView, to: UIView?, attributes: [NSLayoutConstraint.Attribute], constant: CGFloat = 0, parent: UIView? = nil) -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
         for attr in attributes {
             constraints.append( align(view: view, to: to, attribute: attr, constant: constant, parent: parent) )
@@ -52,7 +52,7 @@ extension UIView {
     }
     
     @discardableResult
-    class func align(view: UIView, to: UIView?, attribute: NSLayoutAttribute, constant: CGFloat = 0, parent: UIView? = nil) -> NSLayoutConstraint {
+    class func align(view: UIView, to: UIView?, attribute: NSLayoutConstraint.Attribute, constant: CGFloat = 0, parent: UIView? = nil) -> NSLayoutConstraint {
         view.translatesAutoresizingMaskIntoConstraints = false
         let c = NSLayoutConstraint(item: view,
                                    attribute: attribute,
