@@ -947,6 +947,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.onurersel.animTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -960,6 +961,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.onurersel.animTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -974,6 +976,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-bonfire";
 				PRODUCT_NAME = animBonfire;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -988,6 +991,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-bonfire";
 				PRODUCT_NAME = animBonfire;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -1124,6 +1128,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.anim-ios";
 				PRODUCT_NAME = anim;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1144,6 +1149,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.anim-ios";
 				PRODUCT_NAME = anim;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1165,6 +1171,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-bonfire-tvos";
 				PRODUCT_NAME = animBonfire;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.0;
 			};
@@ -1187,6 +1194,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-bonfire-tvos";
 				PRODUCT_NAME = animBonfire;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.0;
 			};
@@ -1208,6 +1216,7 @@
 				PRODUCT_NAME = anim;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
@@ -1229,6 +1238,7 @@
 				PRODUCT_NAME = anim;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
@@ -1243,6 +1253,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.animTests-tvos";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.2;
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
@@ -1256,6 +1267,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.animTests-tvos";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.2;
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -1279,6 +1291,7 @@
 				PRODUCT_NAME = anim;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -1301,6 +1314,7 @@
 				PRODUCT_NAME = anim;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -1315,6 +1329,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.animTests-macosx";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -1329,6 +1344,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.animTests-macosx";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -1343,6 +1359,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-message";
 				PRODUCT_NAME = animMessage;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -1357,6 +1374,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.onurersel.example-message";
 				PRODUCT_NAME = animMessage;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

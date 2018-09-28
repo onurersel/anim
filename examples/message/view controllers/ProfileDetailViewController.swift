@@ -96,7 +96,7 @@ class ProfileDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        NotificationCenter.default.post(name: Event.menuHide, object: nil)
+        NotificationCenter.default.post(name: AnimEvent.menuHide, object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -113,7 +113,7 @@ class ProfileDetailViewController: UIViewController {
     
     private func addListeners() {
         backButtonView.addTarget(self, action: #selector(self.backAction), for: .touchUpInside)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.deviceOrientationChangeHandler), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.deviceOrientationChangeHandler), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     private func removeListeners() {
@@ -274,7 +274,7 @@ extension ProfileDetailViewController {
 
         class func create() -> ContainerView {
             let view = ContainerView()
-            view.contentInset = UIEdgeInsetsMake(71, 0, 42, 0)
+            view.contentInset = UIEdgeInsets(top: 71, left: 0, bottom: 42, right: 0)
             view.contentOffset = CGPoint(x: 0, y: -71)
             view.backgroundColor = UIColor.white
 

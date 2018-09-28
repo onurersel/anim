@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Event {
+struct AnimEvent {
     static let menuToggle = NSNotification.Name(rawValue: "menu_toggle")
     static let menuStateChange = NSNotification.Name(rawValue: "menu_state_change")
     static let menuHide = NSNotification.Name(rawValue: "menu_hide")

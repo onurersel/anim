@@ -53,9 +53,9 @@ class MessageListViewController: UIViewController {
     // MARK: Listeners
     
     private func addListeners() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.navigateToConversationHandler), name: Event.navigateToConversation, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.navigateToConversationHandler), name: AnimEvent.navigateToConversation, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.navigateToProfileHandler), name: Event.navigateToProfile, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.navigateToProfileHandler), name: AnimEvent.navigateToProfile, object: nil)
     }
     
     private func removeListeners() {
@@ -98,7 +98,7 @@ extension MessageListViewController: AnimatedViewController {
     }
     
     func animateIn(_ completion: @escaping ()->Void) {
-        NotificationCenter.default.post(name: Event.menuShow, object: nil)
+        NotificationCenter.default.post(name: AnimEvent.menuShow, object: nil)
 
         anim { (settings) -> (animClosure) in
             settings.duration = 0.6
@@ -226,7 +226,7 @@ class BubbleScrollView: UIScrollView, UIScrollViewDelegate {
         }
         
         if contentOffset.y <= 0 || contentOffset.y + scrollView.frame.size.height - contentInset.bottom >= contentSize.height  {
-            NotificationCenter.default.post(name: Event.conversationScroll, object: nil, userInfo: ["velocity": velocity])
+            NotificationCenter.default.post(name: AnimEvent.conversationScroll, object: nil, userInfo: ["velocity": velocity])
         }
         
         let currentVelocity = contentOffset - previousOffset
@@ -284,7 +284,7 @@ class ConversationBubble: UIButton {
         view.backgroundColor = UIColor.clear
         
         view.addTarget(view, action: #selector(self.tapAction), for: .touchUpInside)
-        NotificationCenter.default.addObserver(view, selector: #selector(self.scrollHandler), name: Event.conversationScroll, object: nil)
+        NotificationCenter.default.addObserver(view, selector: #selector(self.scrollHandler), name: AnimEvent.conversationScroll, object: nil)
         
         return view
     }
@@ -484,7 +484,7 @@ class ConversationBubble: UIButton {
     
     @objc
     func tapAction() {
-        NotificationCenter.default.post(name: Event.navigateToConversation, object: self)
+        NotificationCenter.default.post(name: AnimEvent.navigateToConversation, object: self)
     }
     
     @objc

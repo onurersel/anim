@@ -75,7 +75,7 @@ extension DialogueBubbleTableCell {
             for _ in 0...10 {
                 let particle = self.getParticle()
                 var bubbleRect = CGRect(x: -bubbleSize.width/2.0, y: -bubbleSize.height/2.0, width: bubbleSize.width, height: bubbleSize.height)
-                bubbleRect = UIEdgeInsetsInsetRect(bubbleRect, UIEdgeInsetsMake(-offset, -offset, -offset, -offset))
+                bubbleRect = bubbleRect.insetBy(dx: -offset, dy: -offset)
                 let randomPoint = bubbleRect.randomPointOnRect
                 
                 view.addSubview(particle)

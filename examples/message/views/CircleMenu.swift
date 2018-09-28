@@ -51,10 +51,10 @@ class CircleMenuController {
         buttonProfile.isHidden = true
         
         // event listeners
-        NotificationCenter.default.addObserver(self, selector: #selector(self.menuToggleHandler), name: Event.menuToggle, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.menuStateChangeHandler), name: Event.menuStateChange, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.hideHandler), name: Event.menuHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.showHandler), name: Event.menuShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.menuToggleHandler), name: AnimEvent.menuToggle, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.menuStateChangeHandler), name: AnimEvent.menuStateChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.hideHandler), name: AnimEvent.menuHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.showHandler), name: AnimEvent.menuShow, object: nil)
     }
     
     
@@ -198,7 +198,7 @@ class CircleMenuController {
     @objc
     func menuToggleHandler() {
         let newState: State = (state == .closed) ? .opened : .closed
-        NotificationCenter.default.post(name: Event.menuStateChange, object: nil, userInfo: ["state": newState])
+        NotificationCenter.default.post(name: AnimEvent.menuStateChange, object: nil, userInfo: ["state": newState])
     }
     
     @objc
@@ -217,7 +217,7 @@ class CircleMenuController {
     @objc
     func hideHandler() {
         if state == .opened {
-            NotificationCenter.default.post(name: Event.menuToggle, object: nil)
+            NotificationCenter.default.post(name: AnimEvent.menuToggle, object: nil)
         }
         
         anim(constraintParent: parent) { (settings) -> animClosure in
@@ -394,7 +394,7 @@ class MenuButton: UIButton {
         self.addTarget(self, action: #selector(self.cancelAction), for: .touchUpOutside)
         
         if icon == .menu {
-            NotificationCenter.default.addObserver(self, selector: #selector(self.menuStateChangeHandler), name: Event.menuStateChange, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.menuStateChangeHandler), name: AnimEvent.menuStateChange, object: nil)
         }
     }
     
@@ -416,13 +416,13 @@ class MenuButton: UIButton {
     func tapAction() {
         
         if icon == .menu {
-            NotificationCenter.default.post(name: Event.menuToggle, object: nil)
+            NotificationCenter.default.post(name: AnimEvent.menuToggle, object: nil)
         } else if icon == .profile {
-            NotificationCenter.default.post(name: Event.navigateToProfile, object: nil)
-            NotificationCenter.default.post(name: Event.menuToggle, object: nil)
+            NotificationCenter.default.post(name: AnimEvent.navigateToProfile, object: nil)
+            NotificationCenter.default.post(name: AnimEvent.menuToggle, object: nil)
         } else if icon == .message {
-            NotificationCenter.default.post(name: Event.navigateToMessages, object: nil)
-            NotificationCenter.default.post(name: Event.menuToggle, object: nil)
+            NotificationCenter.default.post(name: AnimEvent.navigateToMessages, object: nil)
+            NotificationCenter.default.post(name: AnimEvent.menuToggle, object: nil)
         }
         
         cancelAction()

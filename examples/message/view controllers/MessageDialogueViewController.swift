@@ -108,10 +108,10 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
     // MARK: Listeners / Actions
     
     private func addListeners() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShowHandler), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHideHandler), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.addMessageHandler), name: Event.addMessage, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateConversationTableHandler), name: Event.updateConversationTable, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShowHandler), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHideHandler), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.addMessageHandler), name: AnimEvent.addMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateConversationTableHandler), name: AnimEvent.updateConversationTable, object: nil)
         
         backBarButton.addTarget(self, action: #selector(self.backAction), for: .touchUpInside)
     }
@@ -125,9 +125,9 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
     @objc
     func keyboardWillShowHandler(notification: Notification) {
         guard let userInfo = notification.userInfo,
-            let finalFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect,
-            let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval,
-            let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt else {
+            let finalFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
+            let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval,
+            let animationCurve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt else {
                 return
         }
         
@@ -140,8 +140,8 @@ class MessageDialogueViewController: UIViewController, UITableViewDelegate, UITa
     @objc
     func keyboardWillHideHandler(notification: Notification) {
         guard let userInfo = notification.userInfo,
-            let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval,
-            let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt else {
+            let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval,
+            let animationCurve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt else {
                 return
         }
         inputContainer.moveInputField(bottom: 0, duration: animationDuration, curve: animationCurve)
@@ -192,7 +192,7 @@ extension MessageDialogueViewController: AnimatedViewController {
     }
     
     func animateIn(_ completion: @escaping ()->Void) {
-        NotificationCenter.default.post(name: Event.menuHide, object: nil)
+        NotificationCenter.default.post(name: AnimEvent.menuHide, object: nil)
         NavigationBarController.shared.update(color: self.userColor)
         
         anim(constraintParent: messageTable) { (settings) -> animClosure in
@@ -289,7 +289,7 @@ extension MessageDialogueViewController {
             view.addSubview(view.tableView)
             view.tableView.separatorStyle = .none
             view.tableView.allowsSelection = false
-            view.tableView.rowHeight = UITableViewAutomaticDimension
+            view.tableView.rowHeight = UITableView.automaticDimension
             view.tableView.estimatedRowHeight = 56
             view.tableView.contentInset.top = 119
             view.tableView.contentInset.bottom = 30
@@ -562,12 +562,12 @@ extension MessageDialogueViewController {
         
         func addMessageFromUser(_ message: String) {
             messages.append( Message(side: .right, color: userColor, body: message) )
-            NotificationCenter.default.post(name: Event.updateConversationTable, object: nil)
+            NotificationCenter.default.post(name: AnimEvent.updateConversationTable, object: nil)
         }
         
         func addMessageFromOther() {
             messages.append( Message(side: .left, color: Color.lightGray, body: Dummy.message) )
-            NotificationCenter.default.post(name: Event.updateConversationTable, object: nil)
+            NotificationCenter.default.post(name: AnimEvent.updateConversationTable, object: nil)
         }
         
         func addMessageFromOtherAfterDelay() {
@@ -690,7 +690,7 @@ extension MessageDialogueViewController {
             parent.layoutIfNeeded()
             
             // don't support raw curves yet 😔
-            UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: {
+            UIView.animate(withDuration: duration, delay: 0, options: UIView.AnimationOptions(rawValue: curve), animations: {
                 self.bottomInConstraint.constant = bottom
                 self.bottomOutConstraint.constant = bottom
                 self.parent.layoutIfNeeded()
@@ -716,7 +716,7 @@ extension MessageDialogueViewController {
             }
             
             textField.text = ""
-            NotificationCenter.default.post(name: Event.addMessage, object: nil, userInfo: ["message": textEntered])
+            NotificationCenter.default.post(name: AnimEvent.addMessage, object: nil, userInfo: ["message": textEntered])
             
             return true
         }
