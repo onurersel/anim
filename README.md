@@ -178,21 +178,6 @@ anim.defaultSettings.ease = .easeInOutCubic
 `anim.Ease` exposes a bunch of easing options.
 
 ---
-<img src="https://github.com/onurersel/anim/raw/master/img/roadmap.png" alt="Roadmap" width="286">
-
-- [x] Chaining animations
-- [x] Wait, callback functions
-- [x] Constraint animations
-- [x] iOS 8 and 9 support
-- [x] macOS support
-- [x] tvOS support
-- [x] Example projects
-- [ ] API for choreographing animations
-- [ ] Grouping animations
-- [ ] Easing with spring
-- [ ] Shape animations
-
----
 <img src="https://github.com/onurersel/anim/raw/master/img/license.png" alt="License" width="163">
 
 `anim` is released under the MIT license. See LICENSE for details.
