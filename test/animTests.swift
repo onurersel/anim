@@ -37,12 +37,12 @@ class animTests: XCTestCase {
     func testInitializers() {
 
         // with default settings
-        XCTAssertNotNil(anim {}, "Constructor should not return nil.")
+        XCTAssertNotNil(anim.init({}), "Constructor should not return nil.")
 
         // with custom settings
-        let a = anim { (s) -> (animClosure) in
+        let a = anim.init({ (s) -> (animClosure) in
             return {}
-        }
+        })
         XCTAssertNotNil(a, "Constructor should not return nil.")
 
     }
@@ -108,7 +108,7 @@ class animTests: XCTestCase {
             anim.defaultSettings.delay = 0.6*animTests.delayMultiplier
             anim.defaultSettings.completion = completion
 
-            anim {}
+            anim.init({})
                 .then {}
                 .then {}
                 .callback {
@@ -122,7 +122,7 @@ class animTests: XCTestCase {
         anim.defaultSettings.duration = 0.1421
         anim.defaultSettings.ease = .easeInOutBack
 
-        let a = anim {}
+        let a = anim.init({})
         let t = a.then {}
 
         XCTAssertEqual(a.animationSettings.delay, anim.defaultSettings.delay, "Value should be copied from default settings.")
@@ -139,12 +139,12 @@ class animTests: XCTestCase {
         anim.defaultSettings.duration = 0.0014
         anim.defaultSettings.ease = .easeInCirc
 
-        let a = anim { (settings) -> (animClosure) in
+        let a = anim.init({ (settings) -> (animClosure) in
             settings.delay = 0.76
             settings.duration = 0.301
             settings.ease = .easeInQuad
             return {}
-        }
+        })
         let t = a.then { (settings) -> (animClosure) in
             settings.delay = 0.9987
             settings.duration = 0.2743
@@ -162,7 +162,7 @@ class animTests: XCTestCase {
     }
 
     func testNext() {
-        let a = anim {}
+        let a = anim.init({})
         let t1 = a.then {}
         let t2 = t1.then {}
         let w = t2.wait(0)
@@ -189,10 +189,10 @@ class animTests: XCTestCase {
 
         eventSequence(e) { (log, end) in
 
-            let a = anim { (settings) -> (animClosure) in
+            let a = anim.init({ (settings) -> (animClosure) in
                 settings.delay = 0.5*animTests.delayMultiplier
                 return {}
-            }
+            })
             let t = a.then { (settings) -> animClosure in
                 settings.delay = 0.5*animTests.delayMultiplier
                 return {}
@@ -237,9 +237,9 @@ class animTests: XCTestCase {
 
         eventSequence(e) { (log, end) in
 
-            anim {
+            anim.init({
                 log("e1")
-            }
+            })
             .then {
                 log("e2")
             }
@@ -265,9 +265,9 @@ class animTests: XCTestCase {
         ]
 
         eventSequence(e) { (log, end) in
-            anim {
+            anim.init({
                 log("e1")
-            }
+            })
             .then {
                 log("e2")
             }
@@ -345,7 +345,7 @@ class animTests: XCTestCase {
         ]
 
         eventSequence(e) { (log, end) in
-            anim {}
+            anim.init({})
             .wait(0.7*animTests.delayMultiplier)
             .callback {
                 log("e1")
@@ -442,9 +442,9 @@ class animTests: XCTestCase {
         eventSequence(e) { (log, end) in
             
             anim.defaultSettings.delay = 0.4*animTests.delayMultiplier
-            let a = anim {
+            let a = anim.init({
                 log("e1")
-            }
+            })
             
             
             a.then {
@@ -553,10 +553,10 @@ class animTests: XCTestCase {
         ]
         
         eventSequence(e) { (log, end) in
-            let a = anim {
+            let a = anim.init({
                 viewAnimatable.frame = CGRect(x: 100, y: 0, width: 10, height: 10)
                 log("e1")
-            }
+            })
             
             a.then {
                 viewAnimatable.frame = CGRect(x: 0, y: 100, width: 20, height: 20)
