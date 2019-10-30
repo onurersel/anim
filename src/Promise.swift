@@ -35,7 +35,7 @@ public extension anim {
     /// - Parameter closure: Exposes settings values to block, and expects returning animation block.
     /// - Returns: Newly created promise.
     @discardableResult
-    public func then(_ closureWithSettings: @escaping (inout animSettings) -> animClosure) -> anim {
+    func then(_ closureWithSettings: @escaping (inout animSettings) -> animClosure) -> anim {
         let nextAnim = anim(closureWithoutProcess: closureWithSettings)
         chain(to: nextAnim)
         return nextAnim
@@ -46,7 +46,7 @@ public extension anim {
     /// - Parameter closure: Animation block.
     /// - Returns: Newly created promise.
     @discardableResult
-    public func then(_ closure: @escaping animClosure) -> anim {
+    func then(_ closure: @escaping animClosure) -> anim {
         let nextAnim = anim(closureWithoutProcess: closure)
         chain(to: nextAnim)
         return nextAnim
@@ -57,7 +57,7 @@ public extension anim {
     /// - Parameter milliseconds: Milliseconds to wait.
     /// - Returns: Newly created promise.
     @discardableResult
-    public func wait(_ seconds: TimeInterval) -> anim {
+    func wait(_ seconds: TimeInterval) -> anim {
         var settings = anim.defaultSettings
         settings.delay = seconds
         settings.duration = 0
@@ -71,7 +71,7 @@ public extension anim {
     /// - Parameter closure: Block to be runned.
     /// - Returns: Newly created promise.
     @discardableResult
-    public func callback(_ closure: @escaping animClosure) -> anim {
+    func callback(_ closure: @escaping animClosure) -> anim {
         var settings = anim.defaultSettings
         settings.delay = 0
         settings.duration = 0
